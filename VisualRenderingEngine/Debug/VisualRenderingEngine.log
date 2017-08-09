@@ -1,0 +1,7 @@
+﻿  Tutorial03Shader.cpp
+  MyScene.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\myscene.cpp(58): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\myscene.cpp(139): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  VisualRenderingEngine.vcxproj -> C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.exe
+  VisualRenderingEngine.vcxproj -> C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.pdb (Full PDB)

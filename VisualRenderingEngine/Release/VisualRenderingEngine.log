@@ -1,0 +1,24 @@
+﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see c:\users\user\documents\visual studio 2015\Projects\VisualRenderingEngine\Release\Effect.cso
+  stdafx.cpp
+  CubeEntity.cpp
+  CubeMesh.cpp
+CubeMesh.cpp(101): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  DiffusedMesh.cpp
+  Entity.cpp
+  GameTimer.cpp
+GameTimer.cpp(153): warning C4244: 'return': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Mesh.cpp
+  Shader.cpp
+  ShaderManager.cpp
+  TriangleMesh.cpp
+  Tutorial02Shader.cpp
+  Tutorial03Shader.cpp
+  VisualRenderingEngine.cpp
+  VREngine.cpp
+  코드를 생성하고 있습니다.
+  All 667 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  코드를 생성했습니다.
+  VisualRenderingEngine.vcxproj -> c:\users\user\documents\visual studio 2015\Projects\VisualRenderingEngine\Release\VisualRenderingEngine.exe
+  VisualRenderingEngine.vcxproj -> c:\users\user\documents\visual studio 2015\Projects\VisualRenderingEngine\Release\VisualRenderingEngine.pdb (Full PDB)
