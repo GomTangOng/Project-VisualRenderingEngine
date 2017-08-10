@@ -46,8 +46,10 @@ private :
 	IDXGISwapChain1*		m_pSwapChain1 = nullptr;
 	ID3D11RenderTargetView*	m_pRenderTargetView = nullptr;
 	ID3D11RenderTargetView*	m_pRenderTargetViewFinal = nullptr;
-	ID3D11Texture2D*		m_pDepthStencilBuffer;
-	ID3D11DepthStencilView*	m_pDepthStencilView;
+	ID3D11Texture2D*		m_pDepthStencilBuffer = nullptr;
+	ID3D11DepthStencilView*	m_pDepthStencilView = nullptr;
+	ID3D11Texture2D*        m_pRenderTexture = nullptr;
+	ID3D11Texture2D*        m_pFinalTexture = nullptr;
 
 	CGameTimer* m_pGameTimer;
 	CScene*     m_pScene;

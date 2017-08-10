@@ -2,6 +2,7 @@
 #include "LigtingExamShader.h"
 #include "ElementType.h"
 #include "ShaderManager.h"
+#include "VREngine.h"
 
 CLigtingExamShader::CLigtingExamShader()
 {
@@ -19,7 +20,8 @@ void CLigtingExamShader::CreateShader()
 	GetShaderName(m_iVertexElementType, &vertex_shader_name, nullptr, &pixel_shader_name, nullptr);
 
 	//D3D10CreateEffectFromMemory()
-
+	
+	//VR_ENGINE->GetDevice()->CreateClassLinkage()
 	SHADER_MANAGER->CreateVertexShaderFromFile(L"Effect.fx",
 												vertex_shader_name,
 												"vs_5_0",

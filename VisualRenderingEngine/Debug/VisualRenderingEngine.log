@@ -1,7 +1,10 @@
-﻿  Tutorial03Shader.cpp
-  MyScene.cpp
-c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\myscene.cpp(58): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\myscene.cpp(139): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
+﻿  VREngine.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(21): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(22): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(81): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(103): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(113): warning C4244: '=': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(115): warning C4244: '=': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(363): warning C4715: 'CVREngine::CreateRenderTargetDepthStencilView': 모든 제어 경로에서 값을 반환하지는 않습니다.
   VisualRenderingEngine.vcxproj -> C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.exe
   VisualRenderingEngine.vcxproj -> C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.pdb (Full PDB)

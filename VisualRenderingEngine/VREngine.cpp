@@ -107,7 +107,15 @@ void CVREngine::RenderDual()
 		m_pScene->Render(m_vecCamera[1]);
 	else
 		m_pScene->Render();
-	//m_pImmediateContext->CopySubresourceRegion()
+
+	//D3D11_BOX box;
+	//box.left   = 0;
+	//box.right  = m_nWindowWidth / 2.0f;
+	//box.top    = 0;
+	//box.bottom = m_nWindowHeight / 2.0f;
+	//box.front  = 0;
+	//box.back   = 1;
+
 	m_pSwapChain->Present(0, 0);
 }
 
@@ -301,16 +309,29 @@ HRESULT CVREngine::CreateRenderTargetDepthStencilView()
 	HRESULT hr;
 	// Create a render target view
 	ID3D11Texture2D* pBackBuffer = nullptr;
+	
 	hr = m_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&pBackBuffer));
 	if (FAILED(hr))
 		return hr;
-
+	
+	// TEMP
+	////////////////////////////////////////////////////////////////////////
+	//m_pRenderTexture = pBackBuffer;
+	//
+	//D3D11_TEXTURE2D_DESC td;
+	//ZeroMemory(&td, sizeof(D3D11_TEXTURE2D_DESC));
+	//m_pRenderTexture->GetDesc(&td);
+	//
+	//HR(m_pDevice->CreateTexture2D(&td, nullptr, &m_pFinalTexture));
+	//HR(m_pDevice->CreateRenderTargetView(m_pRenderTexture, nullptr, &m_pRenderTargetViewFinal));
+	////////////////////////////////////////////////////////////////////////
+	
 	hr = m_pDevice->CreateRenderTargetView(pBackBuffer, nullptr, &m_pRenderTargetView);
 	pBackBuffer->Release();
 	if (FAILED(hr))
 		return hr;
 
-	m_pImmediateContext->OMSetRenderTargets(1, &m_pRenderTargetView, nullptr);
+	//m_pImmediateContext->OMSetRenderTargets(1, &m_pRenderTargetView, nullptr);
 
 	D3D11_TEXTURE2D_DESC descDepth;
 	ZeroMemory(&descDepth, sizeof(descDepth));
@@ -407,6 +428,8 @@ void CVREngine::CleanupDevice()
 	Memory::Release(m_pDevice1);
 	Memory::Release(m_pDevice);
 	Memory::Release(m_pRenderTargetViewFinal);
+	Memory::Release(m_pFinalTexture);
+	Memory::Release(m_pRenderTexture);
 }
 
 void CVREngine::CleanupManager()
