@@ -42,7 +42,6 @@ struct PS_CB_MATERIAL
 
 struct TS_CB_FACTOR 
 {
-	XMFLOAT4X4 viewProjection;
 	XMFLOAT3   camPosW;
 	float      minDist;
 
@@ -56,4 +55,5 @@ struct TS_CB_FACTOR
 	XMFLOAT2   texScale;
 	
 	XMFLOAT4   worldFrustumPlanes[6];
+	XMFLOAT4X4 viewProjection;
 };

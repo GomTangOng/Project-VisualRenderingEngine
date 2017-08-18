@@ -20,7 +20,7 @@
 
 CMyScene::CMyScene()
 {
-	m_fCamSpeed = 30.0f;
+	m_fCamSpeed = 100.0f;
 }
 
 
@@ -45,7 +45,11 @@ void CMyScene::Update(const float fTimeElapsed)
 		m_pCamera->Strafe(-m_fCamSpeed * fTimeElapsed);
 	if (INPUT_MANAGER->IsStayKeyDown('d') || INPUT_MANAGER->IsStayKeyDown('D'))
 		m_pCamera->Strafe(m_fCamSpeed * fTimeElapsed);
-	
+	if (INPUT_MANAGER->IsStayKeyDown('q') || INPUT_MANAGER->IsStayKeyDown('Q'))
+		m_pCamera->Fly(m_fCamSpeed * fTimeElapsed);
+	if (INPUT_MANAGER->IsStayKeyDown('e') || INPUT_MANAGER->IsStayKeyDown('E'))
+		m_pCamera->Fly(-m_fCamSpeed * fTimeElapsed);
+
 	LIGHT_MANAGER->UpdateLightConstantBuffer(m_pCamera->GetPosition());
 
 	for (auto& entity : m_mapObjects)
@@ -78,20 +82,20 @@ void CMyScene::BuildObjects()
 
 	shared_ptr<CPointLight> pPointLight = make_shared<CPointLight>();
 	shared_ptr<CSpotLight> pSpotLight = make_shared<CSpotLight>();
-	pDirLight[0]->m_ambient   = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
-	pDirLight[0]->m_diffuse   = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
-	pDirLight[0]->m_speular   = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
-	pDirLight[0]->m_direction = XMFLOAT3(0.57735f, -0.57735f, 0.57735f);
+	pDirLight[0]->m_ambient   = XMFLOAT4(0.3f, 0.3f, 0.3f, 1.0f);
+	pDirLight[0]->m_diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	pDirLight[0]->m_speular = XMFLOAT4(0.8f, 0.8f, 0.7f, 1.0f);
+	pDirLight[0]->m_direction = XMFLOAT3(0.707f, -0.707f, 0.0f);
 	
 	pDirLight[1]->m_ambient = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
-	pDirLight[1]->m_diffuse = XMFLOAT4(0.20f, 0.20f, 0.20f, 1.0f);
-	pDirLight[1]->m_speular = XMFLOAT4(0.25f, 0.25f, 0.25f, 1.0f);
-	pDirLight[1]->m_direction = XMFLOAT3(-0.57735f, -0.57735f, 0.57735f);
+	pDirLight[1]->m_diffuse = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
+	pDirLight[1]->m_speular = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
+	pDirLight[1]->m_direction = XMFLOAT3(0.57735f, -0.57735f, 0.57735f);
 
 	pDirLight[2]->m_ambient = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
 	pDirLight[2]->m_diffuse = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
-	pDirLight[2]->m_speular = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
-	pDirLight[2]->m_direction  = XMFLOAT3(0.0f, -0.707f, -0.707f);
+	pDirLight[2]->m_speular = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
+	pDirLight[2]->m_direction = XMFLOAT3(-0.57735f, -0.57735f, -0.57735f);
 
 	pPointLight->m_ambient     = XMFLOAT4(0.3f, 0.3f, 0.3f, 1.0f);
 	pPointLight->m_diffuse     = XMFLOAT4(0.7f, 0.7f, 0.7f, 1.0f);

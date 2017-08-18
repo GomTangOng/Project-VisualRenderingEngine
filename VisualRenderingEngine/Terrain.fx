@@ -242,8 +242,6 @@ cbuffer cbMaterial : register(b1)
 
 cbuffer cbTesslation : register(b3)
 {
-	matrix gViewProj;
-
 	float3 gEyePosW;
 	float  gMinDist;
 
@@ -254,9 +252,10 @@ cbuffer cbTesslation : register(b3)
 
 	float gTexelCellSpaceV;
 	float gWorldCellSpace;
-	float2 gTexScale = 50.0f;
+	float2 gTexScale;
 
 	float4 gWorldFrustumPlanes[6];
+	matrix gViewProj;
 }
 
 
@@ -423,8 +422,8 @@ HS_PATCH_TESS_OUTPUT CONSTANT_HS(InputPatch<VS_TERRAIN_OUTPUT, 4> patch, uint pa
 [patchconstantfunc("CONSTANT_HS")]
 [maxtessfactor(64.0f)]
 HS_TERRAIN_OUTPUT HS_TERRAIN(InputPatch<VS_TERRAIN_OUTPUT, 4> p,
-	uint i : SV_OutputControlPointID,
-	uint patchId : SV_PrimitiveID)
+								uint i : SV_OutputControlPointID,
+								uint patchId : SV_PrimitiveID)
 {
 	HS_TERRAIN_OUTPUT hout;
 
@@ -437,8 +436,8 @@ HS_TERRAIN_OUTPUT HS_TERRAIN(InputPatch<VS_TERRAIN_OUTPUT, 4> p,
 
 [domain("quad")]
 DS_TERRAIN_OUTPUT DS_TERRAIN(HS_PATCH_TESS_OUTPUT patchTess,
-	float2 uv : SV_DomainLocation,
-	const OutputPatch<HS_TERRAIN_OUTPUT, 4> quad)
+								float2 uv : SV_DomainLocation,
+								const OutputPatch<HS_TERRAIN_OUTPUT, 4> quad)
 {
 	DS_TERRAIN_OUTPUT dout;
 
@@ -449,9 +448,9 @@ DS_TERRAIN_OUTPUT DS_TERRAIN(HS_PATCH_TESS_OUTPUT patchTess,
 		uv.y);
 
 	dout.Tex = lerp(
-		lerp(quad[0].Tex, quad[1].Tex, uv.x),
-		lerp(quad[2].Tex, quad[3].Tex, uv.x),
-		uv.y);
+			lerp(quad[0].Tex, quad[1].Tex, uv.x),
+			lerp(quad[2].Tex, quad[3].Tex, uv.x),
+			uv.y);
 
 	// Tile layer textures over terrain.
 	dout.TiledTex = dout.Tex*gTexScale;
@@ -469,6 +468,7 @@ DS_TERRAIN_OUTPUT DS_TERRAIN(HS_PATCH_TESS_OUTPUT patchTess,
 
 	return dout;
 }
+
 float4 PS_TERRAIN(DS_TERRAIN_OUTPUT pin) : SV_Target
 {
 	//

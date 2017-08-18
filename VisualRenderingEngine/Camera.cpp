@@ -21,7 +21,7 @@ void CCamera::Initalize()
 
 //	if(!m_pcbViewProjMatrix) m_pcbViewProjMatrix = SHADER_MANAGER->CreateBuffer(sizeof(VS_CB_VIEW_PROJECTION_MATRIX), 1, nullptr, D3D11_BIND_CONSTANT_BUFFER, D3D11_USAGE_DYNAMIC, D3D11_CPU_ACCESS_WRITE);
 
-	SetPosition(0.0f, 1.0f, -100.0f, false);
+	SetPosition(0.0f, 1.0f, 0.0f, false);
 	m_vLook = XMFLOAT3(0.0f, 0.0f, 1.0f);
 	m_vUp = XMFLOAT3(0.0f, 1.0f, 0.0f);
 	m_vRight = XMFLOAT3(1.0f, 0.0f, 0.0f);
@@ -63,6 +63,14 @@ void CCamera::Strafe(float d)
 {
 	XMVECTOR s = XMVectorReplicate(d);
 	XMVECTOR r = XMLoadFloat3(&m_vRight);
+	XMVECTOR p = XMLoadFloat3(&m_vPosition);
+	XMStoreFloat3(&m_vPosition, XMVectorMultiplyAdd(s, r, p));
+}
+
+void CCamera::Fly(float d)
+{
+	XMVECTOR s = XMVectorReplicate(d);
+	XMVECTOR r = XMLoadFloat3(&m_vUp);
 	XMVECTOR p = XMLoadFloat3(&m_vPosition);
 	XMStoreFloat3(&m_vPosition, XMVectorMultiplyAdd(s, r, p));
 }

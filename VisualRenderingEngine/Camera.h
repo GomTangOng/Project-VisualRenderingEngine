@@ -15,6 +15,8 @@ public:
 
 	void Walk(float d);	// Z축 이동
 	void Strafe(float d);	// X축 이동
+	void Fly(float d);
+
 	void CreateViewMatrix();
 	void UpdateViewMatrix();
 	void CreateBoundingFrustum();
