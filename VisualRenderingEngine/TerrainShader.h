@@ -13,5 +13,7 @@ public:
 	void Render() override;
 	void Render(CCamera *pCamera) override;
 	void OnPreRender() override;
+
+private :
 };
 

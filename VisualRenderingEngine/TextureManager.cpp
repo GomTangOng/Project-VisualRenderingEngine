@@ -6,7 +6,7 @@
 #include "ShaderManager.h"
 #include "BufferStructs.h"
 #include "Material.h"
-
+#include "SlotType.h"
 CTextureManager::CTextureManager()
 {
 }
@@ -14,7 +14,11 @@ CTextureManager::CTextureManager()
 
 CTextureManager::~CTextureManager()
 {
-	
+	for (auto& t : m_mapTextures)
+	{
+		Memory::Release(t.second->GetSRV());
+		Memory::Delete(t.second);
+	}
 }
 
 bool CTextureManager::Initalize(ID3D11Device * pDevice)
@@ -34,15 +38,42 @@ bool CTextureManager::Initalize(ID3D11Device * pDevice)
 	sd.MinLOD = 0;
 	sd.MaxLOD = 0;
 	HR(m_pDevice->CreateSamplerState(&sd, &pBaseSampler));
-
 	AddSampler(L"BaseSampler", pBaseSampler);
+
+	ID3D11SamplerState *pLinearSampler;
+	sd.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	sd.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	sd.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	sd.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	HR(m_pDevice->CreateSamplerState(&sd, &pLinearSampler));
+	AddSampler(L"LinearSampler", pLinearSampler);
+
+
+	ID3D11SamplerState *pHeightmapSampler;
+	sd.Filter = D3D11_FILTER_MIN_MAG_LINEAR_MIP_POINT;
+	sd.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	sd.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	sd.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	HR(m_pDevice->CreateSamplerState(&sd, &pHeightmapSampler));
+	AddSampler(L"HeightmapSampler", pHeightmapSampler);
 
 	// Load Textures 
 	CTexture *pWood01 = LoadTextureFromFile(L"../Assets/Textures/WoodCrate01.dds");
+	pWood01->SetTextureSlot(TextureSlot::TEXTURE_BOX01);
+	pWood01->SetSamplerSlot(SamplerSlot::SAMPLER_BASIC);
 	pWood01->SetSampler(pBaseSampler);
 
 	AddTexture(L"Wood01", pWood01);
 
+	CTexture *pGrass = LoadTextureFromFile(L"../Assets/Textures/grass.dds");
+	pGrass->SetTextureSlot(TextureSlot::TEXTURE_GRASS);
+	pGrass->SetSamplerSlot(SamplerSlot::SAMPLER_LINEAR);
+	pGrass->SetSampler(pLinearSampler);
+
+	AddTexture(L"Grass", pGrass);
+
+	//CTexture *pHeightMap = LoadTextureFromFile(L"../Assets/HeightMaps/terrain.raw");
+	//AddTexture(L"HeightMap", pHeightMap);
 
 	return true;
 }
@@ -52,6 +83,7 @@ void CTextureManager::ShutDown()
 	for (auto& tex : m_mapTextures) Memory::Delete(tex.second);
 	for (auto& sam : m_mapSamplers) Memory::Release(sam.second);
 }
+
 
 CTexture * CTextureManager::LoadTextureFromFile(wstring file_name, ID3D11Resource *pTex2D)
 {

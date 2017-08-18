@@ -88,11 +88,6 @@ void CLightManager::UpdateLightConstantBuffer(XMFLOAT3 * pCamPos)
 	
 	pcbLight->camPos = *pCamPos;
 
-	//pcbLight->dirLight = *pDirLight;
-	//pcbLight->pointLight = *pPointLight;
-	//pcbLight->spotLight = *pSpotLight;
-	//XMFLOAT4 camPos = XMFLOAT4(pCamPos->x, pCamPos->y, pCamPos->z, 1.0f);
-
 	VR_ENGINE->GetDeviceContext()->Unmap(m_pLightConstantBuffer, 0);
 	VR_ENGINE->GetDeviceContext()->PSSetConstantBuffers(PS_CB_SLOT_LIGHT, 1, &m_pLightConstantBuffer);
 }

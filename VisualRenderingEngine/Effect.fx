@@ -1,3 +1,6 @@
+
+#define MAX_LIGHT 16
+
 struct DirectionalLight
 {
 	float4 Ambient;
@@ -201,6 +204,7 @@ Texture2D gTexture01 : register(t0);
 //
 SamplerState gBasicSampler : register(s0);
 
+
 //-----------------------------------
 // @ Contant Buffer
 //
@@ -216,8 +220,6 @@ cbuffer cbWorldMtx : register(b1)
 	matrix world;
 }
 
-#define MAX_LIGHT 16
-
 cbuffer cbLight : register(b0)
 {
 	DirectionalLight gDirLight[MAX_LIGHT];
@@ -232,7 +234,7 @@ cbuffer cbMaterial : register(b1)
 }
 
 //--------------------------------------------------------------------------------------
-// @ Vertex Structure
+// @ Structure
 // 
 
 struct VS_LIGHTING_INPUT
@@ -272,6 +274,7 @@ struct VS_OUTPUT
 //------------------------------------------------------------
 // @ Shader Function 
 //
+
 
 float4 VS(float4 pos : POSITION) : SV_POSITION
 {

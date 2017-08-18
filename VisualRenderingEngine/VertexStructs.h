@@ -27,6 +27,13 @@ struct LightTextureVertex
 	XMFLOAT2 Tex;
 };
 
+struct TerrainVertex
+{
+	XMFLOAT3 Pos;
+	XMFLOAT3 Tex;
+	XMFLOAT2 BoundY;
+};
+
 // Name : Vertex 
 // Desc : GeomatryGenerator에서 일반적인 메시 데이터 집어 넣을 버텍스 구조체
 //

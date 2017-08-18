@@ -21,7 +21,7 @@ void CTutorial02Shader::CreateShader()
 	LPCSTR vertex_shader_name, pixel_shader_name;
 
 	BuildInputElementDesc(VERTEX_POSITION_ELEMENT);
-	GetShaderName(m_iVertexElementType, &vertex_shader_name, nullptr, &pixel_shader_name, nullptr);
+	GetShaderName(m_iVertexElementType, &vertex_shader_name, &pixel_shader_name, nullptr, nullptr, nullptr);
 	SHADER_MANAGER->CreateVertexShaderFromFile(L"Effect.fx", 
 												vertex_shader_name, 
 												"vs_5_0", 

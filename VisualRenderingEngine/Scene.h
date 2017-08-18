@@ -14,7 +14,6 @@ public:
 
 
 	void AddObject(string name, CEntity *pAddObject);
-	void AddTerrainObject(CTerrainEntity *pTerrainEntity);
 	void RemoveObject(string name);
 	//void AddLight(CLight *pLight);
 
@@ -31,7 +30,7 @@ protected:
 	string m_name;
 	CCamera *m_pCamera;
 	
-	vector<CTerrainEntity *> m_vecTerrainEntity;
+	//vector<CTerrainEntity *> m_vecTerrainEntity;
 	map<string, CEntity *> m_mapObjects;
 	//vector<CLight *> m_vecLights;
 
@@ -44,6 +43,7 @@ protected:
 
 	CEntity *m_pSelectedObject;	
 public:
+	void SetTerrainObject(CTerrainEntity *pTerrainEntity);
 	void SetCamera(CCamera *pCamera) { m_pCamera = pCamera; }
 
 	CCamera* GetCamera() { return m_pCamera; }

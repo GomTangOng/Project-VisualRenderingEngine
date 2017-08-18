@@ -16,6 +16,7 @@
 #include "Camera.h"
 #include "LigtingExamShader.h"
 #include "LightManager.h"
+#include "TSTerrainShader.h"
 
 CMyScene::CMyScene()
 {
@@ -46,10 +47,7 @@ void CMyScene::Update(const float fTimeElapsed)
 		m_pCamera->Strafe(m_fCamSpeed * fTimeElapsed);
 	
 	LIGHT_MANAGER->UpdateLightConstantBuffer(m_pCamera->GetPosition());
-	for (auto& terrain : m_vecTerrainEntity)
-	{
-		terrain->Update(fTimeElapsed);
-	}
+
 	for (auto& entity : m_mapObjects)
 	{
 		entity.second->Translate(0.0f, 0.0f, -60 * fTimeElapsed);
@@ -64,7 +62,8 @@ void CMyScene::Update(const float fTimeElapsed)
 #define MAX_OBJECT 518
 void CMyScene::BuildObjects()
 {
-	CShader *pTerrainShader = new CTerrainShader();
+	CTSTerrainShader *pTSShader = new CTSTerrainShader();
+	//CShader *pTerrainShader = new CTerrainShader();
 	CShader *TextureShader = new CTutorial03Shader();
 	CEntity *pEntity = new CCubeEntity[MAX_OBJECT];
 	CLightTexturedCubeMesh *pMesh = new CLightTexturedCubeMesh(2.0f, 2.0f, 2.0f);
@@ -145,12 +144,12 @@ void CMyScene::BuildObjects()
 		//m_pObjects.push_back(&pEntity[i]);
 	}
 	pTerrainEntity->Initalize();
-	pTerrainEntity->SetMaterial(pLandMaterial);
-	pTerrainShader->BuildObject();
-	pTerrainShader->AddObject(pTerrainEntity);
-	this->AddTerrainObject(pTerrainEntity);
+	//pTerrainEntity->SetMaterial(pLandMaterial);
+	pTSShader->BuildObject();
+	
+	this->SetTerrainObject(pTerrainEntity);
 	SHADER_MANAGER->AddShader(0, TextureShader);
-	SHADER_MANAGER->AddShader(1, pTerrainShader);
+	SHADER_MANAGER->AddShader(1, pTSShader);
 }
 
 void CMyScene::ProcessInput()

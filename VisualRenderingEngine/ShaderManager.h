@@ -13,11 +13,14 @@ public :
 	bool Initalize(ID3D11Device* pDevice);
 	void ShutDown();
 
+	HRESULT CompileShaderFromFile(WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut);
 	HRESULT CreateVertexShaderFromFile(WCHAR *pFileName, LPCSTR pEntryPoint, LPCSTR pShaderModel,
 									   ID3D11VertexShader **ppVertexShader, D3D11_INPUT_ELEMENT_DESC *pInputElements, UINT nElements, 
 									   ID3D11InputLayout **ppInputLayout);
 	HRESULT CreatePixelShaderFromFile(WCHAR *pFileName, LPCSTR pEntryPoint, LPCSTR pShaderModel, ID3D11PixelShader **ppd3dPixelShader);
-	HRESULT CompileShaderFromFile(WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut);
+	HRESULT CreateHullShaderFromFile(WCHAR *pFileName, LPCSTR pEntryPoint, LPCSTR pShaderModel, ID3D11HullShader **ppd3dHullShader);
+	HRESULT CreateDomainShaderFromFile(WCHAR *pFileName, LPCSTR pEntryPoint, LPCSTR pShaderModel, ID3D11DomainShader **ppd3dDomainShader);
+
 
 
 	ID3D11Buffer* CreateBuffer(  const UINT nStride,

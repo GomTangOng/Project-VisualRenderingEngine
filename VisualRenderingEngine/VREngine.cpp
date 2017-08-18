@@ -46,11 +46,9 @@ void CVREngine::Update(const float fTimeElapsed)
 
 void CVREngine::Render()
 {
-	for (auto& cam : m_vecCamera) cam->UpdateViewMatrix();
-
 	m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
 	m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
-	
+	for (auto& cam : m_vecCamera) cam->UpdateViewMatrix();
 	if (m_bViewfrustum)
 		m_pScene->Render(m_vecCamera[0]);
 	else
@@ -107,14 +105,6 @@ void CVREngine::RenderDual()
 		m_pScene->Render(m_vecCamera[1]);
 	else
 		m_pScene->Render();
-
-	//D3D11_BOX box;
-	//box.left   = 0;
-	//box.right  = m_nWindowWidth / 2.0f;
-	//box.top    = 0;
-	//box.bottom = m_nWindowHeight / 2.0f;
-	//box.front  = 0;
-	//box.back   = 1;
 
 	m_pSwapChain->Present(0, 0);
 }
@@ -365,8 +355,8 @@ HRESULT CVREngine::CreateRenderTargetDepthStencilView()
 bool CVREngine::InitObjects()
 {
 	SHADER_MANAGER->Initalize(m_pDevice);
-	TERRAIN_MANAGER->Initalize(m_pDevice);
 	TEXTURE_MANAGER->Initalize(m_pDevice);
+	TERRAIN_MANAGER->Initalize(m_pDevice);
 	LIGHT_MANAGER->Initalize(m_pDevice);
 
 	CCamera *pCamera = new CCamera();

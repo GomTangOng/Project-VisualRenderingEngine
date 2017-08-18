@@ -34,8 +34,26 @@ struct PS_CB_LIGHT
 
 struct PS_CB_MATERIAL
 {
-	XMFLOAT4 m_ambient;
-	XMFLOAT4 m_diffuse;
-	XMFLOAT4 m_specular;
-	XMFLOAT4 m_reflect;
+	XMFLOAT4 ambient;
+	XMFLOAT4 diffuse;
+	XMFLOAT4 specular;
+	XMFLOAT4 reflect;
+};
+
+struct TS_CB_FACTOR 
+{
+	XMFLOAT4X4 viewProjection;
+	XMFLOAT3   camPosW;
+	float      minDist;
+
+	float      maxDist;
+	float      minTess;
+	float      maxTess;
+	float      texelCellSpaceU;
+
+	float      texelCellSpaceV;
+	float      worldCellSpace;
+	XMFLOAT2   texScale;
+	
+	XMFLOAT4   worldFrustumPlanes[6];
 };

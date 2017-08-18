@@ -109,6 +109,76 @@ HRESULT CShaderManager::CreatePixelShaderFromFile(WCHAR * pFileName, LPCSTR pEnt
 	return S_OK;
 }
 
+HRESULT CShaderManager::CreateHullShaderFromFile(WCHAR * pFileName, LPCSTR pEntryPoint, LPCSTR pShaderModel, ID3D11HullShader ** ppd3dHullShader)
+{
+	HRESULT hr = S_OK;
+
+	DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
+#ifdef _DEBUG
+	// Set the D3DCOMPILE_DEBUG flag to embed debug information in the shaders.
+	// Setting this flag improves the shader debugging experience, but still allows 
+	// the shaders to be optimized and to run exactly the way they will run in 
+	// the release configuration of this program.
+	dwShaderFlags |= D3DCOMPILE_DEBUG;
+
+	// Disable optimizations to further improve shader debugging
+	dwShaderFlags |= D3DCOMPILE_SKIP_OPTIMIZATION;
+#endif
+	ID3DBlob *pHullShaderBlob = nullptr, *pErrorBlob = nullptr;
+	hr = D3DCompileFromFile(pFileName, nullptr, nullptr, pEntryPoint, pShaderModel,
+		dwShaderFlags, 0, &pHullShaderBlob, &pErrorBlob);
+	if (FAILED(hr))
+	{
+		if (pErrorBlob)
+		{
+			OutputDebugStringA(reinterpret_cast<const char*>(pErrorBlob->GetBufferPointer()));
+			pErrorBlob->Release();
+		}
+		return hr;
+	}
+	else
+	{
+		m_pDevice->CreateHullShader(pHullShaderBlob->GetBufferPointer(), pHullShaderBlob->GetBufferSize(), nullptr, ppd3dHullShader);
+
+		pHullShaderBlob->Release();
+	}
+}
+
+HRESULT CShaderManager::CreateDomainShaderFromFile(WCHAR * pFileName, LPCSTR pEntryPoint, LPCSTR pShaderModel, ID3D11DomainShader ** ppd3dDomainShader)
+{
+	HRESULT hr = S_OK;
+
+	DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
+#ifdef _DEBUG
+	// Set the D3DCOMPILE_DEBUG flag to embed debug information in the shaders.
+	// Setting this flag improves the shader debugging experience, but still allows 
+	// the shaders to be optimized and to run exactly the way they will run in 
+	// the release configuration of this program.
+	dwShaderFlags |= D3DCOMPILE_DEBUG;
+
+	// Disable optimizations to further improve shader debugging
+	dwShaderFlags |= D3DCOMPILE_SKIP_OPTIMIZATION;
+#endif
+	ID3DBlob *pDomainShaderBlob = nullptr, *pErrorBlob = nullptr;
+	hr = D3DCompileFromFile(pFileName, nullptr, nullptr, pEntryPoint, pShaderModel,
+		dwShaderFlags, 0, &pDomainShaderBlob, &pErrorBlob);
+	if (FAILED(hr))
+	{
+		if (pErrorBlob)
+		{
+			OutputDebugStringA(reinterpret_cast<const char*>(pErrorBlob->GetBufferPointer()));
+			pErrorBlob->Release();
+		}
+		return hr;
+	}
+	else
+	{
+		m_pDevice->CreateDomainShader(pDomainShaderBlob->GetBufferPointer(), pDomainShaderBlob->GetBufferSize(), nullptr, ppd3dDomainShader);
+
+		pDomainShaderBlob->Release();
+	}
+}
+
 
 HRESULT CShaderManager::CompileShaderFromFile(WCHAR * szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob ** ppBlobOut)
 {

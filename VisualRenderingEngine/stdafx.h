@@ -48,10 +48,11 @@ using namespace std::chrono;
 #include <directxcolors.h>
 #include <DirectXMath.h>
 #include <DirectXCollision.h>
+#include <DirectXPackedVector.h>
 //#include "../DirectXTK-master/Inc/DDSTextureLoader.h"
 
 using namespace DirectX;
-
+using namespace DirectX::PackedVector;
 // ETC
 #include "Utility.h"
 #include "Singleton.h"

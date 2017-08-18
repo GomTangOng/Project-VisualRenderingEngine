@@ -10,8 +10,12 @@ public:
 
 	void AddObject(CEntity *pEntity);
 	void BuildInputElementDesc(const UINT nVertexElementType);
-	void GetShaderName(const UINT nVertexElementType, LPCSTR *ppVSShaderName, LPCSTR *ppVSShaderModel,
-						LPCSTR *ppPSShaderName, LPCSTR *ppPSShaderModel);
+	void GetShaderName(const UINT nVertexElementType, 
+						LPCSTR *ppVSShaderName,
+						LPCSTR *ppPSShaderName,
+						LPCSTR *ppGSSahderName,
+						LPCSTR *ppHSSahderName,
+						LPCSTR *ppDSSahderName);
 
 	virtual void CreateShader();
 	virtual void Render();
@@ -28,6 +32,8 @@ protected :
 	ID3D11VertexShader*     m_pVertexShader = nullptr;
 	ID3D11PixelShader*      m_pPixelShader = nullptr;
 	ID3D11InputLayout*      m_pVertexLayout = nullptr;
+	ID3D11HullShader*       m_pHullShader = nullptr;
+	ID3D11DomainShader*     m_pDomainShader = nullptr;
 	//ID3D11Buffer*           m_pVertexBuffer = nullptr;	// temp
 
 	// TEMP

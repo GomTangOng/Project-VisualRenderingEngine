@@ -21,7 +21,9 @@ public:
 	void RemoveSampler(wstring sam_name);
 
 	CTexture *GetTexture(wstring tex_name);
+	ID3D11SamplerState *GetSampler(wstring sam_name) { return m_mapSamplers[sam_name]; }
 private :
+
 	ID3D11Device *m_pDevice;
 	unordered_map<wstring, CTexture *> m_mapTextures;
 	unordered_map<wstring, ID3D11SamplerState *> m_mapSamplers;

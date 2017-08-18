@@ -29,10 +29,9 @@ void CScene::AddObject(string name, CEntity * pAddObject)
 	m_mapObjects.insert(make_pair(name, pAddObject));
 }
 
-void CScene::AddTerrainObject(CTerrainEntity * pTerrainEntity)
+void CScene::SetTerrainObject(CTerrainEntity * pTerrainEntity)
 {
-	m_vecTerrainEntity.push_back(pTerrainEntity);
-	TERRAIN_MANAGER->AddEntity(pTerrainEntity);
+	TERRAIN_MANAGER->SetTerrainEntity(pTerrainEntity);
 }
 
 void CScene::RemoveObject(string name)

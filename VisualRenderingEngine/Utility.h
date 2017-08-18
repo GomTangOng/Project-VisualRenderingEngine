@@ -4,9 +4,6 @@
 #include <fstream>
 #include "DXException.h"
 
-
-
-
 inline std::wstring AnsiToWString(const std::string& str)
 {
 	WCHAR buffer[512];
@@ -52,4 +49,9 @@ namespace Memory
 		}
 		vec.clear();
 	}
+}
+
+namespace Math
+{
+	void ExtractFrustumPlanes(XMFLOAT4 planes[6], CXMMATRIX M);
 }

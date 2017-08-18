@@ -72,7 +72,7 @@ protected :
 	//static ID3D11Buffer*			m_pcbMaterialColors;
 	static ID3D11Buffer*            m_pcbViewProjMatrix;
 	//static ID3D11Buffer*			m_pcbWorldViewProjMatrix;
-private :
+protected :
 	vector<CMesh *> m_pMeshes;
 	CEntity *m_pParent;
 	CEntity *m_pChild;
@@ -93,6 +93,7 @@ public :
 	bool IsActive() const { return m_bActive; }
 	bool IsVisible() const { return m_bVisible; }
 
+	CMesh* GetMesh(const UINT idx = 0) { return m_pMeshes[idx]; }
 	XMFLOAT4X4* GetLocalMatrix() { return &m_mtxLocal; }
 	XMFLOAT3* GetPosition() { return &m_vPosition; }
 	XMVECTOR GetPositionXM() { return XMLoadFloat3(&m_vPosition); }

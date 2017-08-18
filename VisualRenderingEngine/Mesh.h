@@ -5,7 +5,6 @@ public:
 	CMesh();
 	virtual ~CMesh();
 
-
 	void AssembleToVertexBuffer(const int nBuffers, 
 		                        ID3D11Buffer **ppBuffers, 
 		                        UINT * pnBufferStrides, 
@@ -48,10 +47,11 @@ public :
 	void SetIndexCount(const UINT n) { m_nIndices = n; }
 	void SetDXGIIndexFormat(const DXGI_FORMAT f) { m_dxgiIndexFormat = f; }
 	void SetPrimitiveTopology(const D3D11_PRIMITIVE_TOPOLOGY p) { m_primitiveTopology = p; }
-
-	UINT GetType() { return(m_nType); }
-
 	void SetPositionBuffer(ID3D11Buffer *pBuffer) { m_pPositionBuffer = pBuffer; }
 	void SetIndexBuffer(ID3D11Buffer *pBuffer) { m_pIndexBuffer = pBuffer; }
+
+	UINT GetType() { return(m_nType); }
+	ID3D11Buffer** GetVertexBuffer() { return m_ppVertexBuffers; }
+	ID3D11Buffer* GetIndexBuffer() { return m_pIndexBuffer; }
 };
 

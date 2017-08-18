@@ -53,11 +53,14 @@ public :
 	XMFLOAT3 GetUpVector() { return XMFLOAT3(m_mtxView._21, m_mtxView._22, m_mtxView._23); }
 	XMFLOAT3 GetRightVector() { return XMFLOAT3(m_mtxView._31, m_mtxView._32, m_mtxView._33); }
 
-	XMVECTOR GetRightVectorXM() { return XMLoadFloat3(&GetRightVector()); }
-	XMVECTOR GetUpVectorXM() { return XMLoadFloat3(&GetUpVector()); }
-	XMVECTOR GetLookVectorXM() { return XMLoadFloat3(&GetLookVector()); }
+	XMVECTOR    GetRightVectorXM() { return XMLoadFloat3(&GetRightVector()); }
+	XMVECTOR    GetUpVectorXM() { return XMLoadFloat3(&GetUpVector()); }
+	XMVECTOR    GetLookVectorXM() { return XMLoadFloat3(&GetLookVector()); }
 	XMFLOAT4X4& GetProjectionMatrix() { return m_mtxProjection; }
-	
+	XMFLOAT4X4& GetViewMatrix() { return m_mtxView; }
+	XMMATRIX    GetProjectionMatrixXM() { return XMLoadFloat4x4(&m_mtxProjection); }
+	XMMATRIX    GetViewMatrixXM() { return XMLoadFloat4x4(&m_mtxView); }
+	XMMATRIX    GetViewProjectionMatrixXM() { return XMMatrixMultiply(GetProjectionMatrixXM(), GetViewMatrixXM()); }
 	bool IsInterace() { return m_bInterace; }
 	
 };

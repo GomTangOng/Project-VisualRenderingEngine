@@ -60,12 +60,20 @@ void CShader::BuildInputElementDesc(const UINT nVertexElementType)
 	}
 }
 
-void CShader::GetShaderName(const UINT nVertexElementType, LPCSTR * ppVSShaderName, LPCSTR * ppVSShaderModel, LPCSTR * ppPSShaderName, LPCSTR * ppPSShaderModel)
+void CShader::GetShaderName(const UINT nVertexElementType, 
+								  LPCSTR * ppVSShaderName, 
+								  LPCSTR * ppPSShaderName, 
+	   							  LPCSTR *ppGSSahderName,
+								  LPCSTR *ppHSSahderName,
+								  LPCSTR *ppDSSahderName)
 {
+	//ppVSShaderName = ppPSShaderName = ppGSSahderName = ppHSSahderName = ppHSSahderName = ppDSSahderName = nullptr;
+
 	if (nVertexElementType == (VERTEX_POSITION_ELEMENT)) {*ppVSShaderName = "VS", *ppPSShaderName = "PS"; }
 	if (nVertexElementType == (VERTEX_POSITION_ELEMENT | VERTEX_COLOR_ELEMENT)) { *ppVSShaderName = "VS2", *ppPSShaderName = "PS2"; }
 	if (nVertexElementType == (VERTEX_POSITION_ELEMENT | VERTEX_NORMAL_ELEMENT)) { *ppVSShaderName = "VS_LIGHTING", *ppPSShaderName = "PS_LIGHTING"; }
 	if (nVertexElementType == (VERTEX_POSITION_ELEMENT | VERTEX_TEXTURE_ELEMENT_0 | VERTEX_NORMAL_ELEMENT)) { *ppVSShaderName = "VS_LIGHTING_TEXTURED", *ppPSShaderName = "PS_LIGHTING_TEXTURED"; }
+	if (nVertexElementType == (VERTEX_POSITION_ELEMENT | VERTEX_TEXTURE_ELEMENT_0 | VERTEX_TEXTURE_ELEMENT_1)) { *ppVSShaderName = "VS_TERRAIN", *ppPSShaderName = "PS_TERRAIN"; *ppHSSahderName = "HS_TERRAIN"; *ppDSSahderName = "DS_TERRAIN"; }
 }
 
 void CShader::CreateShader()
@@ -97,9 +105,11 @@ void CShader::Render(CCamera * pCamera)
 
 void CShader::OnPreRender()
 {
-	VR_ENGINE->GetDeviceContext()->IASetInputLayout(m_pVertexLayout);
-	VR_ENGINE->GetDeviceContext()->VSSetShader(m_pVertexShader, NULL, 0);
-	VR_ENGINE->GetDeviceContext()->PSSetShader(m_pPixelShader, NULL, 0);
+	if(m_pVertexLayout) VR_ENGINE->GetDeviceContext()->IASetInputLayout(m_pVertexLayout);
+	if(m_pVertexShader) VR_ENGINE->GetDeviceContext()->VSSetShader(m_pVertexShader, NULL, 0);
+	if(m_pPixelShader) VR_ENGINE->GetDeviceContext()->PSSetShader(m_pPixelShader, NULL, 0);
+	if(m_pHullShader) VR_ENGINE->GetDeviceContext()->HSSetShader(m_pHullShader, NULL, 0);
+	if(m_pDomainShader) VR_ENGINE->GetDeviceContext()->DSSetShader(m_pDomainShader, NULL, 0);
 
 	m_nVisibleObjects = 0;
 }
