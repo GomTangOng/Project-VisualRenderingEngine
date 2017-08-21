@@ -186,6 +186,15 @@
     <ClInclude Include="TSTerrainMesh.h">
       <Filter>헤더 파일\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="SkyBoxShader.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyBoxEntity.h">
+      <Filter>헤더 파일\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderState.h">
+      <Filter>헤더 파일\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VREngine.cpp">
@@ -293,6 +302,15 @@
     <ClCompile Include="TSTerrainMesh.cpp">
       <Filter>헤더 파일\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="SkyBoxShader.cpp">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyBoxEntity.cpp">
+      <Filter>헤더 파일\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderState.cpp">
+      <Filter>헤더 파일\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VisualRenderingEngine.rc">
@@ -315,6 +333,9 @@
       <Filter>헤더 파일\Effect</Filter>
     </FxCompile>
     <FxCompile Include="Terrain.fx">
+      <Filter>헤더 파일\Effect</Filter>
+    </FxCompile>
+    <FxCompile Include="SkyBox.fx">
       <Filter>헤더 파일\Effect</Filter>
     </FxCompile>
   </ItemGroup>

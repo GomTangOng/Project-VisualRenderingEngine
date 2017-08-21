@@ -17,7 +17,8 @@
 #include "LigtingExamShader.h"
 #include "LightManager.h"
 #include "TSTerrainShader.h"
-
+#include "SkyBoxShader.h"
+#include "SkyBoxEntity.h"
 CMyScene::CMyScene()
 {
 	m_fCamSpeed = 100.0f;
@@ -66,12 +67,16 @@ void CMyScene::Update(const float fTimeElapsed)
 #define MAX_OBJECT 518
 void CMyScene::BuildObjects()
 {
-	CTSTerrainShader *pTSShader = new CTSTerrainShader();
+	CSkyBoxShader *pSkyShader = new CSkyBoxShader();
+	//CTSTerrainShader *pTSShader = new CTSTerrainShader();
 	//CShader *pTerrainShader = new CTerrainShader();
 	CShader *TextureShader = new CTutorial03Shader();
 	CEntity *pEntity = new CCubeEntity[MAX_OBJECT];
 	CLightTexturedCubeMesh *pMesh = new CLightTexturedCubeMesh(2.0f, 2.0f, 2.0f);
-	CTerrainEntity *pTerrainEntity = new CTerrainEntity();
+	//CTerrainEntity *pTerrainEntity = new CTerrainEntity();
+	CSkyBoxEntity *pSkyEntity = new CSkyBoxEntity();
+	pSkyEntity->Initalize();
+	pSkyShader->AddObject(pSkyEntity);
 	CMaterial *pLandMaterial = new CMaterial();
 	CMaterial *pCubeMaterial = new CMaterial();
 	//CMaterial *pBoxMaterial = new CMaterial();
@@ -131,7 +136,7 @@ void CMyScene::BuildObjects()
 	LIGHT_MANAGER->AddDirectionLight(pDirLight[2].get());
 	//LIGHT_MANAGER->AddPointLight(pPointLight.get());
 	//LIGHT_MANAGER->AddSpotLight(pSpotLight.get());
-
+	pSkyShader->BuildObject();
 	TextureShader->BuildObject();
 	for (int i = 0; i < MAX_OBJECT; ++i)
 	{
@@ -147,13 +152,14 @@ void CMyScene::BuildObjects()
 		//VR_ENGINE->AddObject(&pEntity[i]);
 		//m_pObjects.push_back(&pEntity[i]);
 	}
-	pTerrainEntity->Initalize();
+	//pTerrainEntity->Initalize();
 	//pTerrainEntity->SetMaterial(pLandMaterial);
-	pTSShader->BuildObject();
+	//pTSShader->BuildObject();
 	
-	this->SetTerrainObject(pTerrainEntity);
+	//this->SetTerrainObject(pTerrainEntity);
 	SHADER_MANAGER->AddShader(0, TextureShader);
-	SHADER_MANAGER->AddShader(1, pTSShader);
+	SHADER_MANAGER->AddShader(1, pSkyShader);
+	//SHADER_MANAGER->AddShader(1, pTSShader);
 }
 
 void CMyScene::ProcessInput()

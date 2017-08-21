@@ -7,7 +7,7 @@
 #include "CubeMesh.h"
 #include "CubeEntity.h"
 #include "VertexStructs.h"
-
+#include "RenderState.h"
 CTutorial03Shader::CTutorial03Shader()
 {
 }
@@ -39,7 +39,6 @@ void CTutorial03Shader::CreateShader()
 void CTutorial03Shader::BuildObject()
 {
 	CreateShader();
-	// Create vertex buffer	
 }
 
 void CTutorial03Shader::Render()
@@ -51,4 +50,6 @@ void CTutorial03Shader::Render()
 void CTutorial03Shader::OnPreRender()
 {
 	CShader::OnPreRender();
+	//RENDER_STATE->SetDepthStencilState(CRenderState::DEPTH_STENCIL_DEFAULT, 0);
+	//RENDER_STATE->SetRasterState(CRenderState::RASTER_STATE::RASTER_DEFAULT);
 }

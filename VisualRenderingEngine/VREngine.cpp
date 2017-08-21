@@ -13,7 +13,7 @@
 #include "GeometryGenerator.h"
 #include "TextureManager.h"
 #include "LightManager.h"
-
+#include "RenderState.h"
 CVREngine::CVREngine()
 {
 	m_bViewfrustum = true;
@@ -358,6 +358,7 @@ bool CVREngine::InitObjects()
 	TEXTURE_MANAGER->Initalize(m_pDevice);
 	TERRAIN_MANAGER->Initalize(m_pDevice);
 	LIGHT_MANAGER->Initalize(m_pDevice);
+	RENDER_STATE->Initalize();
 
 	CCamera *pCamera = new CCamera();
 
@@ -429,6 +430,7 @@ void CVREngine::CleanupManager()
 	Memory::Delete(INPUT_MANAGER);
 	Memory::Delete(TEXTURE_MANAGER);	
 	Memory::Delete(LIGHT_MANAGER);
+	Memory::Delete(RENDER_STATE);
 	Memory::Delete(CGeometryGenerator::GetInstance());
 }
 

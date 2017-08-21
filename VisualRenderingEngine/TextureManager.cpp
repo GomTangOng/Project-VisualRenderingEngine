@@ -72,6 +72,13 @@ bool CTextureManager::Initalize(ID3D11Device * pDevice)
 
 	AddTexture(L"Grass", pGrass);
 
+	CTexture *pSkyBox = LoadTextureFromFile(L"../Assets/Textures/grasscube1024.dds");
+	pSkyBox->SetTextureSlot(TextureSlot::TEXTURE_GRASS_SKYBOX);
+	pSkyBox->SetSamplerSlot(SamplerSlot::SAMPLER_BASIC);
+	pSkyBox->SetSampler(pLinearSampler);
+
+	AddTexture(L"Grass_SkyBox", pSkyBox);
+
 	//CTexture *pHeightMap = LoadTextureFromFile(L"../Assets/HeightMaps/terrain.raw");
 	//AddTexture(L"HeightMap", pHeightMap);
 

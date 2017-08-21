@@ -194,11 +194,12 @@ void ComputeSpotLight(Material mat, SpotLight L, float3 pos, float3 normal, floa
 	spec *= att;
 }
 
+
 //-------------------------------------
 // @ Textures
 //
 Texture2D gTexture01 : register(t0);
-
+TextureCube gCubeMap : register(t3);
 //------------------------------------
 // @ SamplerState
 //
@@ -270,10 +271,54 @@ struct VS_OUTPUT
 	float4 Pos : SV_POSITION;
 	float4 Color : COLOR0;
 };
-
+//struct VertexIn
+//{
+//	float3 PosL : POSITION;
+//};
+//
+//struct VertexOut
+//{
+//	float4 PosH : SV_POSITION;
+//	float3 PosL : POSITION;
+//};
 //------------------------------------------------------------
 // @ Shader Function 
 //
+//RWTexture2D<float4> t1;
+//RWTexture2D<float4> t2;
+//
+//float4 PS_INTERACE(VS_OUTPUT vo)
+//{
+//	for (i = 0; i < scw / 2; i++) {
+//		float4 t = t1.Sample(gBasicSampler, vo.tex);
+//		subRect.left = i; subRect.right = i + 1;
+//		rightRect.left = offset + i * 2 + 1; rightRect.right = rightRect.left + 1;
+//		t2[int2(vo.te)]
+//	}
+//}
+
+
+//VertexOut VS_SKYBOX(VertexIn vin)
+//{
+//	VertexOut vout;
+//
+//	// Set z = w so that z/w = 1 (i.e., skydome always on far plane).
+//	vout.PosH = mul(float4(vin.PosL, 1.0f), world).xyzw;
+//	vout.PosH = mul(vout.PosH, view);
+//	vout.PosH = mul(vout.PosH, projection);
+//	//vout.PosH = mul(mul(mul(float4(vin.PosL, 1.0f), world), view), projection).xyww;
+//
+//	// Use local vertex position as cubemap lookup vector.
+//	vout.PosL = vin.PosL;
+//
+//	return vout;
+//}
+//
+//float4 PS_SKYBOX(VertexOut pin) : SV_Target
+//{
+//	//return float4(1.0f, 0.0f, 1.0f, 1.0f);
+//	return gCubeMap.Sample(gBasicSampler, pin.PosL);
+//}
 
 
 float4 VS(float4 pos : POSITION) : SV_POSITION
@@ -425,3 +470,4 @@ float4 PS_LIGHTING(VS_LIGHTING_OUTPUT input) : SV_Target
 
 	return litColor;
 }
+

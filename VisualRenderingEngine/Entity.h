@@ -9,7 +9,7 @@ class CEntity
 {
 public:
 	CEntity();
-	~CEntity();
+	virtual ~CEntity();
 
 	//virtual void CreateDepthStencilState(ID3D11Device *pd3dDevice) { }
 	//virtual void CreateBlendState(ID3D11Device *pd3dDevice) { }

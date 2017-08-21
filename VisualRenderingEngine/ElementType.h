@@ -17,3 +17,7 @@ enum CameraDualMode : UCHAR
 	INTERACE = 1,
 };
 
+enum RenderState : UCHAR
+{
+
+};

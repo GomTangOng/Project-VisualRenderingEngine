@@ -2,6 +2,7 @@
 
 class CEntity;
 class CCamera;
+class CRenderState;
 class CShader
 {
 public:
@@ -36,10 +37,13 @@ protected :
 	ID3D11DomainShader*     m_pDomainShader = nullptr;
 	//ID3D11Buffer*           m_pVertexBuffer = nullptr;	// temp
 
+	//CRenderState *m_pRenderState;
+
 	// TEMP
 	vector<CEntity *> m_pObjects;
 
 	int m_nVisibleObjects;
+
 private :
 	
 };

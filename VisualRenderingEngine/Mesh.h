@@ -51,6 +51,7 @@ public :
 	void SetIndexBuffer(ID3D11Buffer *pBuffer) { m_pIndexBuffer = pBuffer; }
 
 	UINT GetType() { return(m_nType); }
+	ID3D11Buffer* GetPositionBuffer() { return m_pPositionBuffer; }
 	ID3D11Buffer** GetVertexBuffer() { return m_ppVertexBuffers; }
 	ID3D11Buffer* GetIndexBuffer() { return m_pIndexBuffer; }
 };
