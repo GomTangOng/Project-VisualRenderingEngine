@@ -428,11 +428,11 @@ float CTerrainManager::Average(const int x, const int z)
 
 	// Use int to allow negatives.  If we use UINT, @ i=0, m=i-1=UINT_MAX
 	// and no iterations of the outer for loop occur.
-	for (int m = z - 1; m <= z + 1; ++m)
+	for (int m = x - 1; m <= x + 1; ++m)
 	{
-		for (int n = x - 1; n <= x + 1; ++n)
+		for (int n = z - 1; n <= z + 1; ++n)
 		{
-			if (InBounds(n, m))
+			if (InBounds(m, n))
 			{
 				avg += m_vHeightMap[m * m_pTerrainEntity->GetHeightMapWidth() + n];
 				num += 1.0f;
@@ -446,7 +446,7 @@ float CTerrainManager::Average(const int x, const int z)
 bool CTerrainManager::InBounds(const int x, const int z)
 {
 	// True if xz are valid indices; false otherwise.
-	return z >= 0 && z < (int)m_pTerrainEntity->GetHeight() && x >= 0 && x < (int)m_pTerrainEntity->GetWidth();
+	return x >= 0 && x < (int)m_pTerrainEntity->GetHeightMapHeight() && z >= 0 && z < (int)m_pTerrainEntity->GetHeightMapWidth();
 }
 
 XMFLOAT3 CTerrainManager::GetHillNormal(float x, float z) const

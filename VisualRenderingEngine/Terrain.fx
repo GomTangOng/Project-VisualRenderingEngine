@@ -302,7 +302,7 @@ float CalcTessFactor(float3 p)
 
 	float s = saturate((d - gMinDist) / (gMaxDist - gMinDist));
 
-	return pow(2, (lerp(gMaxTess, gMinTess, s)));
+	return pow(2, (lerp(gMaxTess, gMinTess, s)));	
 }
 
 // Returns true if the box is completely behind (in negative half space) of plane.
