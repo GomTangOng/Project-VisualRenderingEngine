@@ -73,7 +73,7 @@ void CMyScene::BuildObjects()
 	CShader *TextureShader = new CTutorial03Shader();
 	CEntity *pEntity = new CCubeEntity[MAX_OBJECT];
 	CLightTexturedCubeMesh *pMesh = new CLightTexturedCubeMesh(2.0f, 2.0f, 2.0f);
-	CTerrainEntity *pTerrainEntity = new CTerrainEntity();
+	CTerrainEntity *pTerrainEntity = TERRAIN_MANAGER->GetTerrainEntity();
 	CSkyBoxEntity *pSkyEntity = new CSkyBoxEntity();
 	pSkyEntity->Initalize();
 	pSkyShader->AddObject(pSkyEntity);
@@ -152,8 +152,8 @@ void CMyScene::BuildObjects()
 		//VR_ENGINE->AddObject(&pEntity[i]);
 		//m_pObjects.push_back(&pEntity[i]);
 	}
-	pTerrainEntity->Initalize();
-	pTerrainEntity->SetMaterial(pLandMaterial);
+	//pTerrainEntity->Initalize();
+	//pTerrainEntity->SetMaterial(pLandMaterial);
 	pTSShader->BuildObject();
 	
 	this->SetTerrainObject(pTerrainEntity);

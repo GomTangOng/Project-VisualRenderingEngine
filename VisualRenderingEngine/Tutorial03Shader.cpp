@@ -15,6 +15,7 @@ CTutorial03Shader::CTutorial03Shader()
 
 CTutorial03Shader::~CTutorial03Shader()
 {
+	CShader::~CShader();
 }
 
 void CTutorial03Shader::CreateShader()
@@ -23,14 +24,14 @@ void CTutorial03Shader::CreateShader()
 
 	BuildInputElementDesc(VERTEX_POSITION_ELEMENT | VERTEX_TEXTURE_ELEMENT_0 | VERTEX_NORMAL_ELEMENT);
 	GetShaderName(m_iVertexElementType, &vertex_shader_name, &pixel_shader_name, nullptr, nullptr, nullptr);
-	SHADER_MANAGER->CreateVertexShaderFromFile(L"Effect.fx",
+	SHADER_MANAGER->CreateVertexShaderFromFile(L"Effect.hlsl",
 												vertex_shader_name,
 												"vs_5_0",
 												&m_pVertexShader,
 												m_pInputElementDesc,	
 												m_nInputElements,
 												&m_pVertexLayout);
-	SHADER_MANAGER->CreatePixelShaderFromFile(L"Effect.fx",
+	SHADER_MANAGER->CreatePixelShaderFromFile(L"Effect.hlsl",
 												pixel_shader_name,
 												"ps_5_0",
 												&m_pPixelShader);
@@ -50,6 +51,4 @@ void CTutorial03Shader::Render()
 void CTutorial03Shader::OnPreRender()
 {
 	CShader::OnPreRender();
-	//RENDER_STATE->SetDepthStencilState(CRenderState::DEPTH_STENCIL_DEFAULT, 0);
-	//RENDER_STATE->SetRasterState(CRenderState::RASTER_STATE::RASTER_DEFAULT);
 }

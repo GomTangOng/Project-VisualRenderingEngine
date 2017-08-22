@@ -10,6 +10,7 @@ ID3D11Buffer *CLightManager::m_pLightConstantBuffer;
 
 CLightManager::CLightManager()
 {
+	
 }
 
 

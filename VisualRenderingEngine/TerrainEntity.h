@@ -47,8 +47,8 @@ public :
 	//CTerrainMesh* GetMesh() { return m_pMesh; }
 	float GetWidth() const { return (m_nWidth - 1) * m_nCellSpacing; }		// 이쪽 버그 있는지 확인해볼것
 	float GetHeight() const { return (m_nHeight - 1) * m_nCellSpacing; }
-	float GetHeightMapWidth()  const { return m_nWidth; }
-	float GetHeightMapHeight() const { return m_nHeight; }
+	UINT GetHeightMapWidth()  const { return m_nWidth; }
+	UINT GetHeightMapHeight() const { return m_nHeight; }
 	float GetCellSpacing() const { return m_nCellSpacing; }
 	UINT GetPatchVertexRows() const { return m_nPatchVertexRows; }
 	UINT GetPatchVertexCols() const { return m_nPatchVertexCols; }

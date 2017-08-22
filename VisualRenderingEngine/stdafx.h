@@ -10,8 +10,13 @@
 #pragma comment(lib,"dxguid.lib")
 #pragma comment(lib,"winmm.lib")
 #pragma comment(lib,"comctl32.lib")
-#pragma comment(lib,"../Lib/DirectXTK.lib")
+//#pragma comment(lib,"../Lib/DirectXTK.lib")
 
+#if defined(_DEBUG)
+	#pragma comment(lib, "../DirectXTK-master/Bin/Desktop_2015/Win32/Debug/DirectXTK.lib")
+#else
+	#pragma comment(lib, "../DirectXTK-master/Bin/Desktop_2015/Win32/Release/DirectXTK.lib")
+#endif
 
 #include "targetver.h"
 

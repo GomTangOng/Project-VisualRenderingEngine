@@ -174,8 +174,8 @@ void CTerrainManager::BuildQuadPatchIB()
 void CTerrainManager::BuildHeightmapSRV()
 {
 	D3D11_TEXTURE2D_DESC texDesc;
-	texDesc.Width = m_pTerrainEntity->GetWidth();
-	texDesc.Height = m_pTerrainEntity->GetHeight();
+	texDesc.Width = m_pTerrainEntity->GetHeightMapWidth();
+	texDesc.Height = m_pTerrainEntity->GetHeightMapHeight();
 	texDesc.MipLevels = 1;
 	texDesc.ArraySize = 1;
 	texDesc.Format = DXGI_FORMAT_R16_FLOAT;

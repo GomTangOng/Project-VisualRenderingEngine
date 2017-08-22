@@ -18,8 +18,8 @@ CVREngine::CVREngine()
 {
 	m_bViewfrustum = true;
 	m_bStreoscopic = true;
-	m_fCamInterval = 0.12;
-	m_fShift = 0.015;
+	m_fCamInterval = 0.12f;
+	m_fShift = 0.015f;
 	m_bGameStop = false;
 }
 
@@ -48,12 +48,11 @@ void CVREngine::Render()
 {
 	m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
 	m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
-	for (auto& cam : m_vecCamera) cam->UpdateViewMatrix();
+
 	if (m_bViewfrustum)
 		m_pScene->Render(m_vecCamera[0]);
 	else
 		m_pScene->Render();
-	//SHADER_MANAGER->Render();
 
 	m_pSwapChain->Present(0, 0);
 }
@@ -350,6 +349,8 @@ HRESULT CVREngine::CreateRenderTargetDepthStencilView()
 		return hr;
 
 	m_pImmediateContext->OMSetRenderTargets(1, &m_pRenderTargetView, m_pDepthStencilView);
+
+	return hr;
 }
 
 bool CVREngine::InitObjects()
@@ -364,7 +365,7 @@ bool CVREngine::InitObjects()
 
 	for (int i = 0; i < 2; ++i)
 	{	
-		pCamera->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight, 0.0f, 500.0f);
+		pCamera->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight, 0.0f, 500.0f, false);
 		pCamera->Initalize();
 		m_vecCamera.push_back(pCamera);
 	}
@@ -392,7 +393,7 @@ void CVREngine::ChangeWindowSize(const int nWidth, const int nHeight)
 	HR(m_pSwapChain->ResizeBuffers(1, m_nWindowWidth, m_nWindowHeight, DXGI_FORMAT_R8G8B8A8_UNORM, 0));
 	HR(CreateRenderTargetDepthStencilView());
 
-	m_vecCamera[0]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);	 // TEMP
+	//m_vecCamera[0]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);	 // TEMP
 }
 
 void CVREngine::ChangeCameraMode(const UCHAR cameraDualMode)

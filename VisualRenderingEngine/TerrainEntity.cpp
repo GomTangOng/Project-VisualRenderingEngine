@@ -17,6 +17,8 @@ CTerrainEntity::CTerrainEntity()
 CTerrainEntity::~CTerrainEntity()
 {
 	Memory::Delete(m_pMaterial);
+	Memory::Release(m_pcbTessBuffer);
+	m_vTextureFileName.clear();
 }
 
 void CTerrainEntity::UpdateTesslationFactor()
@@ -37,7 +39,9 @@ void CTerrainEntity::UpdateTesslationFactor()
 	pcbTessFactors->maxTess = m_fMaxTess;
 	pcbTessFactors->texelCellSpaceU = m_fTexelCellSpaceU;
 	pcbTessFactors->texelCellSpaceV = m_fTexelCellSpaceV;
-	pcbTessFactors->worldCellSpace  = m_nCellSpacing;	
+	pcbTessFactors->worldCellSpace  = m_nCellSpacing;
+	pcbTessFactors->texScale.x = 50.0f;
+	pcbTessFactors->texScale.y = 50.0f;
 	memcpy(pcbTessFactors->worldFrustumPlanes, view_plane, sizeof(XMFLOAT4) * 6);
 	VR_ENGINE->GetDeviceContext()->Unmap(m_pcbTessBuffer, 0);
 	VR_ENGINE->GetDeviceContext()->HSSetConstantBuffers(HS_CB_SLOT_TESSLATION, 1, &m_pcbTessBuffer);
@@ -82,12 +86,12 @@ void CTerrainEntity::Update(const float fTimeElapsed)
 
 void CTerrainEntity::OnPrepareRender()
 {
-	//CEntity::OnPrepareRender();
+	CEntity::OnPrepareRender();
 	//UpdateWorldMatrixConstantBuffer(m_mtxWorld);
 	UpdateTesslationFactor();
-	m_pMaterial->UpdateConstantBuffer();
-	m_pTexture->PSSetTextureAndSampler();
-	m_pCamera->UpdateViewMatrix();
+	//m_pMaterial->UpdateConstantBuffer();
+	//m_pTexture->PSSetTextureAndSampler();
+	//m_pCamera->UpdateViewMatrix();
 	TERRAIN_MANAGER->GetHeightMap()->VSSetTextureAndSampler();
 	TERRAIN_MANAGER->GetHeightMap()->PSSetTextureAndSampler();
 	TERRAIN_MANAGER->GetHeightMap()->HSSetTextureAndSampler();

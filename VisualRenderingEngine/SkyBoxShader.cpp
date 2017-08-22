@@ -18,19 +18,20 @@ CSkyBoxShader::CSkyBoxShader()
 
 CSkyBoxShader::~CSkyBoxShader()
 {
+	CShader::~CShader();
 }
 
 void CSkyBoxShader::CreateShader()
 {
 	BuildInputElementDesc(VERTEX_POSITION_ELEMENT);
-	SHADER_MANAGER->CreateVertexShaderFromFile(L"SkyBox.fx",
+	SHADER_MANAGER->CreateVertexShaderFromFile(L"SkyBox.hlsl",
 		"VS_SKYBOX",
 		"vs_5_0",
 		&m_pVertexShader,
 		m_pInputElementDesc,
 		m_nInputElements,
 		&m_pVertexLayout);
-	SHADER_MANAGER->CreatePixelShaderFromFile(L"SkyBox.fx",
+	SHADER_MANAGER->CreatePixelShaderFromFile(L"SkyBox.hlsl",
 		"PS_SKYBOX",
 		"ps_5_0",
 		&m_pPixelShader);
