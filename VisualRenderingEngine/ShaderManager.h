@@ -20,7 +20,7 @@ public :
 	HRESULT CreatePixelShaderFromFile(WCHAR *pFileName, LPCSTR pEntryPoint, LPCSTR pShaderModel, ID3D11PixelShader **ppd3dPixelShader);
 	HRESULT CreateHullShaderFromFile(WCHAR *pFileName, LPCSTR pEntryPoint, LPCSTR pShaderModel, ID3D11HullShader **ppd3dHullShader);
 	HRESULT CreateDomainShaderFromFile(WCHAR *pFileName, LPCSTR pEntryPoint, LPCSTR pShaderModel, ID3D11DomainShader **ppd3dDomainShader);
-
+	HRESULT CreateComputeShaderFromFile(WCHAR *pFileName, LPCSTR pEntryPoint, LPCSTR pShaderModel, ID3D11ComputeShader **ppd3dComputeShader);
 
 
 	ID3D11Buffer* CreateBuffer(  const UINT nStride,

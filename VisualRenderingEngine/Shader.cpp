@@ -17,6 +17,7 @@ CShader::~CShader()
 	Memory::Release(m_pVertexLayout);
 	Memory::Release(m_pHullShader);
 	Memory::Release(m_pDomainShader);
+	Memory::Release(m_pComputeShader);
 	// TEMP
 	Memory::DeleteVector(m_pObjects);
 }

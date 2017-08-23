@@ -68,7 +68,7 @@ void CMyScene::Update(const float fTimeElapsed)
 void CMyScene::BuildObjects()
 {
 	CSkyBoxShader *pSkyShader = new CSkyBoxShader();
-	CTSTerrainShader *pTSShader = new CTSTerrainShader();
+	//CTSTerrainShader *pTSShader = new CTSTerrainShader();
 	//CShader *pTerrainShader = new CTerrainShader();
 	CShader *TextureShader = new CTutorial03Shader();
 	CEntity *pEntity = new CCubeEntity[MAX_OBJECT];
@@ -154,11 +154,11 @@ void CMyScene::BuildObjects()
 	}
 	//pTerrainEntity->Initalize();
 	//pTerrainEntity->SetMaterial(pLandMaterial);
-	pTSShader->BuildObject();
+	//pTSShader->BuildObject();
 	
 	this->SetTerrainObject(pTerrainEntity);
 	SHADER_MANAGER->AddShader(0, TextureShader);
-	SHADER_MANAGER->AddShader(1, pTSShader);
+	//SHADER_MANAGER->AddShader(1, pTSShader);
 	SHADER_MANAGER->AddShader(2, pSkyShader);
 	
 }

@@ -195,6 +195,9 @@
     <ClInclude Include="RenderState.h">
       <Filter>헤더 파일\Common</Filter>
     </ClInclude>
+    <ClInclude Include="HorizontalInteraceShader.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VREngine.cpp">
@@ -311,6 +314,9 @@
     <ClCompile Include="RenderState.cpp">
       <Filter>헤더 파일\Common</Filter>
     </ClCompile>
+    <ClCompile Include="HorizontalInteraceShader.cpp">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VisualRenderingEngine.rc">
@@ -336,6 +342,9 @@
       <Filter>헤더 파일\Effect</Filter>
     </FxCompile>
     <FxCompile Include="Light.hlsl">
+      <Filter>헤더 파일\Effect</Filter>
+    </FxCompile>
+    <FxCompile Include="Interace.hlsl">
       <Filter>헤더 파일\Effect</Filter>
     </FxCompile>
   </ItemGroup>

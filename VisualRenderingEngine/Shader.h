@@ -30,11 +30,12 @@ protected :
 	int								m_nInputElements;
 	D3D11_INPUT_ELEMENT_DESC*       m_pInputElementDesc;
 
+	ID3D11InputLayout*      m_pVertexLayout = nullptr;
 	ID3D11VertexShader*     m_pVertexShader = nullptr;
 	ID3D11PixelShader*      m_pPixelShader = nullptr;
-	ID3D11InputLayout*      m_pVertexLayout = nullptr;
 	ID3D11HullShader*       m_pHullShader = nullptr;
 	ID3D11DomainShader*     m_pDomainShader = nullptr;
+	ID3D11ComputeShader*    m_pComputeShader = nullptr;
 	//ID3D11Buffer*           m_pVertexBuffer = nullptr;	// temp
 
 	//CRenderState *m_pRenderState;

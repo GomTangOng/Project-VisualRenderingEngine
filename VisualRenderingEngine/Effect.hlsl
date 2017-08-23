@@ -299,55 +299,6 @@ cbuffer cbTesslation : register(b3)
 }
 
 
-//struct VertexIn
-//{
-//	float3 PosL : POSITION;
-//};
-//
-//struct VertexOut
-//{
-//	float4 PosH : SV_POSITION;
-//	float3 PosL : POSITION;
-//};
-//------------------------------------------------------------
-// @ Shader Function 
-//
-//RWTexture2D<float4> t1;
-//RWTexture2D<float4> t2;
-//
-//float4 PS_INTERACE(VS_OUTPUT vo)
-//{
-//	for (i = 0; i < scw / 2; i++) {
-//		float4 t = t1.Sample(gBasicSampler, vo.tex);
-//		subRect.left = i; subRect.right = i + 1;
-//		rightRect.left = offset + i * 2 + 1; rightRect.right = rightRect.left + 1;
-//		t2[int2(vo.te)]
-//	}
-//}
-
-
-//VertexOut VS_SKYBOX(VertexIn vin)
-//{
-//	VertexOut vout;
-//
-//	// Set z = w so that z/w = 1 (i.e., skydome always on far plane).
-//	vout.PosH = mul(float4(vin.PosL, 1.0f), world).xyzw;
-//	vout.PosH = mul(vout.PosH, view);
-//	vout.PosH = mul(vout.PosH, projection);
-//	//vout.PosH = mul(mul(mul(float4(vin.PosL, 1.0f), world), view), projection).xyww;
-//
-//	// Use local vertex position as cubemap lookup vector.
-//	vout.PosL = vin.PosL;
-//
-//	return vout;
-//}
-//
-//float4 PS_SKYBOX(VertexOut pin) : SV_Target
-//{
-//	//return float4(1.0f, 0.0f, 1.0f, 1.0f);
-//	return gCubeMap.Sample(gBasicSampler, pin.PosL);
-//}
-
 struct VS_TERRAIN_INPUT
 {
 	float3 PosL     : POSITION;
@@ -459,8 +410,8 @@ HS_PATCH_TESS_OUTPUT CONSTANT_HS(InputPatch<VS_TERRAIN_OUTPUT, 4> patch, uint pa
 	float minY = patch[0].BoundsY.x;
 	float maxY = patch[0].BoundsY.y;
 
-	// Build axis-aligned bounding box.  patch[2] is lower-left corner
-	// and patch[1] is upper-right corner.
+	// Build axis-aligned bounding box.  
+	// patch[2] is lower-left corner and patch[1] is upper-right corner.
 	float3 vMin = float3(patch[2].PosW.x, minY, patch[2].PosW.z);
 	float3 vMax = float3(patch[1].PosW.x, maxY, patch[1].PosW.z);
 
