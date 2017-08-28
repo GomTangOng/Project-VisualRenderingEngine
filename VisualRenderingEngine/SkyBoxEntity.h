@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 
+class CCamera;
 class CSkyBoxEntity : public CEntity
 {
 public:

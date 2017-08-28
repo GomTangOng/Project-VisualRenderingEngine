@@ -2,6 +2,18 @@
 // @ Structure
 // 
 
+struct VS_TEXTURED_INPUT
+{
+    float3 PosL : POSITION;
+    float2 Tex : TEXCOORD;
+};
+
+struct VS_TEXTURED_OUTPUT
+{
+    float4 PosH : SV_Position;
+    float2 Tex : TEXCOORD;
+};
+
 struct VS_LIGHTING_INPUT
 {
 	float3 PosL    : POSITION;
@@ -244,6 +256,7 @@ Texture2D gTexture01 : register(t0);
 Texture2D gTextureGrass : register(t1);
 Texture2D gHeightMap : register(t2);
 TextureCube gCubeMap : register(t3);
+Texture2D gTextureRT : register(t4);
 //------------------------------------
 // @ SamplerState
 //
@@ -599,6 +612,24 @@ float4 PS(float4 pos : SV_POSITION) : SV_Target
 {
 	return float4(1.0f, 1.0f, 0.0f, 1.0f);
 }
+
+VS_TEXTURED_OUTPUT VS_TEXTURED(VS_TEXTURED_INPUT v)
+{
+    VS_TEXTURED_OUTPUT o;
+    o.PosH = float4(v.PosL, 1.0f);
+   // o.PosH = mul(o.PosH, view);
+   // o.PosH = mul(o.PosH, projection);
+    o.Tex = v.Tex;
+    return o;
+}
+
+float4 PS_TEXTURED(VS_TEXTURED_OUTPUT o) : SV_Target
+{
+    float4 color = float4(1.0f, 1.0f, 1.0f, 1.0f);
+    color = gTextureRT.Sample(gBasicSampler, o.Tex);
+    return color;
+};
+
 
 VS_OUTPUT VS2(float4 Pos : POSITION, float4 Color : COLOR)
 {

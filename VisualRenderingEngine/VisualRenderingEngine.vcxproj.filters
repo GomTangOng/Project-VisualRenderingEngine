@@ -198,6 +198,9 @@
     <ClInclude Include="HorizontalInteraceShader.h">
       <Filter>헤더 파일\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="OffScreenMesh.h">
+      <Filter>헤더 파일\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VREngine.cpp">
@@ -316,6 +319,9 @@
     </ClCompile>
     <ClCompile Include="HorizontalInteraceShader.cpp">
       <Filter>헤더 파일\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="OffScreenMesh.cpp">
+      <Filter>헤더 파일\Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

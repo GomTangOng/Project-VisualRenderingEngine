@@ -1,8 +1,9 @@
-﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
-  
-  compilation object save succeeded; see C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Debug\Effect.cso
-  MyScene.cpp
-c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\myscene.cpp(61): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\myscene.cpp(147): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  VisualRenderingEngine.vcxproj -> C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.exe
-  VisualRenderingEngine.vcxproj -> C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.pdb (Full PDB)
+﻿  VREngine.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(93): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(115): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(383): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(402): warning C4244: '=': 'const float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(403): warning C4244: '=': 'const float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\vrengine.cpp(464): warning C4244: '인수': 'const int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  VisualRenderingEngine.vcxproj -> C:\Users\user\documents\visual studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.exe
+  VisualRenderingEngine.vcxproj -> C:\Users\user\documents\visual studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.pdb (Full PDB)

@@ -36,6 +36,7 @@ void CCamera::Update(const float fTimeElapsed)
 {
 	//m_mtxProjection._31 = 0.015;	// 이게 무슨 의미...?
 	//UpdateBoundingFrustum(0.01f, 1000.0f, (float)VR_ENGINE->GetWindowWidth() / VR_ENGINE->GetWindowHeight(), XM_PI / 3.0f);
+	//CEntity::Update(fTimeElapsed);
 	UpdateViewProjectionConstantBuffer(m_mtxView, m_mtxProjection);
 }
 
@@ -95,6 +96,7 @@ void CCamera::UpdateViewMatrix()
 	m_mtxView._43 = -tmp43.x;
 	
 	//CreateBoundingFrustum();
+	UpdateBoundingFrustum();
 	UpdateViewProjectionConstantBuffer(m_mtxView, m_mtxProjection);
 }
 
@@ -143,6 +145,7 @@ void CCamera::CreateBoundingFrustum()
 void CCamera::UpdateBoundingFrustum()
 {
 	// 나중에 작업
+	m_boudingFrustum.Origin = m_vPosition;
 }
 
 void CCamera::CreateProjectionMatrix(const float fNear, const float fFar, const float fAspectRatio, const float fFov)

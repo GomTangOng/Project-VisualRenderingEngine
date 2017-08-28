@@ -14,6 +14,8 @@
 #include "TextureManager.h"
 #include "LightManager.h"
 #include "RenderState.h"
+#include "OffScreenMesh.h"
+#include "HorizontalInteraceShader.h"
 CVREngine::CVREngine()
 {
 	m_bViewfrustum = true;
@@ -30,6 +32,7 @@ CVREngine::~CVREngine()
 	//for (auto& entity : m_pObjectList) { Memory::Delete(entity.second); }
 	//m_pObjectList.clear();
 	Memory::DeleteVector(m_vecCamera);
+	Memory::Delete(m_pInteraceShader);
 	Memory::Delete(m_pScene);		// temp
 	//Memory::Delete(m_pCamera);
 }
@@ -46,7 +49,10 @@ void CVREngine::Update(const float fTimeElapsed)
 
 void CVREngine::Render()
 {
-	m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
+	if(m_bRenderToTexture)
+		m_pImmediateContext->ClearRenderTargetView(m_pOffRenderTargetTextureView, Colors::MidnightBlue);
+	else
+		m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
 	m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
 	if (m_bViewfrustum)
@@ -59,7 +65,16 @@ void CVREngine::Render()
 
 void CVREngine::RenderDual()
 {
-	m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
+	ID3D11RenderTargetView* pRTV[1]{ m_pOffRenderTargetTextureView };
+	ID3D11RenderTargetView* pRTVNull[1]{ nullptr };
+
+	if (m_bRenderToTexture)
+	{
+		m_pImmediateContext->OMSetRenderTargets(1, pRTV, m_pDepthStencilView);
+		m_pImmediateContext->ClearRenderTargetView(m_pOffRenderTargetTextureView, Colors::MidnightBlue);
+	}
+	else
+		m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
 	m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
 	XMVECTOR eye1   = m_vecCamera[0]->GetPositionXM();
@@ -104,8 +119,24 @@ void CVREngine::RenderDual()
 		m_pScene->Render(m_vecCamera[1]);
 	else
 		m_pScene->Render();
+	
+	if (m_bRenderToTexture)
+	{
+		// RenderToTexture Shade Render
+		pRTV[0] = m_pRenderTargetView;
+		m_pImmediateContext->OMSetRenderTargets(1, pRTV, m_pDepthStencilView);
+		m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
+		m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+		m_vecCamera[1]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);
+		m_pInteraceShader->Render();
+	}
 
-	m_pSwapChain->Present(0, 0);
+	HR(m_pSwapChain->Present(0, 0));
+	/*if (m_bRenderToTexture) 
+	{
+		m_pImmediateContext->OMSetRenderTargets(1, pRTVNull, m_pDepthStencilView);
+		m_pImmediateContext->OMSetRenderTargets(1, &m_pOffRenderTargetTextureView, m_pDepthStencilView);
+	}*/
 }
 
 //void CVREngine::AddObject(CEntity * pEntity)
@@ -314,11 +345,12 @@ HRESULT CVREngine::CreateRenderTargetDepthStencilView()
 	//HR(m_pDevice->CreateTexture2D(&td, nullptr, &m_pFinalTexture));
 	//HR(m_pDevice->CreateRenderTargetView(m_pRenderTexture, nullptr, &m_pRenderTargetViewFinal));
 	////////////////////////////////////////////////////////////////////////
-	
 	hr = m_pDevice->CreateRenderTargetView(pBackBuffer, nullptr, &m_pRenderTargetView);
 	pBackBuffer->Release();
 	if (FAILED(hr))
 		return hr;
+
+
 
 	//m_pImmediateContext->OMSetRenderTargets(1, &m_pRenderTargetView, nullptr);
 
@@ -348,9 +380,42 @@ HRESULT CVREngine::CreateRenderTargetDepthStencilView()
 	if (FAILED(hr))
 		return hr;
 
-	m_pImmediateContext->OMSetRenderTargets(1, &m_pRenderTargetView, m_pDepthStencilView);
+	CreateOffScreen(m_nWindowWidth, m_nWindowHeight);
+	m_bRenderToTexture = true;
+	if(m_bRenderToTexture)
+		m_pImmediateContext->OMSetRenderTargets(1, &m_pOffRenderTargetTextureView, m_pDepthStencilView);
+	else
+		m_pImmediateContext->OMSetRenderTargets(1, &m_pRenderTargetView, m_pDepthStencilView);
 
 	return hr;
+}
+
+void CVREngine::CreateOffScreen(const float nWidth, const float nHeight)
+{
+	Memory::Release(m_pOffRenderTargetTextureView);
+	Memory::Release(m_pOffScreenSRV);
+	Memory::Release(m_pOffScreenUAV);
+
+	ID3D11Texture2D* pOffScreenRenderTexture;
+	D3D11_TEXTURE2D_DESC td;
+	ZeroMemory(&td, sizeof(D3D11_TEXTURE2D_DESC));
+	td.Width = nWidth;
+	td.Height = nHeight;
+	td.MipLevels = 1;
+	td.ArraySize = 1;
+	td.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	td.SampleDesc.Count = 1;
+	td.SampleDesc.Quality = 0;
+	td.Usage = D3D11_USAGE_DEFAULT;
+	td.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS;
+	td.CPUAccessFlags = 0;
+	td.MiscFlags = 0;
+
+	HR(m_pDevice->CreateTexture2D(&td, nullptr, &pOffScreenRenderTexture));
+	HR(m_pDevice->CreateShaderResourceView(pOffScreenRenderTexture, nullptr, &m_pOffScreenSRV));
+	HR(m_pDevice->CreateRenderTargetView(pOffScreenRenderTexture, nullptr, &m_pOffRenderTargetTextureView));
+	HR(m_pDevice->CreateUnorderedAccessView(pOffScreenRenderTexture, nullptr, &m_pOffScreenUAV));
+	Memory::Release(pOffScreenRenderTexture);
 }
 
 bool CVREngine::InitObjects()
@@ -360,6 +425,9 @@ bool CVREngine::InitObjects()
 	TERRAIN_MANAGER->Initalize(m_pDevice);
 	LIGHT_MANAGER->Initalize(m_pDevice);
 	RENDER_STATE->Initalize();
+	
+	m_pInteraceShader = new CHorizontalInteraceShader();
+	m_pInteraceShader->BuildObject();
 
 	CCamera *pCamera = new CCamera();
 
@@ -377,7 +445,7 @@ bool CVREngine::InitObjects()
 	m_pScene->Initalize();
 	m_pScene->SetCamera(pCamera);
 	m_pScene->BuildObjects();
-
+	
 	return true;
 }
 
@@ -393,6 +461,7 @@ void CVREngine::ChangeWindowSize(const int nWidth, const int nHeight)
 	HR(m_pSwapChain->ResizeBuffers(1, m_nWindowWidth, m_nWindowHeight, DXGI_FORMAT_R8G8B8A8_UNORM, 0));
 	HR(CreateRenderTargetDepthStencilView());
 
+	CreateOffScreen(nWidth, nHeight);
 	//m_vecCamera[0]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);	 // TEMP
 }
 
@@ -419,9 +488,8 @@ void CVREngine::CleanupDevice()
 	Memory::Release(m_pImmediateContext);
 	Memory::Release(m_pDevice1);
 	Memory::Release(m_pDevice);
-	Memory::Release(m_pRenderTargetViewFinal);
-	Memory::Release(m_pFinalTexture);
-	Memory::Release(m_pRenderTexture);
+	Memory::Release(m_pOffRenderTargetTextureView);
+	//Memory::Release(m_pOffScreenRenderTexture);
 }
 
 void CVREngine::CleanupManager()
@@ -463,8 +531,10 @@ LRESULT CVREngine::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam
 	//break;
 	case WM_SIZE:
 	{
-		if(VR_ENGINE->GetDevice())
+		if (VR_ENGINE->GetDevice())
+		{
 			VR_ENGINE->ChangeWindowSize(LOWORD(lParam), HIWORD(lParam));
+		}		
 	}break;
 	case WM_PAINT:
 	{

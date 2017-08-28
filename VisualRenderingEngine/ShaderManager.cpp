@@ -62,8 +62,8 @@ HRESULT CShaderManager::CreateVertexShaderFromFile(WCHAR * pFileName, LPCSTR pEn
 	}
 	else
 	{
-		m_pDevice->CreateVertexShader(pVertexShaderBlob->GetBufferPointer(), pVertexShaderBlob->GetBufferSize(), nullptr, ppVertexShader);
-		m_pDevice->CreateInputLayout(pInputElements, nElements, pVertexShaderBlob->GetBufferPointer(), pVertexShaderBlob->GetBufferSize(), ppInputLayout);
+		HR(m_pDevice->CreateVertexShader(pVertexShaderBlob->GetBufferPointer(), pVertexShaderBlob->GetBufferSize(), nullptr, ppVertexShader));
+		HR(m_pDevice->CreateInputLayout(pInputElements, nElements, pVertexShaderBlob->GetBufferPointer(), pVertexShaderBlob->GetBufferSize(), ppInputLayout));
 		
 		pVertexShaderBlob->Release();
 	}

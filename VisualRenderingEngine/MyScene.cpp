@@ -77,6 +77,8 @@ void CMyScene::BuildObjects()
 	CSkyBoxEntity *pSkyEntity = new CSkyBoxEntity();
 	pSkyEntity->Initalize();
 	pSkyShader->AddObject(pSkyEntity);
+	m_pCamera->SetChild(pSkyEntity);
+
 	CMaterial *pLandMaterial = new CMaterial();
 	CMaterial *pCubeMaterial = new CMaterial();
 	//CMaterial *pBoxMaterial = new CMaterial();

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Shader.h"
-
+class COffScreenMesh;
 class CHorizontalInteraceShader : public CShader
 {
 public:
@@ -12,5 +12,7 @@ public:
 	void BuildObject() override;
 	void Render() override;
 	void OnPreRender() override;
+
+	COffScreenMesh *m_pRenderMesh;
 };
 

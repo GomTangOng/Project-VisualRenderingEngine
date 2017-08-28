@@ -6,6 +6,7 @@
 
 class CScene;
 class CCamera;
+class CHorizontalInteraceShader;
 class CVREngine : public Singleton<CVREngine>
 {
 public:
@@ -16,6 +17,7 @@ public:
 	HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow, const int width, const int height);
 	HRESULT InitDevice();
 	HRESULT CreateRenderTargetDepthStencilView();
+	void    CreateOffScreen(const float nWidth, const float nHeight);
 	bool    InitObjects();
 	void    ChangeWindowSize(const int nWidth, const int nHeight);
 	void    ChangeCameraMode(const UCHAR cameraDualMode);
@@ -36,21 +38,23 @@ private :
 	int       m_nWindowWidth;
 	int       m_nWindowHeight;
 
-	D3D_DRIVER_TYPE			m_driverType = D3D_DRIVER_TYPE_NULL;
-	D3D_FEATURE_LEVEL		m_featureLevel = D3D_FEATURE_LEVEL_11_0;
-	ID3D11Device*			m_pDevice = nullptr;
-	ID3D11Device1*			m_pDevice1 = nullptr;
-	ID3D11DeviceContext*	m_pImmediateContext = nullptr;
-	ID3D11DeviceContext1*	m_pImmediateContext1 = nullptr;
-	IDXGISwapChain*			m_pSwapChain = nullptr;
-	IDXGISwapChain1*		m_pSwapChain1 = nullptr;
-	ID3D11RenderTargetView*	m_pRenderTargetView = nullptr;
-	ID3D11RenderTargetView*	m_pRenderTargetViewFinal = nullptr;
-	ID3D11Texture2D*		m_pDepthStencilBuffer = nullptr;
-	ID3D11DepthStencilView*	m_pDepthStencilView = nullptr;
-	ID3D11Texture2D*        m_pRenderTexture = nullptr;
-	ID3D11Texture2D*        m_pFinalTexture = nullptr;
-
+	D3D_DRIVER_TYPE			   m_driverType = D3D_DRIVER_TYPE_NULL;
+	D3D_FEATURE_LEVEL		   m_featureLevel = D3D_FEATURE_LEVEL_11_0;
+	ID3D11Device*			   m_pDevice = nullptr;
+	ID3D11Device1*			   m_pDevice1 = nullptr;
+	ID3D11DeviceContext*	   m_pImmediateContext = nullptr;
+	ID3D11DeviceContext1*	   m_pImmediateContext1 = nullptr;
+	IDXGISwapChain*			   m_pSwapChain = nullptr;
+	IDXGISwapChain1*		   m_pSwapChain1 = nullptr;
+	ID3D11RenderTargetView*	   m_pRenderTargetView = nullptr;
+	ID3D11RenderTargetView*	   m_pOffRenderTargetTextureView = nullptr;
+	ID3D11Texture2D*		   m_pDepthStencilBuffer = nullptr;
+	ID3D11DepthStencilView*	   m_pDepthStencilView = nullptr;
+	//ID3D11Texture2D*           m_pOffScreenRenderTexture = nullptr;
+	ID3D11ShaderResourceView*  m_pOffScreenSRV = nullptr;
+	ID3D11UnorderedAccessView* m_pOffScreenUAV = nullptr;
+	//ID3D11Texture2D*        m_pFinalTexture = nullptr;
+	CHorizontalInteraceShader* m_pInteraceShader;
 	CGameTimer* m_pGameTimer;
 	CScene*     m_pScene;
 	vector<CCamera *> m_vecCamera;
@@ -62,12 +66,15 @@ private :
 	float m_fShift;
 	bool  m_bViewfrustum;
 	bool  m_bStreoscopic;
-	
+	bool  m_bRenderToTexture = false;
 public :
 	void SetInterace(const bool interace) { m_bInterace = interace; }
 	void SetStreoscopic(const bool flag) { m_bStreoscopic = flag; }
 	void SetGameStop(const bool flag) { m_bGameStop = flag; }
 	
+	ID3D11DepthStencilView* GetDSV() { return m_pDepthStencilView; }
+	ID3D11RenderTargetView** GetRTV() { return &m_pRenderTargetView; }
+	ID3D11ShaderResourceView** GetOffScreenSRV() { return &m_pOffScreenSRV; }
 	bool IsGameStop() const { return m_bGameStop; }
 	bool GetInterace() const { return m_bInterace; }
 	ID3D11Device* GetDevice() { return m_pDevice; }
