@@ -33,3 +33,8 @@ enum SamplerSlot : UCHAR
 	SAMPLER_LINEAR,
 	SAMPLER_HEIGHTMAP
 };
+
+enum UnOrderedAccessView : UCHAR
+{
+	UAV_RENDER_TEXTURE,
+};

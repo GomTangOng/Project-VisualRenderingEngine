@@ -201,6 +201,9 @@
     <ClInclude Include="OffScreenMesh.h">
       <Filter>헤더 파일\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="OffScreenRenderShader.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VREngine.cpp">
@@ -322,6 +325,9 @@
     </ClCompile>
     <ClCompile Include="OffScreenMesh.cpp">
       <Filter>헤더 파일\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="OffScreenRenderShader.cpp">
+      <Filter>헤더 파일\Shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

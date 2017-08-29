@@ -169,6 +169,7 @@
     <ClInclude Include="MyScene.h" />
     <ClInclude Include="NormalMesh.h" />
     <ClInclude Include="OffScreenMesh.h" />
+    <ClInclude Include="OffScreenRenderShader.h" />
     <ClInclude Include="RenderState.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
@@ -219,6 +220,7 @@
     <ClCompile Include="MyScene.cpp" />
     <ClCompile Include="NormalMesh.cpp" />
     <ClCompile Include="OffScreenMesh.cpp" />
+    <ClCompile Include="OffScreenRenderShader.cpp" />
     <ClCompile Include="RenderState.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />

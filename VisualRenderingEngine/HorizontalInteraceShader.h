@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Shader.h"
-class COffScreenMesh;
+
+
 class CHorizontalInteraceShader : public CShader
 {
 public:
@@ -13,6 +14,11 @@ public:
 	void Render() override;
 	void OnPreRender() override;
 
-	COffScreenMesh *m_pRenderMesh;
+	void BuildViews(const UINT width, const UINT height);
+
+	//ID3D11ShaderResourceView*  m_pOutSRV;
+	ID3D11RenderTargetView*    m_pOutRTV{ nullptr };
+	ID3D11ShaderResourceView*  m_pOutSRV{ nullptr };
+	ID3D11UnorderedAccessView* m_pOutUAV{ nullptr };
 };
 

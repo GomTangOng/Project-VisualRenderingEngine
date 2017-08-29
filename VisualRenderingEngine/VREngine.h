@@ -7,6 +7,7 @@
 class CScene;
 class CCamera;
 class CHorizontalInteraceShader;
+class COffScreenRenderShader;
 class CVREngine : public Singleton<CVREngine>
 {
 public:
@@ -50,11 +51,12 @@ private :
 	ID3D11RenderTargetView*	   m_pOffRenderTargetTextureView = nullptr;
 	ID3D11Texture2D*		   m_pDepthStencilBuffer = nullptr;
 	ID3D11DepthStencilView*	   m_pDepthStencilView = nullptr;
-	//ID3D11Texture2D*           m_pOffScreenRenderTexture = nullptr;
 	ID3D11ShaderResourceView*  m_pOffScreenSRV = nullptr;
 	ID3D11UnorderedAccessView* m_pOffScreenUAV = nullptr;
-	//ID3D11Texture2D*        m_pFinalTexture = nullptr;
+	
 	CHorizontalInteraceShader* m_pInteraceShader;
+	COffScreenRenderShader*    m_pOffScreenRenderShader;
+	
 	CGameTimer* m_pGameTimer;
 	CScene*     m_pScene;
 	vector<CCamera *> m_vecCamera;
@@ -71,7 +73,7 @@ public :
 	void SetInterace(const bool interace) { m_bInterace = interace; }
 	void SetStreoscopic(const bool flag) { m_bStreoscopic = flag; }
 	void SetGameStop(const bool flag) { m_bGameStop = flag; }
-	
+	ID3D11UnorderedAccessView** GetUAV() { return &m_pOffScreenUAV; }
 	ID3D11DepthStencilView* GetDSV() { return m_pDepthStencilView; }
 	ID3D11RenderTargetView** GetRTV() { return &m_pRenderTargetView; }
 	ID3D11ShaderResourceView** GetOffScreenSRV() { return &m_pOffScreenSRV; }

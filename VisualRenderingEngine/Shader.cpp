@@ -112,6 +112,7 @@ void CShader::OnPreRender()
 	if(m_pPixelShader) VR_ENGINE->GetDeviceContext()->PSSetShader(m_pPixelShader, NULL, 0);
 	if(m_pHullShader) VR_ENGINE->GetDeviceContext()->HSSetShader(m_pHullShader, NULL, 0);
 	if(m_pDomainShader) VR_ENGINE->GetDeviceContext()->DSSetShader(m_pDomainShader, NULL, 0);
+	if (m_pComputeShader) VR_ENGINE->GetDeviceContext()->CSSetShader(m_pComputeShader, NULL, 0);
 
 	m_nVisibleObjects = 0;
 }
