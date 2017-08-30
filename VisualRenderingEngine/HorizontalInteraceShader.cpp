@@ -6,6 +6,8 @@
 #include "OffScreenMesh.h"
 #include "SlotType.h"
 #include "VREngine.h"
+#include "TextureManager.h"
+
 CHorizontalInteraceShader::CHorizontalInteraceShader()
 {
 }
@@ -33,9 +35,9 @@ void CHorizontalInteraceShader::BuildObject()
 void CHorizontalInteraceShader::Render()
 {
 	OnPreRender();
-	
-	UINT numGroupsX = (UINT)ceilf(VR_ENGINE->GetWindowWidth() / 256.0f);
-	UINT numGroupsY = (UINT)ceilf(VR_ENGINE->GetWindowHeight() / 256.0f);
+
+	UINT numGroupsX = (UINT)ceilf(VR_ENGINE->GetWindowWidth() / 16.0f);
+	UINT numGroupsY = (UINT)ceilf(VR_ENGINE->GetWindowHeight() / 16.0f);
 	VR_ENGINE->GetDeviceContext()->Dispatch(numGroupsX, numGroupsY, 1);
 
 	ID3D11ShaderResourceView *pSRVNull[1]{ nullptr };
@@ -53,6 +55,8 @@ void CHorizontalInteraceShader::OnPreRender()
 	ID3D11RenderTargetView* pRTVNull[1]{ nullptr };
 	VR_ENGINE->GetDeviceContext()->OMSetRenderTargets(1, pRTVNull, VR_ENGINE->GetDSV());
 	VR_ENGINE->GetDeviceContext()->CSSetShaderResources(TextureSlot::TEXTURE_RENDER_TEXTURE, 1, VR_ENGINE->GetOffScreenSRV());
+	auto sam = TEXTURE_MANAGER->GetSampler(L"BaseSampler");
+	VR_ENGINE->GetDeviceContext()->CSSetSamplers(SamplerSlot::SAMPLER_BASIC, 1, &sam);
 	//VR_ENGINE->GetDeviceContext()->CSSetUnorderedAccessViews(UnOrderedAccessView::UAV_RENDER_TEXTURE, 1, VR_ENGINE->GetUAV(), nullptr);
 	VR_ENGINE->GetDeviceContext()->CSSetUnorderedAccessViews(UnOrderedAccessView::UAV_RENDER_TEXTURE, 1, &m_pOutUAV, nullptr);
 }
