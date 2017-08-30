@@ -7,6 +7,7 @@
 #include "SlotType.h"
 #include "VREngine.h"
 #include "TextureManager.h"
+#include "BufferStructs.h"
 
 CHorizontalInteraceShader::CHorizontalInteraceShader()
 {
@@ -19,25 +20,27 @@ CHorizontalInteraceShader::~CHorizontalInteraceShader()
 	Memory::Release(m_pOutRTV);
 	Memory::Release(m_pOutSRV);
 	Memory::Release(m_pOutUAV);
+	Memory::Release(m_pcbWindowSizeBuffer);
 }
 
 void CHorizontalInteraceShader::CreateShader()
 {
-	SHADER_MANAGER->CreateComputeShaderFromFile(L"Interace.hlsl", "CS_VERTICAL_INTERACE", "cs_5_0", &m_pComputeShader);
+	SHADER_MANAGER->CreateComputeShaderFromFile(L"Interace.hlsl", "CS_HORIZONTAL_INTERACE", "cs_5_0", &m_pComputeShader);
 }
 
 void CHorizontalInteraceShader::BuildObject()
 {
 	CreateShader();
 	BuildViews(VR_ENGINE->GetWindowWidth(), VR_ENGINE->GetWindowHeight());
+	m_pcbWindowSizeBuffer = SHADER_MANAGER->CreateBuffer(sizeof(CS_CB_WINDOWSIZE), 1, nullptr, D3D11_BIND_CONSTANT_BUFFER, D3D11_USAGE_DYNAMIC, D3D11_CPU_ACCESS_WRITE);
 }
 
 void CHorizontalInteraceShader::Render()
 {
 	OnPreRender();
 
-	UINT numGroupsX = (UINT)ceilf(VR_ENGINE->GetWindowWidth() / 16.0f);
-	UINT numGroupsY = (UINT)ceilf(VR_ENGINE->GetWindowHeight() / 16.0f);
+	UINT numGroupsX = (UINT)ceilf(VR_ENGINE->GetWindowWidth() / 32.0f);
+	UINT numGroupsY = (UINT)ceilf(VR_ENGINE->GetWindowHeight() / 32.0f);
 	VR_ENGINE->GetDeviceContext()->Dispatch(numGroupsX, numGroupsY, 1);
 
 	ID3D11ShaderResourceView *pSRVNull[1]{ nullptr };
@@ -59,6 +62,7 @@ void CHorizontalInteraceShader::OnPreRender()
 	VR_ENGINE->GetDeviceContext()->CSSetSamplers(SamplerSlot::SAMPLER_BASIC, 1, &sam);
 	//VR_ENGINE->GetDeviceContext()->CSSetUnorderedAccessViews(UnOrderedAccessView::UAV_RENDER_TEXTURE, 1, VR_ENGINE->GetUAV(), nullptr);
 	VR_ENGINE->GetDeviceContext()->CSSetUnorderedAccessViews(UnOrderedAccessView::UAV_RENDER_TEXTURE, 1, &m_pOutUAV, nullptr);
+	UpdateConstantBuffer();	// Update Window Size
 }
 
 void CHorizontalInteraceShader::BuildViews(const UINT width, const UINT height)
@@ -86,4 +90,15 @@ void CHorizontalInteraceShader::BuildViews(const UINT width, const UINT height)
 	//VR_ENGINE->GetDevice()->CreateRenderTargetView(pOut, nullptr, &m_pOutRTV);
 	HR(VR_ENGINE->GetDevice()->CreateUnorderedAccessView(pOut, nullptr, &m_pOutUAV));
 	Memory::Release(pOut);
+}
+
+void CHorizontalInteraceShader::UpdateConstantBuffer()
+{
+	D3D11_MAPPED_SUBRESOURCE d3dMappedResource;
+	VR_ENGINE->GetDeviceContext()->Map(m_pcbWindowSizeBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &d3dMappedResource);
+	CS_CB_WINDOWSIZE *pcbWinSize = (CS_CB_WINDOWSIZE *)d3dMappedResource.pData;
+	pcbWinSize->fWidth  = VR_ENGINE->GetWindowWidth();
+	pcbWinSize->fHeight = VR_ENGINE->GetWindowHeight();
+	VR_ENGINE->GetDeviceContext()->Unmap(m_pcbWindowSizeBuffer, 0);
+	VR_ENGINE->GetDeviceContext()->CSSetConstantBuffers(0, 1, &m_pcbWindowSizeBuffer);
 }

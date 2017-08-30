@@ -65,9 +65,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			VR_ENGINE->ProcessInput();
 			if(!VR_ENGINE->IsGameStop()) VR_ENGINE->Update(VR_ENGINE->GetGameTimer()->DeltaTime());
 			if (VR_ENGINE->IsStereoscopic())
-				VR_ENGINE->RenderDual();
+			{
+				if(VR_ENGINE->IsVerticalRender())
+					VR_ENGINE->VerticalRenderDual();
+				else
+					VR_ENGINE->HorizontalRenderDual();
+			}
 			else
+			{
 				VR_ENGINE->Render();
+			}
+				
 		}
 	}
 

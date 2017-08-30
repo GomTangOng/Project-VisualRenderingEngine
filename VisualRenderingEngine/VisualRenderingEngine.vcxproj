@@ -197,6 +197,7 @@
     <ClInclude Include="Utility.h" />
     <ClInclude Include="ElementType.h" />
     <ClInclude Include="VertexStructs.h" />
+    <ClInclude Include="VerticalInteraceShader.h" />
     <ClInclude Include="VisualRenderingEngine.h" />
     <ClInclude Include="VREngine.h" />
   </ItemGroup>
@@ -247,6 +248,7 @@
     <ClCompile Include="Tutorial02Shader.cpp" />
     <ClCompile Include="Tutorial03Shader.cpp" />
     <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="VerticalInteraceShader.cpp" />
     <ClCompile Include="VisualRenderingEngine.cpp" />
     <ClCompile Include="VREngine.cpp" />
   </ItemGroup>
@@ -269,7 +271,9 @@
     </FxCompile>
     <FxCompile Include="Interace.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.1</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Light.hlsl">
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>

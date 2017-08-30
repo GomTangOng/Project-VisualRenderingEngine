@@ -185,4 +185,11 @@ void CMyScene::ProcessInput()
 		else VR_ENGINE->SetGameStop(false);
 	}
 
+	if (INPUT_MANAGER->IsOnceKeyUp('4'))
+	{
+		if (VR_ENGINE->IsVerticalRender())
+			VR_ENGINE->SetVerticalRenderFlag(false);
+		else
+			VR_ENGINE->SetVerticalRenderFlag(true);
+	}
 }

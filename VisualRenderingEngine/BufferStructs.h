@@ -57,3 +57,10 @@ struct TS_CB_FACTOR
 	XMFLOAT4   worldFrustumPlanes[6];
 	XMFLOAT4X4 viewProjection;
 };
+
+struct CS_CB_WINDOWSIZE
+{
+	float fWidth;
+	float fHeight;
+	float pad[2];
+};

@@ -18,6 +18,11 @@ enum HS_SLOT
 	HS_CB_SLOT_TESSLATION = 3
 };
 
+enum CS_SLOT
+{
+	CS_CB_SLOT_WINDOWSIZE = 4,
+};
+
 enum TextureSlot : UCHAR
 {
 	TEXTURE_BOX01,

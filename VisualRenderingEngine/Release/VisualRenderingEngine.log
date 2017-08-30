@@ -1,61 +1,70 @@
-﻿  stdafx.cpp
+﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
+C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\VisualRenderingEngine\Interace.hlsl(20,9-47): warning X3206: implicit truncation of vector type
+C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\VisualRenderingEngine\Interace.hlsl(42,9-49): warning X3206: implicit truncation of vector type
+  
+  compilation object save succeeded; see C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Release\Interace.cso
   Camera.cpp
-Camera.cpp(155): warning C4244: '=': 'const DWORD'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-Camera.cpp(156): warning C4244: '=': 'const DWORD'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-Camera.cpp(157): warning C4244: '=': 'const DWORD'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 Camera.cpp(158): warning C4244: '=': 'const DWORD'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Camera.cpp(159): warning C4244: '=': 'const DWORD'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Camera.cpp(160): warning C4244: '=': 'const DWORD'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Camera.cpp(161): warning C4244: '=': 'const DWORD'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   CubeEntity.cpp
   CubeMesh.cpp
 CubeMesh.cpp(58): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
 CubeMesh.cpp(257): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  DXException.cpp
-  DiffusedMesh.cpp
-  DynamicEntity.cpp
   Entity.cpp
   GameTimer.cpp
 GameTimer.cpp(153): warning C4244: 'return': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  GeometryGenerator.cpp
-  InputManager.cpp
-  Light.cpp
+  HorizontalInteraceShader.cpp
+HorizontalInteraceShader.cpp(100): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+HorizontalInteraceShader.cpp(101): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   LightManager.cpp
   LigtingExamShader.cpp
   Material.cpp
   Mesh.cpp
   MyScene.cpp
 MyScene.cpp(61): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-MyScene.cpp(147): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  NormalMesh.cpp
+MyScene.cpp(149): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  OffScreenMesh.cpp
+OffScreenMesh.cpp(15): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+OffScreenMesh.cpp(20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  OffScreenRenderShader.cpp
+OffScreenRenderShader.cpp(31): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   RenderState.cpp
   Scene.cpp
   Shader.cpp
-  컴파일하고 있습니다...
   ShaderManager.cpp
   SkyBoxEntity.cpp
   SkyBoxShader.cpp
-  TSTerrainMesh.cpp
-  TSTerrainShader.cpp
   TerrainEntity.cpp
 TerrainEntity.cpp(60): warning C4244: '=': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 TerrainEntity.cpp(61): warning C4244: '=': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  컴파일하고 있습니다...
   TerrainManager.cpp
-  TerrainMesh.cpp
   TerrainShader.cpp
   Texture.cpp
   TextureManager.cpp
-  TriangleMesh.cpp
+  TSTerrainShader.cpp
   Tutorial02Shader.cpp
   Tutorial03Shader.cpp
-  Utility.cpp
-  VREngine.cpp
-VREngine.cpp(78): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-VREngine.cpp(100): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  VerticalInteraceShader.cpp
+VerticalInteraceShader.cpp(101): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VerticalInteraceShader.cpp(102): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   VisualRenderingEngine.cpp
+  VREngine.cpp
+VREngine.cpp(94): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(113): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(163): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(182): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(452): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(471): warning C4244: '=': 'const float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(472): warning C4244: '=': 'const float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(537): warning C4244: '인수': 'const int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   코드를 생성하고 있습니다.
-c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\shadermanager.cpp(180): warning C4715: 'CShaderManager::CreateDomainShaderFromFile': 모든 제어 경로에서 값을 반환하지는 않습니다.
-c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\shadermanager.cpp(145): warning C4715: 'CShaderManager::CreateHullShaderFromFile': 모든 제어 경로에서 값을 반환하지는 않습니다.
-  2753 of 2849 functions (96.6%) were compiled, the rest were copied from previous compilation.
-    2440 functions were new in current compilation
-    24 functions had inline decision re-evaluated but remain unchanged
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\shadermanager.cpp(215): warning C4715: 'CShaderManager::CreateComputeShaderFromFile': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  429 of 2898 functions (14.8%) were compiled, the rest were copied from previous compilation.
+    41 functions were new in current compilation
+    193 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   VisualRenderingEngine.vcxproj -> C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Release\VisualRenderingEngine.exe
   VisualRenderingEngine.vcxproj -> C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Release\VisualRenderingEngine.pdb (Full PDB)

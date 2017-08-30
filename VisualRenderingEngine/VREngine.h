@@ -8,6 +8,7 @@ class CScene;
 class CCamera;
 class CHorizontalInteraceShader;
 class COffScreenRenderShader;
+class CVerticalInteraceShader;
 class CVREngine : public Singleton<CVREngine>
 {
 public:
@@ -30,7 +31,8 @@ public:
 	void ProcessInput();
 	void Update(const float fTimeElapsed);
 	void Render();
-	void RenderDual();
+	void VerticalRenderDual();
+	void HorizontalRenderDual();
 
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 private :
@@ -54,7 +56,8 @@ private :
 	ID3D11ShaderResourceView*  m_pOffScreenSRV = nullptr;
 	ID3D11UnorderedAccessView* m_pOffScreenUAV = nullptr;
 	
-	CHorizontalInteraceShader* m_pInteraceShader;
+	CVerticalInteraceShader*   m_pVerticalInteraceShader;
+	CHorizontalInteraceShader* m_pHorizontalInteraceShader;
 	COffScreenRenderShader*    m_pOffScreenRenderShader;
 	
 	CGameTimer* m_pGameTimer;
@@ -62,6 +65,7 @@ private :
 	vector<CCamera *> m_vecCamera;
 
 	bool  m_bGameStop;
+	bool  m_bVerticalRender = true;
 	UCHAR m_cameraDualMode;
 	bool  m_bInterace = true;
 	float m_fCamInterval;
@@ -70,6 +74,7 @@ private :
 	bool  m_bStreoscopic;
 	bool  m_bRenderToTexture = false;
 public :
+	void SetVerticalRenderFlag(const bool flag) { m_bVerticalRender = flag; }
 	void SetInterace(const bool interace) { m_bInterace = interace; }
 	void SetStreoscopic(const bool flag) { m_bStreoscopic = flag; }
 	void SetGameStop(const bool flag) { m_bGameStop = flag; }
@@ -88,5 +93,6 @@ public :
 	IDXGISwapChain* GetSwapChain() { return m_pSwapChain; }
 	CCamera* GetCamera(const int idx) { return m_vecCamera[idx]; }
 	bool IsStereoscopic() { return m_bStreoscopic; }
+	bool IsVerticalRender() const { return m_bVerticalRender; }
 };
 

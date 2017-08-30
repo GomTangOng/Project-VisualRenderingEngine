@@ -17,6 +17,7 @@
 #include "OffScreenMesh.h"
 #include "HorizontalInteraceShader.h"
 #include "OffScreenRenderShader.h"
+#include "VerticalInteraceShader.h"
 #include "SlotType.h"
 CVREngine::CVREngine()
 {
@@ -35,7 +36,8 @@ CVREngine::~CVREngine()
 	//for (auto& entity : m_pObjectList) { Memory::Delete(entity.second); }
 	//m_pObjectList.clear();
 	Memory::DeleteVector(m_vecCamera);
-	Memory::Delete(m_pInteraceShader);
+	Memory::Delete(m_pVerticalInteraceShader);
+	Memory::Delete(m_pHorizontalInteraceShader);
 	Memory::Delete(m_pOffScreenRenderShader);
 	Memory::Delete(m_pScene);		// temp
 	//Memory::Delete(m_pCamera);
@@ -67,7 +69,7 @@ void CVREngine::Render()
 	m_pSwapChain->Present(0, 0);
 }
 
-void CVREngine::RenderDual()
+void CVREngine::VerticalRenderDual()
 {
 	ID3D11RenderTargetView* pRTV[1]{ m_pOffRenderTargetTextureView };
 
@@ -117,12 +119,81 @@ void CVREngine::RenderDual()
 
 	if (m_bRenderToTexture)
 	{
-		m_pInteraceShader->Render();		// 인터레이스 쉐이더에서 UAV에 제대로 픽셀값들이 들어가지지가 않는듯..?
+		m_pVerticalInteraceShader->Render();		// 인터레이스 쉐이더에서 UAV에 제대로 픽셀값들이 들어가지지가 않는듯..?
 		// RenderToTexture Shade Render
 		ID3D11ShaderResourceView* pSRVNull[1]{ nullptr };
 		m_pImmediateContext->PSSetShaderResources(TextureSlot::TEXTURE_RENDER_TEXTURE, 1, pSRVNull);
-		m_pImmediateContext->PSSetShaderResources(TextureSlot::TEXTURE_RENDER_TEXTURE, 1, &m_pInteraceShader->m_pOutSRV);
+		m_pImmediateContext->PSSetShaderResources(TextureSlot::TEXTURE_RENDER_TEXTURE, 1, &m_pVerticalInteraceShader->m_pOutSRV);
 		
+		pRTV[0] = m_pRenderTargetView;
+		//pRTV[0] = m_pInteraceShader->m_pOutRTV;
+		m_pImmediateContext->OMSetRenderTargets(1, pRTV, m_pDepthStencilView);
+		m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
+		m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+		m_vecCamera[1]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);
+		//m_pInteraceShader->Render();
+		m_pOffScreenRenderShader->Render();
+	}
+
+	HR(m_pSwapChain->Present(0, 0));
+}
+
+void CVREngine::HorizontalRenderDual()
+{
+	ID3D11RenderTargetView* pRTV[1]{ m_pOffRenderTargetTextureView };
+
+	if (m_bRenderToTexture)
+	{
+		m_pImmediateContext->OMSetRenderTargets(1, pRTV, m_pDepthStencilView);
+		m_pImmediateContext->ClearRenderTargetView(m_pOffRenderTargetTextureView, Colors::MidnightBlue);
+	}
+	else
+		m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
+	m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+
+	XMVECTOR eye1 = m_vecCamera[0]->GetPositionXM();
+	XMVECTOR right1 = m_vecCamera[0]->GetRightVectorXM();
+	XMVECTOR look1 = m_vecCamera[0]->GetLookVectorXM();
+	m_vecCamera[0]->GetProjectionMatrix()._31 = m_fShift;
+	right1 = eye1 - m_fCamInterval / 2 * right1;
+	look1 = look1 - m_fCamInterval / 2 * right1;
+	m_vecCamera[0]->Orthogonalize();
+	m_vecCamera[0]->CreateViewMatrix();
+	m_vecCamera[0]->UpdateViewMatrix();
+	m_vecCamera[0]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight / 2.0f);
+
+	if (m_bViewfrustum)
+		m_pScene->Render(m_vecCamera[0]);
+	else
+		m_pScene->Render();
+
+
+	eye1 = m_vecCamera[1]->GetPositionXM();
+	right1 = m_vecCamera[1]->GetRightVectorXM();
+	look1 = m_vecCamera[1]->GetLookVectorXM();
+
+	m_vecCamera[1]->GetProjectionMatrix()._31 = -m_fShift;
+	right1 = eye1 + m_fCamInterval / 2 * right1;
+	look1 = look1 + m_fCamInterval / 2 * right1;
+	m_vecCamera[1]->Orthogonalize();
+	m_vecCamera[1]->CreateViewMatrix();
+	m_vecCamera[1]->UpdateViewMatrix();
+
+	m_vecCamera[1]->CreateViewport(0.0f, m_nWindowHeight / 2.0f + 1, m_nWindowWidth, m_nWindowHeight / 2.0f);
+
+	if (m_bViewfrustum)
+		m_pScene->Render(m_vecCamera[1]);
+	else
+		m_pScene->Render();
+
+	if (m_bRenderToTexture)
+	{
+		m_pHorizontalInteraceShader->Render();		// 인터레이스 쉐이더에서 UAV에 제대로 픽셀값들이 들어가지지가 않는듯..?
+													// RenderToTexture Shade Render
+		ID3D11ShaderResourceView* pSRVNull[1]{ nullptr };
+		m_pImmediateContext->PSSetShaderResources(TextureSlot::TEXTURE_RENDER_TEXTURE, 1, pSRVNull);
+		m_pImmediateContext->PSSetShaderResources(TextureSlot::TEXTURE_RENDER_TEXTURE, 1, &m_pHorizontalInteraceShader->m_pOutSRV);
+
 		pRTV[0] = m_pRenderTargetView;
 		//pRTV[0] = m_pInteraceShader->m_pOutRTV;
 		m_pImmediateContext->OMSetRenderTargets(1, pRTV, m_pDepthStencilView);
@@ -426,8 +497,10 @@ bool CVREngine::InitObjects()
 	
 	m_pOffScreenRenderShader = new COffScreenRenderShader();
 	m_pOffScreenRenderShader->BuildObject();
-	m_pInteraceShader = new CHorizontalInteraceShader();
-	m_pInteraceShader->BuildObject();
+	m_pVerticalInteraceShader = new CVerticalInteraceShader();
+	m_pVerticalInteraceShader->BuildObject();
+	m_pHorizontalInteraceShader = new CHorizontalInteraceShader();
+	m_pHorizontalInteraceShader->BuildObject();
 
 	CCamera *pCamera = new CCamera();
 
@@ -462,6 +535,8 @@ void CVREngine::ChangeWindowSize(const int nWidth, const int nHeight)
 	HR(CreateRenderTargetDepthStencilView());
 
 	CreateOffScreen(nWidth, nHeight);
+	m_pVerticalInteraceShader->BuildViews(nWidth, nHeight);		
+	m_pHorizontalInteraceShader->BuildViews(nWidth, nHeight);
 	//m_vecCamera[0]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);	 // TEMP
 }
 
