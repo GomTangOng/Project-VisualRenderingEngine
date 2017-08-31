@@ -12,7 +12,7 @@ public :
 
 	bool Initalize(ID3D11Device* pDevice);
 	void ShutDown();
-
+	void Update(const float fTimeElapsed);
 	HRESULT CompileShaderFromFile(WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut);
 	HRESULT CreateVertexShaderFromFile(WCHAR *pFileName, LPCSTR pEntryPoint, LPCSTR pShaderModel,
 									   ID3D11VertexShader **ppVertexShader, D3D11_INPUT_ELEMENT_DESC *pInputElements, UINT nElements, 

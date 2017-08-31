@@ -27,7 +27,11 @@ bool CShaderManager::Initalize(ID3D11Device * pDevice)
 void CShaderManager::ShutDown()
 {
 	for (auto& shader : m_mapShaders) { Memory::Delete(shader.second); } m_mapShaders.clear();
-	
+}
+
+void CShaderManager::Update(const float fTimeElapsed)
+{
+	for (auto& shader : m_mapShaders) { shader.second->Update(fTimeElapsed); };
 }
 
 HRESULT CShaderManager::CreateVertexShaderFromFile(WCHAR * pFileName, LPCSTR pEntryPoint,

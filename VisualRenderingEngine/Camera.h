@@ -3,6 +3,7 @@
 #include "Entity.h"
 
 class CPlayer;
+class CSkyBoxEntity;
 class CCamera : public CEntity
 {
 public:
@@ -38,18 +39,20 @@ private :
 	float m_fNearWindowHeight;
 	float m_fFarWindowHeight;
 	D3D11_VIEWPORT m_viewport;
-	//unordered_map<int, D3D11_VIEWPORT> m_mapViewports;
 
 	BYTE m_iMode;
-	CPlayer *m_pPlayer;
+	CPlayer*       m_pPlayer{ nullptr };
+	CSkyBoxEntity* m_pSkyBoxEntity{ nullptr };
 	bool m_bInterace = false;
 public :
+	void SetSkyBoxEntity(CSkyBoxEntity *pEntity) { m_pSkyBoxEntity = pEntity; }
 	void SetPlayer(CPlayer *pPlayer) { m_pPlayer = pPlayer; }
 	void SetRightVector(const XMFLOAT3& vecRight);
 	void SetUpVector(const XMFLOAT3& vecUp);
 	void SetLookVector(const XMFLOAT3& vecLook);
 	void SetInterace(const bool interace) { m_bInterace = interace; }
 
+	CSkyBoxEntity* GetSkyBoxEntity() { return m_pSkyBoxEntity; }
 	CPlayer* Getplayer() { return m_pPlayer; }
 	XMFLOAT3 GetLookVector() { return XMFLOAT3(m_mtxView._11, m_mtxView._12, m_mtxView._13); }
 	XMFLOAT3 GetUpVector() { return XMFLOAT3(m_mtxView._21, m_mtxView._22, m_mtxView._23); }

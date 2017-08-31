@@ -161,6 +161,7 @@
     <ClInclude Include="GeometryGenerator.h" />
     <ClInclude Include="HorizontalInteraceShader.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="InstancedCubeShader.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="LightManager.h" />
     <ClInclude Include="LigtingExamShader.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="GeometryGenerator.cpp" />
     <ClCompile Include="HorizontalInteraceShader.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="InstancedCubeShader.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="LightManager.cpp" />
     <ClCompile Include="LigtingExamShader.cpp" />

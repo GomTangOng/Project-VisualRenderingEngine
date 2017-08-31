@@ -19,6 +19,7 @@
 #include "TSTerrainShader.h"
 #include "SkyBoxShader.h"
 #include "SkyBoxEntity.h"
+#include "InstancedCubeShader.h"
 CMyScene::CMyScene()
 {
 	m_fCamSpeed = 100.0f;
@@ -58,15 +59,22 @@ void CMyScene::Update(const float fTimeElapsed)
 		entity.second->Translate(0.0f, 0.0f, -60 * fTimeElapsed);
 		if (entity.second->GetPosition()->z < -200)
 		{
-			entity.second->SetPositionZ(rand() % 300 + 350);
+			entity.second->SetPositionZ(rand() % 500 + 300);
 		}
 		entity.second->Update(fTimeElapsed);	
 	}
+
+	// Shader Update를 가장 마지막에...
+	SHADER_MANAGER->Update(fTimeElapsed);
 }
 
-#define MAX_OBJECT 518
+#define MAX_OBJECT 1024
 void CMyScene::BuildObjects()
 {
+	CInstancedCubeShader* pInstancedCubeShader = new CInstancedCubeShader();
+	pInstancedCubeShader->BuildObject();
+	CInstancedLightTexturedCubeMesh *pInstanceCubeMesh = new CInstancedLightTexturedCubeMesh(2.0f, 2.0f, 2.0f);
+
 	CSkyBoxShader *pSkyShader = new CSkyBoxShader();
 	//CTSTerrainShader *pTSShader = new CTSTerrainShader();
 	//CShader *pTerrainShader = new CTerrainShader();
@@ -89,7 +97,7 @@ void CMyScene::BuildObjects()
 
 	shared_ptr<CPointLight> pPointLight = make_shared<CPointLight>();
 	shared_ptr<CSpotLight> pSpotLight = make_shared<CSpotLight>();
-	pDirLight[0]->m_ambient   = XMFLOAT4(0.3f, 0.3f, 0.3f, 1.0f);
+	pDirLight[0]->m_ambient   = XMFLOAT4(0.9f, 0.9f, 0.9f, 1.0f);
 	pDirLight[0]->m_diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	pDirLight[0]->m_speular = XMFLOAT4(0.8f, 0.8f, 0.7f, 1.0f);
 	pDirLight[0]->m_direction = XMFLOAT3(0.707f, -0.707f, 0.0f);
@@ -143,23 +151,23 @@ void CMyScene::BuildObjects()
 	for (int i = 0; i < MAX_OBJECT; ++i)
 	{
 		pEntity[i].Initalize();
-		pEntity[i].AddMesh(pMesh);
+		pEntity[i].AddMesh(pInstanceCubeMesh);
 		pEntity[i].SetMaterial(pCubeMaterial);
 		//if(i%2)
-			pEntity[i].SetPosition(rand() % 150 - 50, rand() % 150 - 50, rand() % 300 + 350);
+			pEntity[i].SetPosition(rand() % 200 - 100, rand() % 200 - 100, rand() % 500 + 300);
 		//else
 		//	pEntity[i].SetPosition(10000 - 50, rand() % 100 - 50, rand() % 300 + 200);
 		this->AddObject(&pEntity[i]);
-		TextureShader->AddObject(&pEntity[i]);
+		pInstancedCubeShader->AddObject(&pEntity[i]);
 		//VR_ENGINE->AddObject(&pEntity[i]);
 		//m_pObjects.push_back(&pEntity[i]);
 	}
 	//pTerrainEntity->Initalize();
 	//pTerrainEntity->SetMaterial(pLandMaterial);
 	//pTSShader->BuildObject();
-	
+	m_pCamera->SetSkyBoxEntity(pSkyEntity);
 	this->SetTerrainObject(pTerrainEntity);
-	SHADER_MANAGER->AddShader(0, TextureShader);
+	SHADER_MANAGER->AddShader(0, pInstancedCubeShader);
 	//SHADER_MANAGER->AddShader(1, pTSShader);
 	SHADER_MANAGER->AddShader(2, pSkyShader);
 	

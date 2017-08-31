@@ -44,3 +44,14 @@ public:
 	virtual void RenderInstanced(ID3D11DeviceContext *pd3dDeviceContext, int nInstances = 0, int nStartInstance = 0);
 };
 
+class CInstancedLightTexturedCubeMesh : public CLightTexturedCubeMesh
+{
+public:
+	CInstancedLightTexturedCubeMesh() = delete;
+	CInstancedLightTexturedCubeMesh(const float width, const float height, const float depth);
+	~CInstancedLightTexturedCubeMesh();
+private :
+	ID3D11Buffer* m_pInstancedBuffer;
+public :
+	ID3D11Buffer* GetInstancedBuffer() { return m_pInstancedBuffer; }
+};

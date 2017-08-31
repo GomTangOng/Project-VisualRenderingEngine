@@ -48,9 +48,22 @@ struct VS_OUTPUT
 	float4 Color : COLOR0;
 };
 
+struct VS_INSTANCED_LIGHTING_TEXTURE_INPUT
+{
+    float3 PosL : POSITION;
+    float3 NormalL : NORMAL;
+    float2 Tex : TEXCOORD;
+    row_major float4x4 InstancedWorld : INSTANCEPOS;
+    uint InstancedId : SV_InstanceID;
+};
 
-
-
+struct VS_INSTANCED_LIGHTING_TEXTURE_OUTPUT
+{
+    float4 PosH : SV_POSITION;
+    float3 PosW : POSITION;
+    float3 NormalW : NORMAL;
+    float2 Tex : TEXCOORD;
+};
 
 #define MAX_LIGHT 16
 
@@ -663,6 +676,72 @@ VS_LIGHTING_TEXTURE_OUTPUT VS_LIGHTING_TEXTURED(VS_LIGHTING_TEXTURE_INPUT input)
 	output.NormalW = mul(input.NormalL, (float3x3)world);
 	output.Tex     = input.Tex;
 	return output;
+}
+
+VS_INSTANCED_LIGHTING_TEXTURE_OUTPUT VS_INSTANCED_LIGHTING_TEXTURED(VS_INSTANCED_LIGHTING_TEXTURE_INPUT input)
+{
+    VS_INSTANCED_LIGHTING_TEXTURE_OUTPUT o;
+    o.PosH = mul(float4(input.PosL, 1.0f), input.InstancedWorld);
+    o.PosH = mul(o.PosH, view);
+    o.PosH = mul(o.PosH, projection);
+    o.PosW = mul(float4(input.PosL, 1.0f), world);
+    o.NormalW = mul(input.NormalL, (float3x3) input.InstancedWorld);
+    o.Tex = input.Tex;
+    return o;
+}
+
+float4 PS_INTANECD_LIGHTING_TEXTURED(VS_INSTANCED_LIGHTING_TEXTURE_OUTPUT input) : SV_Target
+{
+    input.NormalW = normalize(input.NormalW);
+    float3 toEyeW = normalize(gCamPosW - input.PosW);
+	// Start with a sum of zero. 
+    float4 ambient = float4(0.0f, 0.0f, 0.0f, 0.0f);
+    float4 diffuse = float4(0.0f, 0.0f, 0.0f, 0.0f);
+    float4 spec = float4(0.0f, 0.0f, 0.0f, 0.0f);
+
+	// Sum the light contribution from each light source.
+    float4 A, D, S;
+    float4 texColor = float4(1, 1, 1, 1);
+    texColor = gTexture01.Sample(gBasicSampler, input.Tex);
+    float4 litColor = texColor;
+
+	[unroll]
+    for (int i = 0; i < MAX_LIGHT; ++i)
+    {
+		[flatten]
+        if (gDirLight[i].pad == 1.0f)
+        {
+            ComputeDirectionalLight(gMaterial, gDirLight[i], input.NormalW, toEyeW, A, D, S);
+            ambient += A;
+            diffuse += D;
+            spec += S;
+        }
+
+		[flatten]
+        if (gPointLight[i].pad == 1.0f)
+        {
+            ComputePointLight(gMaterial, gPointLight[i], input.PosW, input.NormalW, gCamPosW, A, D, S);
+            ambient += A;
+            diffuse += D;
+            spec += S;
+        }
+
+		[flatten]
+        if (gSpotLight[i].pad == 1.0f)
+        {
+            ComputeSpotLight(gMaterial, gSpotLight[i], input.PosW, input.NormalW, gCamPosW, A, D, S);
+            ambient += A;
+            diffuse += D;
+            spec += S;
+        }
+    }
+
+    litColor = texColor * (ambient + diffuse) + spec;
+
+	// Common to take alpha from diffuse material.
+    litColor.a = gMaterial.Diffuse.a * texColor.a;
+
+    return litColor;
 }
 
 float4 PS_LIGHTING_TEXTURED(VS_LIGHTING_TEXTURE_OUTPUT input) : SV_TARGET

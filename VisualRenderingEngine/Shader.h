@@ -19,6 +19,7 @@ public:
 						LPCSTR *ppDSSahderName);
 
 	virtual void CreateShader();
+	virtual void Update(const float fTimeElapsed) {}
 	virtual void Render();
 	virtual void Render(CCamera *pCamera);
 	virtual void OnPreRender();

@@ -27,7 +27,7 @@ void CS_VERTICAL_INTERACE(int3 groupID : SV_GroupID,
     else    // Right Screen
     {
         gOutput[int2((dispatchThreadID.x * 2) + 1, dispatchThreadID.y)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
-       // gOutput[int2((dispatchThreadID.x * 2) + 2, dispatchThreadID.y)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
+        //gOutput[int2((dispatchThreadID.x * 2) + 2, dispatchThreadID.y)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
     }
 
     //gOutput[dispatchThreadID.xy] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
@@ -42,12 +42,12 @@ void CS_HORIZONTAL_INTERACE(int3 groupID : SV_GroupID,
     int half_window_height = gWindowHeight / 2.0f;
     
     //[flatten]
-    if (dispatchThreadID.y < half_window_height)      // Left Screen
+    if (dispatchThreadID.y < half_window_height)      // Up Screen
     {
         gOutput[int2(dispatchThreadID.x, dispatchThreadID.y * 2)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
         //gOutput[int2(dispatchThreadID.x * 2 + 1, dispatchThreadID.y)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
     }
-    else // Right Screen
+    else // Bottom Screen
     {
         gOutput[int2(dispatchThreadID.x, dispatchThreadID.y * 2 + 1)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
        // gOutput[int2((dispatchThreadID.x * 2) + 2, dispatchThreadID.y)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];

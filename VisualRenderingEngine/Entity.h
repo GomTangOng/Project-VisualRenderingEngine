@@ -95,6 +95,7 @@ public :
 
 	CMesh* GetMesh(const UINT idx = 0) { return m_pMeshes[idx]; }
 	XMFLOAT4X4* GetLocalMatrix() { return &m_mtxLocal; }
+	XMFLOAT4X4* GetWorldMatrix() { return &m_mtxWorld; }
 	XMFLOAT3* GetPosition() { return &m_vPosition; }
 	XMVECTOR GetPositionXM() { return XMLoadFloat3(&m_vPosition); }
 	BoundingBox& GetBoundingBox() { return m_boundingBox; }

@@ -4,7 +4,7 @@
 #include "Light.h"
 
 
-// ConstantBuffer
+// TEMP
 struct ConstantBuffer
 {
 	XMFLOAT4X4 mWorld;

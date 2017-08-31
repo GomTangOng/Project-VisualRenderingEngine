@@ -34,6 +34,11 @@ struct TerrainVertex
 	XMFLOAT2 BoundY;
 };
 
+struct InstanceWorldData
+{
+	XMFLOAT4X4 WorldMatrix;
+};
+
 // Name : Vertex 
 // Desc : GeomatryGenerator에서 일반적인 메시 데이터 집어 넣을 버텍스 구조체
 //

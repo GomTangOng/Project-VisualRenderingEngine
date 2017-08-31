@@ -278,3 +278,18 @@ CLightTexturedCubeMesh::~CLightTexturedCubeMesh()
 	Memory::Release(m_pNormalBuffer);
 	Memory::Release(m_pUVBuffer);
 }
+
+CInstancedLightTexturedCubeMesh::CInstancedLightTexturedCubeMesh(const float width, const float height, const float depth) : CLightTexturedCubeMesh(width, height, depth)
+{
+	// Max Object 1024..
+	m_pInstancedBuffer = SHADER_MANAGER->CreateBuffer(sizeof(InstanceWorldData), 1024, nullptr, D3D11_BIND_VERTEX_BUFFER, D3D11_USAGE_DYNAMIC, D3D11_CPU_ACCESS_WRITE);
+	ID3D11Buffer* ppBuffers[1] = { m_pInstancedBuffer};
+	UINT pBufferStirdes[1] = { sizeof(InstanceWorldData) };
+	UINT pBufferOffsets[1] = { 0 };
+	AssembleToVertexBuffer(1, ppBuffers, pBufferStirdes, pBufferOffsets);
+}
+
+CInstancedLightTexturedCubeMesh::~CInstancedLightTexturedCubeMesh()
+{
+	Memory::Release(m_pInstancedBuffer);
+}

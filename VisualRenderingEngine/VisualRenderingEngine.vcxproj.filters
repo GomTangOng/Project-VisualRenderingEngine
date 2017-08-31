@@ -207,6 +207,9 @@
     <ClInclude Include="VerticalInteraceShader.h">
       <Filter>헤더 파일\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="InstancedCubeShader.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VREngine.cpp">
@@ -333,6 +336,9 @@
       <Filter>헤더 파일\Shader</Filter>
     </ClCompile>
     <ClCompile Include="VerticalInteraceShader.cpp">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="InstancedCubeShader.cpp">
       <Filter>헤더 파일\Shader</Filter>
     </ClCompile>
   </ItemGroup>

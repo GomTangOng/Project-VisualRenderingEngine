@@ -1,20 +1,17 @@
 #pragma once
-
 #include "Shader.h"
-class CMesh;
-class CTexture;
-class CSkyBoxShader : public CShader
+
+class CInstancedCubeShader : public CShader
 {
 public:
-	CSkyBoxShader();
-	~CSkyBoxShader() override;
+	CInstancedCubeShader();
+	~CInstancedCubeShader() override;
 
 	void CreateShader() override;
 	void BuildObject() override;
 	void Update(const float fTimeElapsed) override;
 	void Render() override;
-	void Render(CCamera *pCamera) override;
+	void Render(CCamera *pCamera);
 	void OnPreRender() override;
-
 };
 

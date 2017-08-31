@@ -19,6 +19,7 @@
 #include "OffScreenRenderShader.h"
 #include "VerticalInteraceShader.h"
 #include "SlotType.h"
+
 CVREngine::CVREngine()
 {
 	m_bViewfrustum = true;

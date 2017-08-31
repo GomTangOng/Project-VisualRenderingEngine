@@ -8,7 +8,7 @@
 #include "SlotType.h"
 #include "VREngine.h"
 #include "BufferStructs.h"
-
+#include "Shader.h"
 CScene::CScene()
 {
 }
@@ -62,6 +62,7 @@ void CScene::RemoveAllObjects()
 
 void CScene::Update(const float fTimeElapsed)
 {
+	//for (auto& shader : SHADER_MANAGER->m_mapShaders) { shader.second->Update(fTimeElapsed); }
 	for (auto& obj : m_mapObjects) { obj.second->Update(fTimeElapsed); }
 }
 
