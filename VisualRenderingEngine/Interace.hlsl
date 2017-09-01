@@ -17,7 +17,7 @@ void CS_VERTICAL_INTERACE(int3 groupID : SV_GroupID,
 						  int3 groudThreadID : SV_GroupThreadID,
 						  int3 dispatchThreadID : SV_DispatchThreadID)
 {
-    int half_window_width = gWindowWidth / 2.0f;
+    int half_window_width = gWindowWidth.x / 2.0f;
     
     if(dispatchThreadID.x < half_window_width)      // Left Screen
     {
@@ -39,7 +39,7 @@ void CS_HORIZONTAL_INTERACE(int3 groupID : SV_GroupID,
 						  int3 groudThreadID : SV_GroupThreadID,
 						  int3 dispatchThreadID : SV_DispatchThreadID)
 {
-    int half_window_height = gWindowHeight / 2.0f;
+    int half_window_height = gWindowHeight.x / 2.0f;
     
     //[flatten]
     if (dispatchThreadID.y < half_window_height)      // Up Screen

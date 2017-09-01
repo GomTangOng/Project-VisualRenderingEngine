@@ -61,6 +61,7 @@ struct TS_CB_FACTOR
 struct CS_CB_WINDOWSIZE
 {
 	float fWidth;
+	float pad[3];
 	float fHeight;
-	float pad[2];
+	float pad2[3];
 };
