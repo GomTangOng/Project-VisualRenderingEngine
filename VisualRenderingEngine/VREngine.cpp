@@ -86,9 +86,9 @@ void CVREngine::VerticalRenderDual()
 	XMVECTOR eye1   = m_vecCamera[0]->GetPositionXM();
 	XMVECTOR right1 = m_vecCamera[0]->GetRightVectorXM();
 	XMVECTOR look1  = m_vecCamera[0]->GetLookVectorXM();
-	m_vecCamera[0]->GetProjectionMatrix()._31 = m_fShift;
 	right1 = eye1 - m_fCamInterval / 2 * right1;
-	look1 = look1 - m_fCamInterval / 2 * right1;
+	look1  = look1 - m_fCamInterval / 2 * right1;
+	m_vecCamera[0]->GetProjectionMatrix()._31 = m_fShift;
 	m_vecCamera[0]->Orthogonalize();
 	m_vecCamera[0]->CreateViewMatrix();
 	m_vecCamera[0]->UpdateViewMatrix();
@@ -98,23 +98,21 @@ void CVREngine::VerticalRenderDual()
 		m_pScene->Render(m_vecCamera[0]);
 	else
 		m_pScene->Render();
-	
 
-	eye1 = m_vecCamera[1]->GetPositionXM();
-	right1 = m_vecCamera[1]->GetRightVectorXM();
-	look1 = m_vecCamera[1]->GetLookVectorXM();
+	eye1   = m_vecCamera[0]->GetPositionXM();
+	right1 = m_vecCamera[0]->GetRightVectorXM();
+	look1  = m_vecCamera[0]->GetLookVectorXM();
 
-	m_vecCamera[1]->GetProjectionMatrix()._31 = -m_fShift;
 	right1 = eye1 + m_fCamInterval / 2 * right1;
-	look1 = look1 + m_fCamInterval / 2 * right1;
-	m_vecCamera[1]->Orthogonalize();
-	m_vecCamera[1]->CreateViewMatrix();
-	m_vecCamera[1]->UpdateViewMatrix();
-
-	m_vecCamera[1]->CreateViewport(m_nWindowWidth / 2.0f + 1, 0, m_nWindowWidth / 2.0f, m_nWindowHeight);
+	look1  = look1 + m_fCamInterval / 2 * right1;
+	m_vecCamera[0]->GetProjectionMatrix()._31 = -m_fShift;
+	m_vecCamera[0]->Orthogonalize();
+	m_vecCamera[0]->CreateViewMatrix();
+	m_vecCamera[0]->UpdateViewMatrix();
+	m_vecCamera[0]->CreateViewport(m_nWindowWidth / 2.0f + 1, 0, m_nWindowWidth / 2.0f, m_nWindowHeight);
 
 	if (m_bViewfrustum)
-		m_pScene->Render(m_vecCamera[1]);
+		m_pScene->Render(m_vecCamera[0]);
 	else
 		m_pScene->Render();
 
@@ -131,7 +129,7 @@ void CVREngine::VerticalRenderDual()
 		m_pImmediateContext->OMSetRenderTargets(1, pRTV, m_pDepthStencilView);
 		m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
 		m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
-		m_vecCamera[1]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);
+		m_vecCamera[0]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);
 		//m_pInteraceShader->Render();
 		m_pOffScreenRenderShader->Render();
 	}
@@ -152,12 +150,13 @@ void CVREngine::HorizontalRenderDual()
 		m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
 	m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
-	XMVECTOR eye1 = m_vecCamera[0]->GetPositionXM();
+	// Top Screen View Setting 
+	XMVECTOR eye1   = m_vecCamera[0]->GetPositionXM();
 	XMVECTOR right1 = m_vecCamera[0]->GetRightVectorXM();
-	XMVECTOR look1 = m_vecCamera[0]->GetLookVectorXM();
-	m_vecCamera[0]->GetProjectionMatrix()._31 = m_fShift;
+	XMVECTOR look1  = m_vecCamera[0]->GetLookVectorXM();
 	right1 = eye1 - m_fCamInterval / 2 * right1;
 	look1 = look1 - m_fCamInterval / 2 * right1;
+	m_vecCamera[0]->GetProjectionMatrix()._31 = m_fShift;
 	m_vecCamera[0]->Orthogonalize();
 	m_vecCamera[0]->CreateViewMatrix();
 	m_vecCamera[0]->UpdateViewMatrix();
@@ -168,22 +167,21 @@ void CVREngine::HorizontalRenderDual()
 	else
 		m_pScene->Render();
 
-
-	eye1 = m_vecCamera[1]->GetPositionXM();
-	right1 = m_vecCamera[1]->GetRightVectorXM();
-	look1 = m_vecCamera[1]->GetLookVectorXM();
-
-	m_vecCamera[1]->GetProjectionMatrix()._31 = -m_fShift;
+	// Bottom Screen View Setting
+	eye1   = m_vecCamera[0]->GetPositionXM();
+	right1 = m_vecCamera[0]->GetRightVectorXM();
+	look1  = m_vecCamera[0]->GetLookVectorXM();
 	right1 = eye1 + m_fCamInterval / 2 * right1;
-	look1 = look1 + m_fCamInterval / 2 * right1;
-	m_vecCamera[1]->Orthogonalize();
-	m_vecCamera[1]->CreateViewMatrix();
-	m_vecCamera[1]->UpdateViewMatrix();
+	look1  = look1 + m_fCamInterval / 2 * right1;
+	m_vecCamera[0]->GetProjectionMatrix()._31 = -m_fShift;
+	m_vecCamera[0]->Orthogonalize();
+	m_vecCamera[0]->CreateViewMatrix();
+	m_vecCamera[0]->UpdateViewMatrix();
 
-	m_vecCamera[1]->CreateViewport(0.0f, m_nWindowHeight / 2.0f + 1, m_nWindowWidth, m_nWindowHeight / 2.0f);
+	m_vecCamera[0]->CreateViewport(0.0f, m_nWindowHeight / 2.0f + 1, m_nWindowWidth, m_nWindowHeight / 2.0f);
 
 	if (m_bViewfrustum)
-		m_pScene->Render(m_vecCamera[1]);
+		m_pScene->Render(m_vecCamera[0]);
 	else
 		m_pScene->Render();
 
@@ -200,18 +198,13 @@ void CVREngine::HorizontalRenderDual()
 		m_pImmediateContext->OMSetRenderTargets(1, pRTV, m_pDepthStencilView);
 		m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
 		m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
-		m_vecCamera[1]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);
+		m_vecCamera[0]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);
 		//m_pInteraceShader->Render();
 		m_pOffScreenRenderShader->Render();
 	}
 
 	HR(m_pSwapChain->Present(0, 0));
 }
-
-//void CVREngine::AddObject(CEntity * pEntity)
-//{
-//	//m_pObjectList.insert(make_pair(m_nObjectCount++, pEntity));
-//}
 
 HRESULT CVREngine::InitWindow(HINSTANCE hInstance, int nCmdShow, const int width, const int height)
 {
@@ -505,12 +498,9 @@ bool CVREngine::InitObjects()
 
 	CCamera *pCamera = new CCamera();
 
-	for (int i = 0; i < 2; ++i)
-	{	
-		pCamera->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight, 0.0f, 500.0f, false);
-		pCamera->Initalize();
-		m_vecCamera.push_back(pCamera);
-	}
+	pCamera->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight, 0.0f, 5000.0f, false);
+	pCamera->Initalize();
+	m_vecCamera.push_back(pCamera);
 
 	m_pGameTimer = new CGameTimer();
 	m_pGameTimer->Start();

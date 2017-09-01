@@ -52,10 +52,10 @@ void CSkyBoxShader::BuildObject()
 
 void CSkyBoxShader::Update(const float fTimeElapsed)
 {
-	for (auto obj : m_pObjects)
+	/*for (auto obj : m_pObjects)
 	{
 		obj->Update(fTimeElapsed);
-	}
+	}*/
 }
 
 void CSkyBoxShader::Render()

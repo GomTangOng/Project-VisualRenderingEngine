@@ -9,7 +9,7 @@ public:
 
 	void CreateShader() override;
 	void BuildObject() override;
-	void Update(const float fTimeElapsed) override;
+	void Update(const float fTimeElapsed = 0.0f) override;
 	void Render() override;
 	void Render(CCamera *pCamera);
 	void OnPreRender() override;

@@ -54,6 +54,7 @@ void CMyScene::Update(const float fTimeElapsed)
 
 	LIGHT_MANAGER->UpdateLightConstantBuffer(m_pCamera->GetPosition());
 
+	// all cube move to forward
 	for (auto& entity : m_mapObjects)
 	{
 		entity.second->Translate(0.0f, 0.0f, -60 * fTimeElapsed);
@@ -64,8 +65,7 @@ void CMyScene::Update(const float fTimeElapsed)
 		entity.second->Update(fTimeElapsed);	
 	}
 
-	// Shader Update를 가장 마지막에...
-	SHADER_MANAGER->Update(fTimeElapsed);
+	m_pSkyBoxEntity->Update(0.0f);
 }
 
 #define MAX_OBJECT 1024
@@ -153,24 +153,20 @@ void CMyScene::BuildObjects()
 		pEntity[i].Initalize();
 		pEntity[i].AddMesh(pInstanceCubeMesh);
 		pEntity[i].SetMaterial(pCubeMaterial);
-		//if(i%2)
-			pEntity[i].SetPosition(rand() % 200 - 100, rand() % 200 - 100, rand() % 500 + 300);
-		//else
-		//	pEntity[i].SetPosition(10000 - 50, rand() % 100 - 50, rand() % 300 + 200);
+		pEntity[i].SetPosition(rand() % 200 - 100, rand() % 200 - 100, rand() % 500 + 300);
 		this->AddObject(&pEntity[i]);
 		pInstancedCubeShader->AddObject(&pEntity[i]);
-		//VR_ENGINE->AddObject(&pEntity[i]);
-		//m_pObjects.push_back(&pEntity[i]);
 	}
 	//pTerrainEntity->Initalize();
 	//pTerrainEntity->SetMaterial(pLandMaterial);
 	//pTSShader->BuildObject();
+	//AddObject(pSkyEntity);
 	m_pCamera->SetSkyBoxEntity(pSkyEntity);
+	SetSkyBoxEntity(pSkyEntity);
 	this->SetTerrainObject(pTerrainEntity);
 	SHADER_MANAGER->AddShader(0, pInstancedCubeShader);
 	//SHADER_MANAGER->AddShader(1, pTSShader);
 	SHADER_MANAGER->AddShader(2, pSkyShader);
-	
 }
 
 void CMyScene::ProcessInput()

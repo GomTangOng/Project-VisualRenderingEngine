@@ -57,7 +57,7 @@ void CInstancedCubeShader::Update(const float fTimeElapsed)
 void CInstancedCubeShader::Render()
 {
 	OnPreRender();
-	//Update();
+	Update();
 	m_pObjects[0]->OnPrepareRender();
 	m_pObjects[0]->GetMesh()->RenderInstanced(VR_ENGINE->GetDeviceContext(), m_pObjects.size(), 0);
 }
@@ -65,7 +65,7 @@ void CInstancedCubeShader::Render()
 void CInstancedCubeShader::Render(CCamera * pCamera)
 {
 	OnPreRender();
-	//Update();
+	Update();
 	for (auto obj : m_pObjects)
 	{
 		if (pCamera->IsVisible(obj))
