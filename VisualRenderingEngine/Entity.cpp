@@ -17,7 +17,7 @@ ID3D11Buffer* CEntity::m_pcbViewProjMatrix;
 
 CEntity::CEntity()
 {
-	m_fPtich = m_fRoll = m_fYaw = 0.0f;
+	m_fPitch = m_fRoll = m_fYaw = 0.0f;
 	XMStoreFloat4x4(&m_mtxLocal, XMMatrixIdentity());
 	XMStoreFloat4x4(&m_mtxWorld, XMMatrixIdentity());
 	//XMStoreFloat4x4(&m_mtxView, XMMatrixIdentity());
@@ -60,7 +60,7 @@ void CEntity::Rotate(const float x, const float y, const float z)
 {
 	XMMATRIX mtx;
 
-	m_fPtich += x;
+	m_fPitch += x;
 	mtx = XMMatrixRotationAxis(XMLoadFloat3(&m_vRight), XMConvertToRadians(x));
 	XMStoreFloat3(&m_vLook, XMVector3TransformNormal(XMLoadFloat3(&m_vLook), mtx));
 	XMStoreFloat3(&m_vUp, XMVector3TransformNormal(XMLoadFloat3(&m_vUp), mtx));
@@ -82,7 +82,7 @@ void CEntity::RotationX(const float x)
 {
 	XMMATRIX mtx;
 
-	m_fPtich += x;
+	m_fPitch += x;
 	mtx = XMMatrixRotationAxis(XMLoadFloat3(&m_vRight), XMConvertToRadians(x));
 	XMStoreFloat3(&m_vLook, XMVector3TransformNormal(XMLoadFloat3(&m_vLook), mtx));
 	XMStoreFloat3(&m_vUp, XMVector3TransformNormal(XMLoadFloat3(&m_vUp), mtx));

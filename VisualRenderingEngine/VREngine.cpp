@@ -22,7 +22,7 @@
 
 CVREngine::CVREngine()
 {
-	m_bViewfrustum = true;
+	m_bViewfrustum = false;
 	m_bStreoscopic = true;
 	m_fCamInterval = 0.12f;
 	m_fShift = 0.015f;
@@ -150,6 +150,7 @@ void CVREngine::HorizontalRenderDual()
 		m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
 	m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
+
 	// Top Screen View Setting 
 	XMVECTOR eye1   = m_vecCamera[0]->GetPositionXM();
 	XMVECTOR right1 = m_vecCamera[0]->GetRightVectorXM();
@@ -199,10 +200,20 @@ void CVREngine::HorizontalRenderDual()
 		m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
 		m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 		m_vecCamera[0]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);
-		//m_pInteraceShader->Render();
 		m_pOffScreenRenderShader->Render();
 	}
 
+	//const wchar_t * output = L"Hello World";		// Text Bug... why..?
+
+	//m_spSpriteBatch->Begin();
+
+	//m_fontPos.x = m_nWindowWidth / 2.0f;
+	//m_fontPos.y = m_nWindowHeight / 2.0f;
+
+	//XMVECTOR origin = m_spFont->MeasureString(output) / 2.0f;
+	//m_spFont->DrawString(m_spSpriteBatch.get(), output, m_fontPos, Colors::Red);
+
+	//m_spSpriteBatch->End();
 	HR(m_pSwapChain->Present(0, 0));
 }
 
@@ -489,6 +500,9 @@ bool CVREngine::InitObjects()
 	LIGHT_MANAGER->Initalize(m_pDevice);
 	RENDER_STATE->Initalize();
 	
+	m_spFont = make_shared<SpriteFont>(m_pDevice, L"../Assets/Fonts/myfile.spritefont");
+	m_spSpriteBatch = make_shared<SpriteBatch>(m_pImmediateContext);
+
 	m_pOffScreenRenderShader = new COffScreenRenderShader();
 	m_pOffScreenRenderShader->BuildObject();
 	m_pVerticalInteraceShader = new CVerticalInteraceShader();
@@ -571,6 +585,8 @@ void CVREngine::CleanupManager()
 
 void CVREngine::CleanupObjects()
 {
+	m_spFont.reset();
+	m_spSpriteBatch.reset();
 	Memory::Delete(m_pGameTimer);
 }
 

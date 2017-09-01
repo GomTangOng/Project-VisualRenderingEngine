@@ -57,7 +57,12 @@ using namespace std::chrono;
 //#include "../DirectXTK-master/Inc/DDSTextureLoader.h"
 
 using namespace DirectX;
-using namespace DirectX::PackedVector;
+using namespace DirectX::PackedVector;	
+
+// DirectXTK
+#include "SpriteFont.h"
+#include "SpriteBatch.h"
+
 // ETC
 #include "Utility.h"
 #include "Singleton.h"

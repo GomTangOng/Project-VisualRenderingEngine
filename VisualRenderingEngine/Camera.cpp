@@ -26,6 +26,7 @@ void CCamera::Initalize()
 	m_vLook = XMFLOAT3(0.0f, 0.0f, 100.0f);
 	m_vUp = XMFLOAT3(0.0f, 1.0f, 0.0f);
 	m_vRight = XMFLOAT3(1.0f, 0.0f, 0.0f);
+	m_fPitch = m_fYaw = m_fRoll = 0.0f;
 
 	CreateViewMatrix();
 	CreateProjectionMatrix(0.01f, 500.0f, (float)VR_ENGINE->GetWindowWidth() / VR_ENGINE->GetWindowHeight(), XM_PI / 3.0f);
@@ -109,8 +110,8 @@ void CCamera::CreateBoundingFrustum()
 	static XMVECTOR homogenousPoints[6]
 	{
 		{ 1.0f,  0.0f, 1.0f, 1.0f },  // 오른쪽 평면
-		{ -1.0f,  0.0f, 1.0f, 1.0f },  // 왼쪽 평면
-		{ 0.0f,  1.0f, 1.0f, 1.0f }, // 위쪽 평면
+		{ -1.0f,  0.0f, 1.0f, 1.0f }, // 왼쪽 평면
+		{ 0.0f,  1.0f, 1.0f, 1.0f },  // 위쪽 평면
 		{ 0.0f, -1.0f, 1.0f, 1.0f },  // 아래쪽 평면
 
 		{ 0.0f,  0.0f, 0.0f, 1.0f },  // 가까운 
@@ -148,8 +149,8 @@ void CCamera::CreateBoundingFrustum()
 
 void CCamera::UpdateBoundingFrustum()
 {
-	// 나중에 작업
 	m_boudingFrustum.Origin = m_vPosition;
+	//m_boudingFrustum.Orientation = XMFLOAT4(m_fPitch, m_fYaw, m_fRoll, 1.0f); 회전 처리 예정 
 }
 
 void CCamera::CreateProjectionMatrix(const float fNear, const float fFar, const float fAspectRatio, const float fFov)

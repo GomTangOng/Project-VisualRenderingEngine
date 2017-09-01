@@ -56,9 +56,9 @@ protected :
 	XMFLOAT3 m_vUp;
 	XMFLOAT3 m_vLook;
 
-	float m_fPtich;
-	float m_fYaw;
-	float m_fRoll;
+	float m_fPitch;	// x축 회전값
+	float m_fYaw;	// y축
+	float m_fRoll;	// z축
 
 	CMaterial *m_pMaterial{ nullptr };
 	CTexture  *m_pTexture{ nullptr };

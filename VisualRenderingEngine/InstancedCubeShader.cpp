@@ -72,7 +72,7 @@ void CInstancedCubeShader::Render(CCamera * pCamera)
 			m_nVisibleObjects++;
 	}
 	m_pObjects[0]->OnPrepareRender();
-	m_pObjects[0]->GetMesh()->RenderInstanced(VR_ENGINE->GetDeviceContext(), m_pObjects.size(), 0);
+	m_pObjects[0]->GetMesh()->RenderInstanced(VR_ENGINE->GetDeviceContext(), m_nVisibleObjects, 0);
 }
 
 void CInstancedCubeShader::OnPreRender()

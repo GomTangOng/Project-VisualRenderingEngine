@@ -63,6 +63,9 @@ private :
 	CGameTimer* m_pGameTimer;
 	CScene*     m_pScene;
 	vector<CCamera *> m_vecCamera;
+	shared_ptr<SpriteFont> m_spFont;	// TEMP
+	XMFLOAT2 m_fontPos;
+	shared_ptr<SpriteBatch> m_spSpriteBatch;
 
 	bool  m_bGameStop;
 	bool  m_bVerticalRender = true;
@@ -74,7 +77,7 @@ private :
 	bool  m_bStreoscopic;
 	bool  m_bRenderToTexture = false;
 public :
-	void SetVerticalRenderFlag(const bool flag) { m_bVerticalRender = flag; }
+	void SetVerticalRenderFlag(const bool flag) { m_bVerticalRender = flag;}
 	void SetInterace(const bool interace) { m_bInterace = interace; }
 	void SetStreoscopic(const bool flag) { m_bStreoscopic = flag; }
 	void SetGameStop(const bool flag) { m_bGameStop = flag; }

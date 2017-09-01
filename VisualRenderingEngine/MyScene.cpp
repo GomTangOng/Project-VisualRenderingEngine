@@ -76,8 +76,8 @@ void CMyScene::BuildObjects()
 	CInstancedLightTexturedCubeMesh *pInstanceCubeMesh = new CInstancedLightTexturedCubeMesh(2.0f, 2.0f, 2.0f);
 
 	CSkyBoxShader *pSkyShader = new CSkyBoxShader();
-	//CTSTerrainShader *pTSShader = new CTSTerrainShader();
-	//CShader *pTerrainShader = new CTerrainShader();
+	CTSTerrainShader *pTSShader = new CTSTerrainShader();
+	CShader *pTerrainShader = new CTerrainShader();
 	CShader *TextureShader = new CTutorial03Shader();
 	CEntity *pEntity = new CCubeEntity[MAX_OBJECT];
 	CLightTexturedCubeMesh *pMesh = new CLightTexturedCubeMesh(2.0f, 2.0f, 2.0f);
@@ -157,15 +157,17 @@ void CMyScene::BuildObjects()
 		this->AddObject(&pEntity[i]);
 		pInstancedCubeShader->AddObject(&pEntity[i]);
 	}
-	//pTerrainEntity->Initalize();
-	//pTerrainEntity->SetMaterial(pLandMaterial);
-	//pTSShader->BuildObject();
-	//AddObject(pSkyEntity);
+	pTerrainEntity->Initalize();
+	pTerrainEntity->SetCamera(m_pCamera);
+	pTerrainEntity->SetMaterial(pLandMaterial);
+	pTSShader->BuildObject();
+	pTSShader->AddObject(pTerrainEntity);
+
 	m_pCamera->SetSkyBoxEntity(pSkyEntity);
 	SetSkyBoxEntity(pSkyEntity);
 	this->SetTerrainObject(pTerrainEntity);
 	SHADER_MANAGER->AddShader(0, pInstancedCubeShader);
-	//SHADER_MANAGER->AddShader(1, pTSShader);
+	SHADER_MANAGER->AddShader(1, pTSShader);
 	SHADER_MANAGER->AddShader(2, pSkyShader);
 }
 
