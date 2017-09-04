@@ -88,6 +88,11 @@ void CCamera::CreateViewMatrix()
 
 void CCamera::UpdateViewMatrix()
 {
+	//RotationX(XMConvertToRadians(VR_ENGINE->GetMouseAngleX()));
+	RotationY(XMConvertToRadians(VR_ENGINE->GetMouseAngleY()));
+	//RotationY(XMConvertToRadians(1.0f));
+	//VR_ENGINE->ClearMousePoint();
+
 	XMFLOAT3 tmp41, tmp42, tmp43;
 	Orthogonalize();
 	m_mtxView._11 =  m_vRight.x; m_mtxView._12 = m_vUp.x; m_mtxView._13 = m_vLook.x;

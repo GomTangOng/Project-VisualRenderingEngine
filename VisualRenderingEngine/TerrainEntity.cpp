@@ -57,8 +57,8 @@ void CTerrainEntity::Initalize()
 	//CEntity::Update(0.0f);
 	//CreateRasterizerState(VR_ENGINE->GetDevice());
 	m_szHeightMapFileName = L"../Assets/HeightMaps/terrain.raw";
-	m_nWidth       = 513.0f;
-	m_nHeight      = 513.0f;
+	m_nWidth       = 2049.0f;
+	m_nHeight      = 2049.0f;
 	m_nHeightScale = 50.0f;
 	m_nCellSpacing = 0.5f;
 	m_fMinDist     = 20.0f;

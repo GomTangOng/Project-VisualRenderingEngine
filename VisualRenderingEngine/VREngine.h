@@ -23,7 +23,7 @@ public:
 	bool    InitObjects();
 	void    ChangeWindowSize(const int nWidth, const int nHeight);
 	void    ChangeCameraMode(const UCHAR cameraDualMode);
-		    
+		  
 	void    CleanupDevice();
 	void    CleanupManager();
 	void    CleanupObjects();
@@ -33,6 +33,8 @@ public:
 	void Render();
 	void VerticalRenderDual();
 	void HorizontalRenderDual();
+	void MouseCursorCalculate();
+	bool MouseScreenBoundaryCheck(POINT &curr_pos, POINT& old_pos, POINT& lu, POINT& rb);
 
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 private :
@@ -40,6 +42,8 @@ private :
 	HWND      m_hWnd;
 	int       m_nWindowWidth;
 	int       m_nWindowHeight;
+	float     m_fMouseAngleX;
+	float     m_fMouseAngleY;
 
 	D3D_DRIVER_TYPE			   m_driverType = D3D_DRIVER_TYPE_NULL;
 	D3D_FEATURE_LEVEL		   m_featureLevel = D3D_FEATURE_LEVEL_11_0;
@@ -77,6 +81,7 @@ private :
 	bool  m_bStreoscopic;
 	bool  m_bRenderToTexture = false;
 public :
+	void ClearMousePoint() { m_fMouseAngleX = m_fMouseAngleY = 0.0f; }
 	void SetVerticalRenderFlag(const bool flag) { m_bVerticalRender = flag;}
 	void SetInterace(const bool interace) { m_bInterace = interace; }
 	void SetStreoscopic(const bool flag) { m_bStreoscopic = flag; }
@@ -97,5 +102,7 @@ public :
 	CCamera* GetCamera(const int idx) { return m_vecCamera[idx]; }
 	bool IsStereoscopic() { return m_bStreoscopic; }
 	bool IsVerticalRender() const { return m_bVerticalRender; }
+	float GetMouseAngleX() const { return m_fMouseAngleX; }
+	float GetMouseAngleY() const { return m_fMouseAngleY; }
 };
 

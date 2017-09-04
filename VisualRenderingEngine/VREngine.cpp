@@ -51,6 +51,7 @@ void CVREngine::ProcessInput()
 
 void CVREngine::Update(const float fTimeElapsed)
 {
+	MouseCursorCalculate();
 	m_pScene->Update(fTimeElapsed);
 }
 
@@ -215,6 +216,74 @@ void CVREngine::HorizontalRenderDual()
 
 	//m_spSpriteBatch->End();
 	HR(m_pSwapChain->Present(0, 0));
+}
+
+void CVREngine::MouseCursorCalculate()
+{
+	static POINT mouseOldPoint{ 0, 0 };
+	RECT clientRect;
+	GetWindowRect(m_hWnd, &clientRect);
+	
+	POINT p{ 0, 0 };
+	POINT leftUpScreenPoint, rightBottomScreenPoint;
+	leftUpScreenPoint.x = clientRect.left;
+	leftUpScreenPoint.y = clientRect.top;
+	rightBottomScreenPoint.x = clientRect.right;
+	rightBottomScreenPoint.y = clientRect.bottom;
+
+	ScreenToClient(m_hWnd, &leftUpScreenPoint);
+	ScreenToClient(m_hWnd, &rightBottomScreenPoint);
+	
+	GetCursorPos(&p);
+	ScreenToClient(m_hWnd, &p);
+	
+	if (MouseScreenBoundaryCheck(p, mouseOldPoint, leftUpScreenPoint, rightBottomScreenPoint))
+	{
+		ClientToScreen(m_hWnd, &p);
+		SetCursorPos(p.x, p.y);
+	}
+	
+	int x = p.x;
+	int y = p.y;
+
+	GetInstance()->m_fMouseAngleY = (x - mouseOldPoint.x) / 1.8f;
+	GetInstance()->m_fMouseAngleX = (y - mouseOldPoint.y) / 1.8f;
+
+	mouseOldPoint.x = x;
+	mouseOldPoint.y = y;
+}
+
+bool CVREngine::MouseScreenBoundaryCheck(POINT &curr_pos, POINT& old_pos, POINT& lu, POINT& rb)
+{
+	bool flag{ false };
+	lu.x -= 10;
+	rb.x -= 10;
+	cout << "curr_pos.x : " << curr_pos.x << endl;
+	if (curr_pos.x < lu.x)
+	{
+		curr_pos.x = rb.x;
+		old_pos.x = curr_pos.x;
+		flag = true;
+	}
+	else if (curr_pos.x > rb.x)
+	{
+		curr_pos.x = lu.x;
+		old_pos.x = curr_pos.x;
+		flag = true;
+	}
+	//if (curr_pos.y < lu.y)
+	//{
+	//	curr_pos.y = rb.y;
+	//	old_pos.y = curr_pos.y;
+	//	flag = true;
+	//}
+	//else if (curr_pos.y > rb.y)
+	//{
+	//	curr_pos.y = lu.y;
+	//	old_pos.y = curr_pos.y;
+	//	flag = true;
+	//}
+	return flag;
 }
 
 HRESULT CVREngine::InitWindow(HINSTANCE hInstance, int nCmdShow, const int width, const int height)
@@ -496,7 +565,7 @@ bool CVREngine::InitObjects()
 {
 	SHADER_MANAGER->Initalize(m_pDevice);
 	TEXTURE_MANAGER->Initalize(m_pDevice);
-	TERRAIN_MANAGER->Initalize(m_pDevice);
+	//TERRAIN_MANAGER->Initalize(m_pDevice);
 	LIGHT_MANAGER->Initalize(m_pDevice);
 	RENDER_STATE->Initalize();
 	
@@ -592,6 +661,7 @@ void CVREngine::CleanupObjects()
 
 LRESULT CVREngine::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	static POINT mouseDownPoint{ 0, 0 };
 	switch (message)
 	{
 	//case WM_COMMAND:
@@ -611,12 +681,25 @@ LRESULT CVREngine::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam
 	//	}
 	//}
 	//break;
+	case WM_CREATE:
+	{
+		//ShowCursor(false);
+		//SetCapture(GetInstance()->m_hWnd);
+//		SetCursorPos(GetInstance()->GetWindowWidth() / 2.0f, GetInstance()->GetWindowHeight() / 2.0f);
+	}break;
 	case WM_SIZE:
 	{
 		if (VR_ENGINE->GetDevice())
 		{
 			VR_ENGINE->ChangeWindowSize(LOWORD(lParam), HIWORD(lParam));
 		}		
+	}break;
+	case WM_MOUSEMOVE:
+	{
+		//if (GetCapture() == GetInstance()->m_hWnd)
+		//{
+		
+		//}
 	}break;
 	case WM_PAINT:
 	{
