@@ -100,5 +100,5 @@ void CHorizontalInteraceShader::UpdateConstantBuffer()
 	pcbWinSize->fWidth  = VR_ENGINE->GetWindowWidth();
 	pcbWinSize->fHeight = VR_ENGINE->GetWindowHeight();
 	VR_ENGINE->GetDeviceContext()->Unmap(m_pcbWindowSizeBuffer, 0);
-	VR_ENGINE->GetDeviceContext()->CSSetConstantBuffers(0, 1, &m_pcbWindowSizeBuffer);
+	VR_ENGINE->GetDeviceContext()->CSSetConstantBuffers(4, 1, &m_pcbWindowSizeBuffer);
 }

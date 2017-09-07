@@ -39,8 +39,8 @@ void CVerticalInteraceShader::Render()
 {
 	OnPreRender();
 
-	UINT numGroupsX = (UINT)ceilf(VR_ENGINE->GetWindowWidth() / 32.0f);
-	UINT numGroupsY = (UINT)ceilf(VR_ENGINE->GetWindowHeight() / 32.0f);
+	UINT numGroupsX = (UINT)ceilf(VR_ENGINE->GetWindowWidth() );
+	UINT numGroupsY = (UINT)ceilf(VR_ENGINE->GetWindowHeight());
 	VR_ENGINE->GetDeviceContext()->Dispatch(numGroupsX, numGroupsY, 1);
 
 	ID3D11ShaderResourceView *pSRVNull[1]{ nullptr };
@@ -101,5 +101,5 @@ void CVerticalInteraceShader::UpdateConstantBuffer()
 	pcbWinSize->fWidth = VR_ENGINE->GetWindowWidth();
 	pcbWinSize->fHeight = VR_ENGINE->GetWindowHeight();
 	VR_ENGINE->GetDeviceContext()->Unmap(m_pcbWindowSizeBuffer, 0);
-	VR_ENGINE->GetDeviceContext()->CSSetConstantBuffers(0, 1, &m_pcbWindowSizeBuffer);
+	VR_ENGINE->GetDeviceContext()->CSSetConstantBuffers(4, 1, &m_pcbWindowSizeBuffer);
 }

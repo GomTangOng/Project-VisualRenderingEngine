@@ -189,6 +189,7 @@ void CVREngine::HorizontalRenderDual()
 
 	if (m_bRenderToTexture)
 	{
+		
 		m_pHorizontalInteraceShader->Render();		// 인터레이스 쉐이더에서 UAV에 제대로 픽셀값들이 들어가지지가 않는듯..?
 													// RenderToTexture Shade Render
 		ID3D11ShaderResourceView* pSRVNull[1]{ nullptr };
@@ -200,7 +201,7 @@ void CVREngine::HorizontalRenderDual()
 		m_pImmediateContext->OMSetRenderTargets(1, pRTV, m_pDepthStencilView);
 		m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
 		m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
-		m_vecCamera[0]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);
+		m_vecCamera[0]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight, 0.0f, 1.0f, true);
 		m_pOffScreenRenderShader->Render();
 	}
 
@@ -258,7 +259,7 @@ bool CVREngine::MouseScreenBoundaryCheck(POINT &curr_pos, POINT& old_pos, POINT&
 	bool flag{ false };
 	lu.x -= 10;
 	rb.x -= 10;
-	cout << "curr_pos.x : " << curr_pos.x << endl;
+	//cout << "curr_pos.x : " << curr_pos.x << endl;
 	if (curr_pos.x < lu.x)
 	{
 		curr_pos.x = rb.x;
