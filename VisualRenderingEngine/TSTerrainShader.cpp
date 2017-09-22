@@ -23,13 +23,13 @@ void CTSTerrainShader::CreateShader()
 	BuildInputElementDesc(VERTEX_POSITION_ELEMENT | VERTEX_TEXTURE_ELEMENT_0 | VERTEX_TEXTURE_ELEMENT_1);
 	GetShaderName(m_iVertexElementType, &vs_name, &ps_name, nullptr, &hs_name, &ds_name);
 	
-	SHADER_MANAGER->CreateVertexShaderFromFile(L"Effect.hlsl", vs_name, "vs_5_0", &m_pVertexShader,
+	SHADER_MANAGER->CreateVertexShaderFromFile(L"Terrain.hlsl", vs_name, "vs_5_0", &m_pVertexShader,
 												m_pInputElementDesc,
 												m_nInputElements,
 												&m_pVertexLayout);
-	SHADER_MANAGER->CreatePixelShaderFromFile(L"Effect.hlsl", ps_name, "ps_5_0", &m_pPixelShader);
-	SHADER_MANAGER->CreateHullShaderFromFile(L"Effect.hlsl", hs_name, "hs_5_0", &m_pHullShader);
-	SHADER_MANAGER->CreateDomainShaderFromFile(L"Effect.hlsl", ds_name, "ds_5_0", &m_pDomainShader);
+	SHADER_MANAGER->CreatePixelShaderFromFile(L"Terrain.hlsl", ps_name, "ps_5_0", &m_pPixelShader);
+	SHADER_MANAGER->CreateHullShaderFromFile(L"Terrain.hlsl", hs_name, "hs_5_0", &m_pHullShader);
+	SHADER_MANAGER->CreateDomainShaderFromFile(L"Terrain.hlsl", ds_name, "ds_5_0", &m_pDomainShader);
 }
 
 void CTSTerrainShader::BuildObject()

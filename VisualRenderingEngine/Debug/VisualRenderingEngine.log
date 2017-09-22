@@ -1,7 +1,7 @@
 ﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
   
-  compilation object save succeeded; see C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Debug\Interace.cso
+  compilation object save succeeded; see C:\Users\user\documents\visual studio 2015\Projects\VisualRenderingEngine\Debug\Interace.cso
   건너뛰고 있습니다... (관련된 변경 내용 없음)
   HorizontalInteraceShader.cpp
-  VisualRenderingEngine.vcxproj -> C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.exe
-  VisualRenderingEngine.vcxproj -> C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.pdb (Full PDB)
+  VisualRenderingEngine.vcxproj -> C:\Users\user\documents\visual studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.exe
+  VisualRenderingEngine.vcxproj -> C:\Users\user\documents\visual studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.pdb (Full PDB)

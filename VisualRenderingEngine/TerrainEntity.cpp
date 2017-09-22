@@ -57,8 +57,8 @@ void CTerrainEntity::Initalize()
 	//CEntity::Update(0.0f);
 	//CreateRasterizerState(VR_ENGINE->GetDevice());
 	m_szHeightMapFileName = L"../Assets/HeightMaps/terrain.raw";
-	m_nWidth       = 2049.0f;
-	m_nHeight      = 2049.0f;
+	m_nWidth       = 512.0f;
+	m_nHeight      = 512.0f;
 	m_nHeightScale = 50.0f;
 	m_nCellSpacing = 0.5f;
 	m_fMinDist     = 20.0f;
@@ -86,12 +86,9 @@ void CTerrainEntity::Update(const float fTimeElapsed)
 
 void CTerrainEntity::OnPrepareRender()
 {
-	CEntity::OnPrepareRender();
-	//UpdateWorldMatrixConstantBuffer(m_mtxWorld);
+	if (m_pMaterial) m_pMaterial->UpdateConstantBuffer();
+	if (m_pTexture) m_pTexture->PSSetTextureAndSampler();
 	UpdateTesslationFactor();
-	//m_pMaterial->UpdateConstantBuffer();
-	//m_pTexture->PSSetTextureAndSampler();
-	//m_pCamera->UpdateViewMatrix();
 	TERRAIN_MANAGER->GetHeightMap()->VSSetTextureAndSampler();
 	TERRAIN_MANAGER->GetHeightMap()->PSSetTextureAndSampler();
 	TERRAIN_MANAGER->GetHeightMap()->HSSetTextureAndSampler();
@@ -106,5 +103,3 @@ void CTerrainEntity::Render()
 		pMesh->Render(VR_ENGINE->GetDeviceContext());
 	}
 }
-
-// 하나의 텍스쳐 또는 상수버퍼를 여러개의 쉐이더에 동시에 사용 가능????

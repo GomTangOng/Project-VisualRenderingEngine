@@ -216,16 +216,16 @@ SamplerState samHeightmap : register(s2);
 //	AddressV = CLAMP;
 //};
 
-cbuffer cbViewProjectionMtx : register(b0)
-{
-	matrix view;
-	matrix projection;
-}
+//cbuffer cbViewProjectionMtx : register(b0)
+//{
+//	matrix view;
+//	matrix projection;
+//}
 
-cbuffer cbWorldMtx : register(b1)
-{
-	matrix world;
-}
+//cbuffer cbWorldMtx : register(b1)
+//{
+//	matrix world;
+//}
 
 cbuffer cbLight : register(b0)
 {

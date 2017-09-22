@@ -126,12 +126,11 @@ void CVREngine::VerticalRenderDual()
 		m_pImmediateContext->PSSetShaderResources(TextureSlot::TEXTURE_RENDER_TEXTURE, 1, &m_pVerticalInteraceShader->m_pOutSRV);
 		
 		pRTV[0] = m_pRenderTargetView;
-		//pRTV[0] = m_pInteraceShader->m_pOutRTV;
 		m_pImmediateContext->OMSetRenderTargets(1, pRTV, m_pDepthStencilView);
 		m_pImmediateContext->ClearRenderTargetView(m_pRenderTargetView, Colors::MidnightBlue);
 		m_pImmediateContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 		m_vecCamera[0]->CreateViewport(0, 0, m_nWindowWidth, m_nWindowHeight);
-		//m_pInteraceShader->Render();
+
 		m_pOffScreenRenderShader->Render();
 	}
 
@@ -189,7 +188,6 @@ void CVREngine::HorizontalRenderDual()
 
 	if (m_bRenderToTexture)
 	{
-		
 		m_pHorizontalInteraceShader->Render();		// 인터레이스 쉐이더에서 UAV에 제대로 픽셀값들이 들어가지지가 않는듯..?
 													// RenderToTexture Shade Render
 		ID3D11ShaderResourceView* pSRVNull[1]{ nullptr };
@@ -566,12 +564,12 @@ bool CVREngine::InitObjects()
 {
 	SHADER_MANAGER->Initalize(m_pDevice);
 	TEXTURE_MANAGER->Initalize(m_pDevice);
-	//TERRAIN_MANAGER->Initalize(m_pDevice);
+	TERRAIN_MANAGER->Initalize(m_pDevice);
 	LIGHT_MANAGER->Initalize(m_pDevice);
 	RENDER_STATE->Initalize();
 	
-	m_spFont = make_shared<SpriteFont>(m_pDevice, L"../Assets/Fonts/myfile.spritefont");
-	m_spSpriteBatch = make_shared<SpriteBatch>(m_pImmediateContext);
+	//m_spFont = make_shared<SpriteFont>(m_pDevice, L"../Assets/Fonts/myfile.spritefont");
+	//m_spSpriteBatch = make_shared<SpriteBatch>(m_pImmediateContext);
 
 	m_pOffScreenRenderShader = new COffScreenRenderShader();
 	m_pOffScreenRenderShader->BuildObject();

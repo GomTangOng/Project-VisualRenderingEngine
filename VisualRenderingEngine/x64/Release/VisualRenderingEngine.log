@@ -1,0 +1,216 @@
+﻿  stdafx.cpp
+  Camera.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+Camera.cpp(168): warning C4244: '=': 'const DWORD'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Camera.cpp(169): warning C4244: '=': 'const DWORD'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Camera.cpp(170): warning C4244: '=': 'const DWORD'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Camera.cpp(171): warning C4244: '=': 'const DWORD'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CubeEntity.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  CubeMesh.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+CubeMesh.cpp(58): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+CubeMesh.cpp(203): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+CubeMesh.cpp(204): warning C4267: '=': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+CubeMesh.cpp(243): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+CubeMesh.cpp(244): warning C4267: '=': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+CubeMesh.cpp(257): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  DiffusedMesh.cpp
+  DXException.cpp
+  DynamicEntity.cpp
+  Entity.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  GameTimer.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+GameTimer.cpp(153): warning C4244: 'return': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GeometryGenerator.cpp
+GeometryGenerator.cpp(227): warning C4267: '초기화 중': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  HorizontalInteraceShader.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+HorizontalInteraceShader.cpp(100): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+HorizontalInteraceShader.cpp(101): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  InputManager.cpp
+  InstancedCubeShader.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+InstancedCubeShader.cpp(62): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Light.cpp
+  LightManager.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  LigtingExamShader.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  Material.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  Mesh.cpp
+  MyScene.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+MyScene.cpp(63): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+MyScene.cpp(156): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  NormalMesh.cpp
+  OffScreenMesh.cpp
+OffScreenMesh.cpp(25): warning C4267: '=': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+OffScreenMesh.cpp(26): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+OffScreenMesh.cpp(27): warning C4267: '인수': 'size_t'에서 'const int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+OffScreenMesh.cpp(28): warning C4267: '인수': 'size_t'에서 'const int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+OffScreenMesh.cpp(29): warning C4267: '인수': 'size_t'에서 'const int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  컴파일하고 있습니다...
+  OffScreenRenderShader.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+OffScreenRenderShader.cpp(31): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  RenderState.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  Scene.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  Shader.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  ShaderManager.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  SkyBoxEntity.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+SkyBoxEntity.cpp(33): warning C4267: '인수': 'size_t'에서 'const int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+SkyBoxEntity.cpp(41): warning C4267: '인수': 'size_t'에서 'const UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+SkyBoxEntity.cpp(44): warning C4267: '인수': 'size_t'에서 'const int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SkyBoxShader.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  TerrainEntity.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+TerrainEntity.cpp(60): warning C4244: '=': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+TerrainEntity.cpp(61): warning C4244: '=': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  TerrainManager.cpp
+TerrainManager.cpp(112): warning C4267: '인수': 'size_t'에서 'const int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+TerrainManager.cpp(118): warning C4267: '인수': 'size_t'에서 'const int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+TerrainManager.cpp(124): warning C4267: '인수': 'size_t'에서 'const int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+TerrainManager.cpp(127): warning C4267: '인수': 'size_t'에서 'const UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+TerrainManager.cpp(156): warning C4267: '인수': 'size_t'에서 'const int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+TerrainManager.cpp(170): warning C4267: '인수': 'size_t'에서 'const UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  TerrainMesh.cpp
+  TerrainShader.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  Texture.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  TextureManager.cpp
+TextureManager.cpp(5): fatal error C1083: 포함 파일을 열 수 없습니다. 'DDSTextureLoader.h': No such file or directory
+  TriangleMesh.cpp
+  TSTerrainMesh.cpp
+  TSTerrainShader.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  Tutorial02Shader.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  Tutorial03Shader.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  Utility.cpp
+  VerticalInteraceShader.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+VerticalInteraceShader.cpp(42): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VerticalInteraceShader.cpp(43): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VerticalInteraceShader.cpp(101): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VerticalInteraceShader.cpp(102): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  컴파일하고 있습니다...
+  VisualRenderingEngine.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+  VREngine.cpp
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(70): error C2923: 'std::shared_ptr': 'SpriteFont'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+c:\users\user\documents\visual studio 2015\projects\visualrenderingengine\visualrenderingengine\VREngine.h(72): error C2923: 'std::shared_ptr': 'SpriteBatch'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+VREngine.cpp(24): error C2512: 'std::shared_ptr': 사용할 수 있는 적절한 기본 생성자가 없습니다.
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\memory(438): note: 'std::shared_ptr' 선언을 참조하십시오.
+VREngine.cpp(96): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(113): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(165): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(183): warning C4244: '인수': 'float'에서 'const DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(527): warning C4244: '인수': 'int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(546): warning C4244: '=': 'const float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(547): warning C4244: '=': 'const float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(573): error C2065: 'SpriteFont': 선언되지 않은 식별자입니다.
+VREngine.cpp(573): error C2672: 'make_shared': 일치하는 오버로드된 함수가 없습니다.
+VREngine.cpp(573): error C2974: 'std::make_shared': '_Ty'의 템플릿 인수가 잘못되었습니다. 형식이 필요합니다.
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\memory(968): note: 'std::make_shared' 선언을 참조하십시오.
+VREngine.cpp(574): error C2065: 'SpriteBatch': 선언되지 않은 식별자입니다.
+VREngine.cpp(574): error C2672: 'make_shared': 일치하는 오버로드된 함수가 없습니다.
+VREngine.cpp(574): error C2974: 'std::make_shared': '_Ty'의 템플릿 인수가 잘못되었습니다. 형식이 필요합니다.
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\memory(968): note: 'std::make_shared' 선언을 참조하십시오.
+VREngine.cpp(612): warning C4244: '인수': 'const int'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+VREngine.cpp(658): error C2662: 'void std::shared_ptr<_Ty>::reset(void) noexcept': 'this' 포인터를 'std::shared_ptr'에서 'std::shared_ptr<_Ty> &'(으)로 변환할 수 없습니다.
+  VREngine.cpp(658): note: 원인: 'std::shared_ptr'에서 'std::shared_ptr<_Ty>'(으)로 변환할 수 없습니다.
+  VREngine.cpp(658): note: 변환하려면 둘째 사용자 정의 변환 연산자 또는 생성자가 있어야 합니다.
+VREngine.cpp(659): error C2662: 'void std::shared_ptr<_Ty>::reset(void) noexcept': 'this' 포인터를 'std::shared_ptr'에서 'std::shared_ptr<_Ty> &'(으)로 변환할 수 없습니다.
+  VREngine.cpp(659): note: 원인: 'std::shared_ptr'에서 'std::shared_ptr<_Ty>'(으)로 변환할 수 없습니다.
+  VREngine.cpp(659): note: 변환하려면 둘째 사용자 정의 변환 연산자 또는 생성자가 있어야 합니다.

@@ -2,6 +2,7 @@ SamplerState gBasicSampler : register(s0);
 Texture2D gTextureRT : register(t4);
 
 RWTexture2D<float4> gOutput : register(u0);   // why add unorm...?
+//groupshared float4 gCache[]
 
 cbuffer gWindowSize : register(b4)
 {
@@ -21,11 +22,11 @@ void CS_VERTICAL_INTERACE(int3 groupID : SV_GroupID,
    
     if (dispatchThreadID.x < half_window_width) // Left Screen
     {
-        gOutput[int2(dispatchThreadID.x * 2, dispatchThreadID.y)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
+        gOutput[int2(dispatchThreadID.x * 2 + 1, dispatchThreadID.y)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
     }
-    else                          // Right Screen
+    else                                        // Right Screen
     {
-        gOutput[int2((dispatchThreadID.x - half_window_width) * 2 + 1, dispatchThreadID.y)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
+        gOutput[int2((dispatchThreadID.x - half_window_width) * 2, dispatchThreadID.y)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
     }
 
     //gOutput[dispatchThreadID.xy] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
@@ -42,10 +43,10 @@ void CS_HORIZONTAL_INTERACE(int3 groupID : SV_GroupID,
     //[flatten]
     if (dispatchThreadID.y < half_window_height)      // Top Screen
     {
-        gOutput[int2(dispatchThreadID.x, dispatchThreadID.y * 2)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
+        gOutput[int2(dispatchThreadID.x, dispatchThreadID.y * 2 + 1)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
     }
-    else // Bottom Screen
+    else                                              // Bottom Screen
     {
-        gOutput[int2(dispatchThreadID.x, (dispatchThreadID.y - half_window_height) * 2 + 1)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
+        gOutput[int2(dispatchThreadID.x, (dispatchThreadID.y - half_window_height) * 2)] = gTextureRT[int2(dispatchThreadID.x, dispatchThreadID.y)];
     }
 }
