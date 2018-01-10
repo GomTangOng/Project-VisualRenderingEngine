@@ -19,6 +19,9 @@
 #include "TSTerrainShader.h"
 #include "SkyBoxShader.h"
 #include "SkyBoxEntity.h"
+#include "TerrainMesh.h"
+#include "GeometryGenerator.h"
+#include "TextureManager.h"
 #include "InstancedCubeShader.h"
 CMyScene::CMyScene()
 {
@@ -71,13 +74,25 @@ void CMyScene::Update(const float fTimeElapsed)
 #define MAX_OBJECT 1024
 void CMyScene::BuildObjects()
 {
+	auto& terrain_mesh = TERRAIN_MANAGER->GetMeshes();
+	CCubeEntity *pSimpleObj = new CCubeEntity();
+	pSimpleObj->Initalize();
+	pSimpleObj->AddMesh(terrain_mesh[0]);
+	//pSimpleObj->SetTexture(TEXTURE_MANAGER->GetTexture(L"Grass"));
+
+
+	//pSimpleObj->Translate(0.0f, -2000.0f, 0.0f);
+	CTutorial03Shader *pSimpleTerrain = new CTutorial03Shader();
+	pSimpleTerrain->BuildObject();
+	pSimpleTerrain->AddObject(pSimpleObj);
+	
 	CInstancedCubeShader* pInstancedCubeShader = new CInstancedCubeShader();
 	pInstancedCubeShader->BuildObject();
 	CInstancedLightTexturedCubeMesh *pInstanceCubeMesh = new CInstancedLightTexturedCubeMesh(2.0f, 2.0f, 2.0f);
 
 	CSkyBoxShader *pSkyShader = new CSkyBoxShader();
 	CTSTerrainShader *pTSShader = new CTSTerrainShader();
-	//CShader *pTerrainShader = new CTerrainShader();
+	CShader *pTerrainShader = new CTerrainShader();
 	CShader *TextureShader = new CTutorial03Shader();
 	CEntity *pEntity = new CCubeEntity[MAX_OBJECT];
 	CLightTexturedCubeMesh *pMesh = new CLightTexturedCubeMesh(2.0f, 2.0f, 2.0f);
@@ -138,6 +153,8 @@ void CMyScene::BuildObjects()
 	pLandMaterial->SetDiffuse(XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f));
 	pLandMaterial->SetSpecular(XMFLOAT4(0.2f, 0.2f, 0.2f, 16.0f));
 
+	pSimpleObj->SetMaterial(pLandMaterial);
+
 	/*pMaterial->m_ambient = XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f);
 	mLandMat.Diffuse = XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f);
 	mLandMat.Specular = XMFLOAT4(0.2f, 0.2f, 0.2f, 16.0f);*/
@@ -157,7 +174,7 @@ void CMyScene::BuildObjects()
 		this->AddObject(&pEntity[i]);
 		pInstancedCubeShader->AddObject(&pEntity[i]);
 	}
-	//pTerrainEntity->Initalize();
+	pTerrainEntity->Initalize();
 	pTerrainEntity->SetCamera(m_pCamera);
 	pTerrainEntity->SetMaterial(pLandMaterial);
 	pTSShader->BuildObject();
@@ -169,6 +186,7 @@ void CMyScene::BuildObjects()
 	SHADER_MANAGER->AddShader(0, pInstancedCubeShader);
 	SHADER_MANAGER->AddShader(1, pTSShader);
 	SHADER_MANAGER->AddShader(2, pSkyShader);
+	SHADER_MANAGER->AddShader(3, pSimpleTerrain);
 }
 
 void CMyScene::ProcessInput()
@@ -185,17 +203,28 @@ void CMyScene::ProcessInput()
 		VR_ENGINE->ChangeCameraMode(CameraDualMode::INTERACE);		// Interace Mode
 	}
 
+	// Pause
 	if (INPUT_MANAGER->IsOnceKeyUp('3'))
 	{
 		if(!VR_ENGINE->IsGameStop()) VR_ENGINE->SetGameStop(true);
 		else VR_ENGINE->SetGameStop(false);
 	}
 
+	// Horizontal or Vertical Rendering
 	if (INPUT_MANAGER->IsOnceKeyUp('4'))
 	{
 		if (VR_ENGINE->IsVerticalRender())
 			VR_ENGINE->SetVerticalRenderFlag(false);
 		else
 			VR_ENGINE->SetVerticalRenderFlag(true);
+	}
+	
+	// which odd or even order?
+	if (INPUT_MANAGER->IsOnceKeyUp('5'))
+	{
+		if (VR_ENGINE->IsRenderOrderFlag())
+			VR_ENGINE->SetRenderOrderFlag(false);
+		else
+			VR_ENGINE->SetRenderOrderFlag(true);
 	}
 }

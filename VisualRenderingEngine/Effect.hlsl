@@ -756,7 +756,7 @@ float4 PS_LIGHTING_TEXTURED(VS_LIGHTING_TEXTURE_OUTPUT input) : SV_TARGET
 	// Sum the light contribution from each light source.
 	float4 A, D, S;
 	float4 texColor = float4(1, 1, 1, 1);
-	texColor = gTexture01.Sample(gBasicSampler, input.Tex);
+    texColor = gTextureGrass.Sample(gBasicSampler, input.Tex);
 	float4 litColor = texColor;
 
 	[unroll]

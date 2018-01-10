@@ -9,4 +9,5 @@ CTerrainMesh::CTerrainMesh()
 
 CTerrainMesh::~CTerrainMesh()
 {
+	Memory::Release(m_pUVBuffer);
 }

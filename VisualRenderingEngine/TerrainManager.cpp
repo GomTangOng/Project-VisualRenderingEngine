@@ -24,7 +24,7 @@ bool CTerrainManager::Initalize(ID3D11Device * pDevice)
 {
 	m_pDevice = pDevice;
 
-	//BuildTerrain(320, 320, 50, 50);  No HeightMap Version.
+	BuildTerrain(2048, 2048, 30, 30);  //No HeightMap Version.
 	//LoadHeightMap(pTerrain);
 
 	CTerrainEntity *pTerrain = new CTerrainEntity();
@@ -59,7 +59,7 @@ void CTerrainManager::ShutDown()
 void CTerrainManager::BuildQuadPatchVB()
 {
 	float width        = m_pTerrainEntity->GetWidth();
-	float depth        = m_pTerrainEntity->GetHeight();
+	float depth        = m_pTerrainEntity->GetDepth();
 	UINT patchVerCols = m_pTerrainEntity->GetPatchVertexCols();
 	UINT patchVerRows = m_pTerrainEntity->GetPatchVertexRows();
 	
@@ -250,76 +250,82 @@ bool CTerrainManager::LoadHeightMap(CTerrainEntity *pTerrain)
 
 void CTerrainManager::BuildTerrain(const float width, const float depth, UINT m, UINT n)
 {
-	//CTerrainMesh* pMesh = new CTerrainMesh();
+	CTerrainMesh* pMesh = new CTerrainMesh();
 
-	//m_vMeshes.push_back(pMesh);
-	//
-	//CGeometryGenerator::MeshData grid;
-	//CGeometryGenerator geoGen;
-	//geoGen.CreateGrid(width, depth, m, n, grid);
-	//UINT vertices_cnt = grid.Vertices.size();
-	//UINT indices_cnt = grid.Indices.size();
+	m_vMeshes.push_back(pMesh);
+	
+	CGeometryGenerator::MeshData grid;
+	CGeometryGenerator geoGen;
+	geoGen.CreateGrid(width, depth, m, n, grid);
+	UINT vertices_cnt = grid.Vertices.size();
+	UINT indices_cnt = grid.Indices.size();
 
-	//m_vMeshes.reserve(vertices_cnt);
-	//
-	//vector<XMFLOAT3> positions(vertices_cnt);
-	//vector<XMFLOAT3> normals(vertices_cnt);
-	//for (int i=0; i<vertices_cnt; ++i)
-	//{
-	//	XMFLOAT3 p = grid.Vertices[i].Position;
-	//	p.y = GetHeight(p.x, p.z);
-	//	positions[i] = p;
-	//	normals[i] = GetHillNormal(p.x, p.z);
-	//	//if (p.y < -10.0f)
-	//	//{
-	//	//	// Sandy beach color.
-	//	//	colors[i] = XMFLOAT4(1.0f, 0.96f, 0.62f, 1.0f);
-	//	//}
-	//	//else if (p.y < 5.0f)
-	//	//{
-	//	//	// Light yellow-green.
-	//	//	colors[i] = XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f);
-	//	//}
-	//	//else if (p.y < 12.0f)
-	//	//{
-	//	//	// Dark yellow-green.
-	//	//	colors[i] = XMFLOAT4(0.1f, 0.48f, 0.19f, 1.0f);
-	//	//}
-	//	//else if (p.y < 20.0f)
-	//	//{
-	//	//	// Dark brown.
-	//	//	colors[i] = XMFLOAT4(0.45f, 0.39f, 0.34f, 1.0f);
-	//	//}
-	//	//else
-	//	//{
-	//	//	// White snow.
-	//	//	colors[i] = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	//	//}
-	//}
+	m_vMeshes.reserve(vertices_cnt);
+	
+	vector<XMFLOAT3> positions(vertices_cnt);
+	vector<XMFLOAT3> normals(vertices_cnt);
+	vector<XMFLOAT2> uv(vertices_cnt);
+	for (int i=0; i<vertices_cnt; ++i)
+	{
+		XMFLOAT3 p = grid.Vertices[i].Position;
+		p.y = GetSimpleHeight(p.x, p.z);
+		positions[i] = p;
+		normals[i] = GetHillNormal(p.x, p.z);
+		uv[i] = grid.Vertices[i].TexC;
+		//if (p.y < -10.0f)
+		//{
+		//	// Sandy beach color.
+		//	grid.Vertices[i]. colors[i] = XMFLOAT4(1.0f, 0.96f, 0.62f, 1.0f);
+		//}
+		//else if (p.y < 5.0f)
+		//{
+		//	// Light yellow-green.
+		//	colors[i] = XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f);
+		//}
+		//else if (p.y < 12.0f)
+		//{
+		//	// Dark yellow-green.
+		//	colors[i] = XMFLOAT4(0.1f, 0.48f, 0.19f, 1.0f);
+		//}
+		//else if (p.y < 20.0f)
+		//{
+		//	// Dark brown.
+		//	colors[i] = XMFLOAT4(0.45f, 0.39f, 0.34f, 1.0f);
+		//}
+		//else
+		//{
+		//	// White snow.
+		//	colors[i] = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+		//}
+	}
 
-	//ID3D11Buffer* pPositionBuffer = SHADER_MANAGER->CreateBuffer(sizeof(XMFLOAT3), vertices_cnt, &positions[0], D3D11_BIND_VERTEX_BUFFER, D3D11_USAGE_IMMUTABLE, 0);
-	//ID3D11Buffer* pNormalsBuffer = SHADER_MANAGER->CreateBuffer(sizeof(XMFLOAT4), vertices_cnt, &normals[0], D3D11_BIND_VERTEX_BUFFER, D3D11_USAGE_IMMUTABLE, 0);
-	//ID3D11Buffer* pIndicesBuffer = SHADER_MANAGER->CreateBuffer(sizeof(UINT), indices_cnt, &grid.Indices[0], D3D11_BIND_INDEX_BUFFER, D3D11_USAGE_IMMUTABLE, 0);
-	//ID3D11Buffer* pBuffers[2]{ pPositionBuffer, pNormalsBuffer };
-	//UINT pBufferStrides[2]{ sizeof(XMFLOAT3), sizeof(XMFLOAT3) };
-	//UINT pBufferOffset[2]{ 0, 0 };
+	ID3D11Buffer* pPositionBuffer = SHADER_MANAGER->CreateBuffer(sizeof(XMFLOAT3), vertices_cnt, &positions[0], D3D11_BIND_VERTEX_BUFFER, D3D11_USAGE_IMMUTABLE, 0);
+	ID3D11Buffer* pNormalsBuffer = SHADER_MANAGER->CreateBuffer(sizeof(XMFLOAT4), vertices_cnt, &normals[0], D3D11_BIND_VERTEX_BUFFER, D3D11_USAGE_IMMUTABLE, 0);
+	ID3D11Buffer* pUVBuffer = SHADER_MANAGER->CreateBuffer(sizeof(XMFLOAT2), vertices_cnt, &uv[0], D3D11_BIND_VERTEX_BUFFER, D3D11_USAGE_IMMUTABLE, 0);
+	ID3D11Buffer* pIndicesBuffer = SHADER_MANAGER->CreateBuffer(sizeof(UINT), indices_cnt, &grid.Indices[0], D3D11_BIND_INDEX_BUFFER, D3D11_USAGE_IMMUTABLE, 0);
+	ID3D11Buffer* pBuffers[3]{ pPositionBuffer, pNormalsBuffer, pUVBuffer };
+	UINT pBufferStrides[3]{ sizeof(XMFLOAT3), sizeof(XMFLOAT3), sizeof(XMFLOAT2) };
+	UINT pBufferOffset[3]{ 0, 0, 0 };
 
-	//pMesh->SetVertexCount(vertices_cnt);
-	//pMesh->SetIndexCount(indices_cnt);
-	//pMesh->SetDXGIIndexFormat(DXGI_FORMAT_R32_UINT);
-	//pMesh->SetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	//pMesh->SetPositionBuffer(pPositionBuffer);
-	//pMesh->SetIndexBuffer(pIndicesBuffer);
-	//pMesh->SetNoramlConstantBuffer(pNormalsBuffer);
-	////pMesh->SetColorBuffer(pColorsBuffer);
-	//pMesh->AssembleToVertexBuffer(2, pBuffers, pBufferStrides, pBufferOffset);
+	pMesh->SetVertexCount(vertices_cnt);
+	pMesh->SetIndexCount(indices_cnt);
+	pMesh->SetDXGIIndexFormat(DXGI_FORMAT_R32_UINT);
+	pMesh->SetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	pMesh->SetPositionBuffer(pPositionBuffer);
+	pMesh->SetIndexBuffer(pIndicesBuffer);
+	pMesh->SetNoramlConstantBuffer(pNormalsBuffer);
+	pMesh->SetUVBuffer(pUVBuffer);
+	//pMesh->SetColorBuffer(pColorsBuffer);
+	pMesh->AssembleToVertexBuffer(3, pBuffers, pBufferStrides, pBufferOffset);
 }
+
+
 
 float CTerrainManager::GetHeight(const float x, const float z)
 {
 	// Transform from terrain local space to "cell" space.
 	float c = (x + 0.5f*m_pTerrainEntity->GetWidth()) / m_pTerrainEntity->GetCellSpacing();
-	float d = (z - 0.5f*m_pTerrainEntity->GetHeight()) / -m_pTerrainEntity->GetCellSpacing();
+	float d = (z - 0.5f*m_pTerrainEntity->GetDepth()) / -m_pTerrainEntity->GetCellSpacing();
 
 	// Get the row and column we are in.
 	int row = (int)floorf(d);
@@ -446,7 +452,12 @@ float CTerrainManager::Average(const int x, const int z)
 bool CTerrainManager::InBounds(const int x, const int z)
 {
 	// True if xz are valid indices; false otherwise.
-	return x >= 0 && x < (int)m_pTerrainEntity->GetHeightMapHeight() && z >= 0 && z < (int)m_pTerrainEntity->GetHeightMapWidth();
+	return z >= 0 && z < (int)m_pTerrainEntity->GetHeightMapHeight() && x >= 0 && x < (int)m_pTerrainEntity->GetHeightMapWidth();
+}
+
+float CTerrainManager::GetSimpleHeight(const float x, const float z)
+{
+	return 0.3f * (z * sinf(0.1f* x) + x * cosf(0.1f * z));
 }
 
 XMFLOAT3 CTerrainManager::GetHillNormal(float x, float z) const

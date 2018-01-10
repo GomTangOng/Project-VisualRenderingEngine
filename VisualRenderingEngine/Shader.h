@@ -37,6 +37,7 @@ protected :
 	ID3D11HullShader*       m_pHullShader = nullptr;
 	ID3D11DomainShader*     m_pDomainShader = nullptr;
 	ID3D11ComputeShader*    m_pComputeShader = nullptr;
+	ID3D11ComputeShader*    m_pComputeShader2 = nullptr;	// 홀수 짝수 바꾸는 것을 대비한 쉐어더 변수
 	//ID3D11Buffer*           m_pVertexBuffer = nullptr;	// temp
 
 	//CRenderState *m_pRenderState;

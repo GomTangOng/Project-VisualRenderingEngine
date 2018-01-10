@@ -80,7 +80,9 @@ private :
 	bool  m_bViewfrustum;
 	bool  m_bStreoscopic;
 	bool  m_bRenderToTexture = false;
+	bool  m_bRenderOrderFlag = false;
 public :
+	void SetRenderOrderFlag(const bool bFlag) { m_bRenderOrderFlag = bFlag; }
 	void ClearMousePoint() { m_fMouseAngleX = m_fMouseAngleY = 0.0f; }
 	void SetVerticalRenderFlag(const bool flag) { m_bVerticalRender = flag;}
 	void SetInterace(const bool interace) { m_bInterace = interace; }
@@ -104,5 +106,6 @@ public :
 	bool IsVerticalRender() const { return m_bVerticalRender; }
 	float GetMouseAngleX() const { return m_fMouseAngleX; }
 	float GetMouseAngleY() const { return m_fMouseAngleY; }
+	bool IsRenderOrderFlag() const { return m_bRenderOrderFlag; }
 };
 

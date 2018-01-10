@@ -1,7 +1,5 @@
 ﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
+C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\VisualRenderingEngine\Effect.hlsl(687,5-49): warning X3206: implicit truncation of vector type
   
-  compilation object save succeeded; see C:\Users\user\documents\visual studio 2015\Projects\VisualRenderingEngine\Debug\Interace.cso
-  건너뛰고 있습니다... (관련된 변경 내용 없음)
-  HorizontalInteraceShader.cpp
-  VisualRenderingEngine.vcxproj -> C:\Users\user\documents\visual studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.exe
-  VisualRenderingEngine.vcxproj -> C:\Users\user\documents\visual studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.pdb (Full PDB)
+  compilation object save succeeded; see C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Debug\Effect.cso
+  VisualRenderingEngine.vcxproj -> C:\Users\user\Documents\Visual Studio 2015\Projects\VisualRenderingEngine\Debug\VisualRenderingEngine.exe

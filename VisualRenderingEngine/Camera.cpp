@@ -22,14 +22,14 @@ void CCamera::Initalize()
 
 //	if(!m_pcbViewProjMatrix) m_pcbViewProjMatrix = SHADER_MANAGER->CreateBuffer(sizeof(VS_CB_VIEW_PROJECTION_MATRIX), 1, nullptr, D3D11_BIND_CONSTANT_BUFFER, D3D11_USAGE_DYNAMIC, D3D11_CPU_ACCESS_WRITE);
 
-	SetPosition(0.0f, 0.0f, 0.0f, false);
+	SetPosition(0.0f, 50.0f, 0.0f, false);
 	m_vLook = XMFLOAT3(0.0f, 0.0f, 100.0f);
 	m_vUp = XMFLOAT3(0.0f, 1.0f, 0.0f);
 	m_vRight = XMFLOAT3(1.0f, 0.0f, 0.0f);
 	m_fPitch = m_fYaw = m_fRoll = 0.0f;
 
 	CreateViewMatrix();
-	CreateProjectionMatrix(0.01f, 500.0f, (float)VR_ENGINE->GetWindowWidth() / VR_ENGINE->GetWindowHeight(), XM_PI / 3.0f);
+	CreateProjectionMatrix(0.01f, 1000.0f, (float)VR_ENGINE->GetWindowWidth() / VR_ENGINE->GetWindowHeight(), XM_PI / 3.0f);
 	CreateBoundingFrustum();
 	//UpdateVertexShaderConstantBuffer(m_mtxView, m_mtxProjection);
 }

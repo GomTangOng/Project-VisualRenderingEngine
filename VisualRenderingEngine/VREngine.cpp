@@ -28,6 +28,8 @@ CVREngine::CVREngine()
 	m_fShift = 0.015f;
 	m_bGameStop = false;
 	m_bInterace = true;
+	m_bVerticalRender = false;
+	m_bRenderOrderFlag = true;
 }
 
 
@@ -188,8 +190,8 @@ void CVREngine::HorizontalRenderDual()
 
 	if (m_bRenderToTexture)
 	{
-		m_pHorizontalInteraceShader->Render();		// 인터레이스 쉐이더에서 UAV에 제대로 픽셀값들이 들어가지지가 않는듯..?
-													// RenderToTexture Shade Render
+		m_pHorizontalInteraceShader->Render();		// RenderToTexture Shade Render
+													
 		ID3D11ShaderResourceView* pSRVNull[1]{ nullptr };
 		m_pImmediateContext->PSSetShaderResources(TextureSlot::TEXTURE_RENDER_TEXTURE, 1, pSRVNull);
 		m_pImmediateContext->PSSetShaderResources(TextureSlot::TEXTURE_RENDER_TEXTURE, 1, &m_pHorizontalInteraceShader->m_pOutSRV);

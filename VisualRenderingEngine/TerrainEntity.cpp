@@ -60,7 +60,7 @@ void CTerrainEntity::Initalize()
 	m_nWidth       = 512.0f;
 	m_nHeight      = 512.0f;
 	m_nHeightScale = 50.0f;
-	m_nCellSpacing = 0.5f;
+	m_nCellSpacing = 3.0f;
 	m_fMinDist     = 20.0f;
 	m_fMaxDist	   = 500.0f;
 	m_fMinTess     = 0.0f;

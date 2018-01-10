@@ -26,6 +26,7 @@ CHorizontalInteraceShader::~CHorizontalInteraceShader()
 void CHorizontalInteraceShader::CreateShader()
 {
 	SHADER_MANAGER->CreateComputeShaderFromFile(L"Interace.hlsl", "CS_HORIZONTAL_INTERACE", "cs_5_0", &m_pComputeShader);
+	SHADER_MANAGER->CreateComputeShaderFromFile(L"Interace.hlsl", "CS_HORIZONTAL_INTERACE2", "cs_5_0", &m_pComputeShader2);
 }
 
 void CHorizontalInteraceShader::BuildObject()
